@@ -1,0 +1,54 @@
+1621327322 ERROR  ReferenceError: fs is not defined
+    at /home/grorge/Desktop/GITHUB/biological-blockchain/server/src/routers/account.js:9:9
+    at new Promise (<anonymous>)
+    at list (/home/grorge/Desktop/GITHUB/biological-blockchain/server/src/routers/account.js:8:12)
+    at /home/grorge/Desktop/GITHUB/biological-blockchain/server/src/routers/account.js:40:5
+    at Layer.handle [as handle_request] (/home/grorge/Desktop/GITHUB/biological-blockchain/server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/grorge/Desktop/GITHUB/biological-blockchain/server/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/home/grorge/Desktop/GITHUB/biological-blockchain/server/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/home/grorge/Desktop/GITHUB/biological-blockchain/server/node_modules/express/lib/router/layer.js:95:5)
+    at /home/grorge/Desktop/GITHUB/biological-blockchain/server/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/home/grorge/Desktop/GITHUB/biological-blockchain/server/node_modules/express/lib/router/index.js:335:12)
+1621327370 ERROR  ReferenceError: fs is not defined
+    at /home/grorge/Desktop/GITHUB/biological-blockchain/server/src/routers/account.js:9:9
+    at new Promise (<anonymous>)
+    at list (/home/grorge/Desktop/GITHUB/biological-blockchain/server/src/routers/account.js:8:12)
+    at /home/grorge/Desktop/GITHUB/biological-blockchain/server/src/routers/account.js:40:5
+    at Layer.handle [as handle_request] (/home/grorge/Desktop/GITHUB/biological-blockchain/server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/grorge/Desktop/GITHUB/biological-blockchain/server/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/home/grorge/Desktop/GITHUB/biological-blockchain/server/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/home/grorge/Desktop/GITHUB/biological-blockchain/server/node_modules/express/lib/router/layer.js:95:5)
+    at /home/grorge/Desktop/GITHUB/biological-blockchain/server/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/home/grorge/Desktop/GITHUB/biological-blockchain/server/node_modules/express/lib/router/index.js:335:12)
+1621327433 ERROR  ReferenceError: acount is not defined
+    at /home/grorge/Desktop/GITHUB/biological-blockchain/server/src/routers/account.js:45:32
+1621600260 ERROR  Error: You do not have permission
+    at /home/grorge/Desktop/GITHUB/biological-blockchain/server/src/routers/account.js:31:15
+1621600298 ERROR  Error: You do not have permission
+    at /home/grorge/Desktop/GITHUB/biological-blockchain/server/src/routers/account.js:31:15
+1621600359 ERROR  Error: You do not have permission
+    at /home/grorge/Desktop/GITHUB/biological-blockchain/server/src/routers/account.js:31:15
+1621600394 ERROR  Error: You do not have permission
+    at /home/grorge/Desktop/GITHUB/biological-blockchain/server/src/routers/account.js:32:15
+1621600447 ERROR  Error: You do not have permission
+    at /home/grorge/Desktop/GITHUB/biological-blockchain/server/src/routers/account.js:32:15
+1621602162 ERROR  ReferenceError: post is not defined
+    at /home/grorge/Desktop/GITHUB/biological-blockchain/server/src/routers/account.js:93:13
+1621602203 ERROR  ReferenceError: post is not defined
+    at /home/grorge/Desktop/GITHUB/biological-blockchain/server/src/routers/account.js:108:13
+1621602886 ERROR  ReferenceError: post is not defined
+    at /home/grorge/Desktop/GITHUB/biological-blockchain/server/src/routers/account.js:110:17
+1621602911 ERROR  ReferenceError: post is not defined
+    at /home/grorge/Desktop/GITHUB/biological-blockchain/server/src/routers/account.js:114:35
+1621603230 ERROR  Error: You do not have permission
+    at /home/grorge/Desktop/GITHUB/biological-blockchain/server/src/routers/account.js:46:15
+1621603310 ERROR  Error: You do not have permission
+    at /home/grorge/Desktop/GITHUB/biological-blockchain/server/src/routers/account.js:46:15
+1621603367 ERROR  Error: You do not have permission
+    at /home/grorge/Desktop/GITHUB/biological-blockchain/server/src/routers/account.js:47:15
+1621603423 ERROR  Error: You do not have permission
+    at /home/grorge/Desktop/GITHUB/biological-blockchain/server/src/routers/account.js:50:15
+1621603476 ERROR  Error: You do not have permission
+    at /home/grorge/Desktop/GITHUB/biological-blockchain/server/src/routers/account.js:50:15
+1621603604 ERROR  Error: You do not have permission
+    at /home/grorge/Desktop/GITHUB/biological-blockchain/server/src/routers/account.js:54:15
