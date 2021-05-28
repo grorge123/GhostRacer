@@ -1,1 +1,1 @@
-# GhostRacer
+# GhostRacer client
