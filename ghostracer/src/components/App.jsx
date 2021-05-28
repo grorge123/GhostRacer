@@ -25,9 +25,9 @@ import Login from './Login.jsx';
 import './App.css';
 
 class App extends React.Component{
-  static propTypes = {
-    loggedIn: PropTypes.bool
-  }
+  // static propTypes = {
+  //   loggedIn: PropTypes.bool
+  // }
 
   constructor(props) {
     super(props);
@@ -62,9 +62,7 @@ class App extends React.Component{
         </Navbar>
         </div>
       </div>
-      <Route exact path="/" render={() => (
-        <App />
-      )}/>
+
       <Route exact path="/login" render={() => (
         <Login />
       )}/>
