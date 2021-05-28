@@ -47,11 +47,11 @@ class App extends React.Component{
       <div className='App'>
         <div className="bg-faded">
         <Navbar color='faded' light expand>
-          <NavbarToggler onClick={this.handleNavbarToggle}/>
+          <div className='container'>
           <Collapse isOpen={this.props.navbarToggle} navbar>
               <Nav navbar>
                   <NavItem>
-                      <NavLink tag={Link} to='/'>Friends</NavLink>
+                      <NavLink tag={Link} to='/friends'>Friends</NavLink>
                   </NavItem>
                   <NavItem>
                       <NavLink tag={Link} to='/login'>Leaderboard</NavLink>
@@ -59,6 +59,7 @@ class App extends React.Component{
               </Nav>
               <Login loggedIn={this.state.loggedIn} onClick={this.handleLogin}>Login</Login>
           </Collapse>
+          </div>
         </Navbar>
         </div>
       </div>
