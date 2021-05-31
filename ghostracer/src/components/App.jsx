@@ -32,55 +32,14 @@ class App extends React.Component{
 
   constructor(props) {
     super(props);
-    this.state = {
-      loggedIn: false,
-    }
-    this.handleLogin = this.handleLogin.bind(this);
-  }
-
-  componentDidMount(){
-    this.setState({loggedIn: true}) // placeholder value
   }
 
   render(){
     return(
-    <Router>
-      <div className='App'>
-        <div className="bg-faded">
-        <Navbar color='faded' light expand>
-          <div className='container'>
-          <Collapse isOpen={this.props.navbarToggle} navbar>
-              <Nav navbar>
-                  <NavItem>
-                      <NavLink tag={Link} to='/friends'>Friends</NavLink>
-                  </NavItem>
-                  <NavItem>
-                      <NavLink tag={Link} to='/login'>Leaderboard</NavLink>
-                  </NavItem>
-              </Nav>
-              <Login loggedIn={this.state.loggedIn} onClick={this.handleLogin}>Login</Login>
-          </Collapse>
-          </div>
-        </Navbar>
-        </div>
-      </div>
-
-      <Route exact path="/login" render={() => (
-        <Login />
-      )}/>
-      <div className='footer'>
-        From Group 5 with ❤
-      </div>
-    
-        <FriendsPage></FriendsPage> /* I'll put my testing code here otherwise I had nowhere to test. */
-    </Router>
-
-
+        <Router>
+            <FriendsPage></FriendsPage>
+        </Router>
     )
-  }
-
-  handleLogin(){
-    // todo: AWS Amplify auth
   }
 }
 

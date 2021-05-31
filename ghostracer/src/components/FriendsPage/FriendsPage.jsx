@@ -15,6 +15,7 @@ import {
   Button
 } from 'reactstrap';
 
+
 class FriendsPage extends React.Component{
   // static propTypes = {
   //   loggedIn: PropTypes.bool
@@ -33,16 +34,18 @@ class FriendsPage extends React.Component{
 
   render(){
     return(
-        <Container>
-            <Row>
-                <Col>
-                    One of three columns
-                </Col>
-                <Col>
-                    One of three columns
-                </Col>
-            </Row>
-        </Container>
+        <div>
+            <Container>
+                <Row>
+                    <Col>
+                        qwer                        
+                    </Col>
+                    <Col>
+                        One of three columns
+                    </Col>
+                </Row>
+            </Container>
+        </div>
     )
   }
 }
