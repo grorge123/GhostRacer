@@ -21,6 +21,7 @@ import {
 } from 'react-router-dom';
 
 import Login from './Login.jsx';
+import FriendsPage from './FriendsPage/FriendsPage.jsx';
 
 import './App.css';
 
@@ -70,7 +71,11 @@ class App extends React.Component{
       <div className='footer'>
         From Group 5 with ❤
       </div>
+    
+        <FriendsPage></FriendsPage> /* I'll put my testing code here otherwise I had nowhere to test. */
     </Router>
+
+
     )
   }
 
