@@ -23,6 +23,8 @@ import {
 import Login from './Login.jsx';
 import FriendsPage from './FriendsPage/FriendsPage.jsx';
 import GlobalRank from './GlobalRank/GlobalRank.jsx';
+import MatchResult from './MatchResult/MatchResult.jsx';
+import RankedMatch from './RankedMatch/RankedMatch.jsx';
 
 import './App.css';
 
@@ -39,7 +41,9 @@ class App extends React.Component{
     return(
         <Router>
             {/* <FriendsPage></FriendsPage> */} 
-            <GlobalRank></GlobalRank>
+            {/* <GlobalRank></GlobalRanki> */}
+            {/* <MatchResult></MatchResult> */}
+            <RankedMatch></RankedMatch>
         </Router>
     )
   }
