@@ -22,6 +22,7 @@ import {
 
 import Login from './Login.jsx';
 import FriendsPage from './FriendsPage/FriendsPage.jsx';
+import GlobalRank from './GlobalRank/GlobalRank.jsx';
 
 import './App.css';
 
@@ -37,7 +38,8 @@ class App extends React.Component{
   render(){
     return(
         <Router>
-            <FriendsPage></FriendsPage>
+            {/* <FriendsPage></FriendsPage> */} 
+            <GlobalRank></GlobalRank>
         </Router>
     )
   }
