@@ -40,9 +40,9 @@ class App extends React.Component{
   render(){
     return(
         <Router>
-            {/* <FriendsPage></FriendsPage> */} 
-            {/* <GlobalRank></GlobalRanki> */}
-            {/* <MatchResult></MatchResult> */}
+            <FriendsPage></FriendsPage>
+            <GlobalRank></GlobalRank>
+            <MatchResult></MatchResult>
             <RankedMatch></RankedMatch>
         </Router>
     )

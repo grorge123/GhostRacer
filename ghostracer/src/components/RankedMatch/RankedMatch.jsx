@@ -51,7 +51,11 @@ class RankedMatch extends React.Component{
                         </Row>
 
                         <Row><Col><h3 style={mtop}>Rank Change</h3></Col></Row>
-
+                        <Row>
+                            <Col><i class="fas fa-arrow-down"></i><h5>17</h5></Col>
+                            <Col><h3>1141</h3></Col>
+                            <Col><i class="fas fa-arrow-up"></i><h5>20</h5></Col>
+                        </Row>
                     </Col>
                     <Col><UserStatistics></UserStatistics></Col>
                 </Row></Container>
