@@ -5,6 +5,7 @@
   "dependencies": {
     "@aws-amplify/ui-react": "^1.2.0",
     "@babel/polyfill": "^7.8.7",
+    "@fortawesome/fontawesome-free": "^5.15.3",
     "@types/react-transition-group": "^4.4.1",
     "aws-amplify": "^4.0.2",
     "aws-amplify-react": "^5.0.0",
