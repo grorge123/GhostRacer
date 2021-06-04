@@ -20,15 +20,17 @@ import {
   Link
 } from 'react-router-dom';
 
+import './App.css';
 import Login from './Login.jsx';
-import FriendsPage from './FriendsPage/FriendsPage.jsx';
+import Play from './Play/Play.jsx';
+// import FriendsPage from './FriendsPage/FriendsPage.jsx';
 
 import './App.css';
 
 class App extends React.Component{
-  // static propTypes = {
-  //   loggedIn: PropTypes.bool
-  // }
+  static propTypes = {
+    loggedIn: PropTypes.bool
+  }
 
   constructor(props) {
     super(props);
@@ -57,24 +59,27 @@ class App extends React.Component{
                   <NavItem>
                       <NavLink tag={Link} to='/login'>Leaderboard</NavLink>
                   </NavItem>
+                  <NavItem>
+                      <NavLink tag={Link} to='/play'>Start Game</NavLink>
+                  </NavItem>
               </Nav>
               <Login loggedIn={this.state.loggedIn} onClick={this.handleLogin}>Login</Login>
           </Collapse>
           </div>
         </Navbar>
-        </div>
+        </div> 
+        <Route exact path="/login" render={() => (
+          <Login />
+        )}/>
+        <Route exact path="/play" render={() => (
+            <Play />
+        )}/>
       </div>
-
-      <Route exact path="/login" render={() => (
-        <Login />
-      )}/>
       <div className='footer'>
         From Group 5 with ❤
       </div>
-    </Router>
-
-
-    )
+      </Router>
+    );
   }
 
   handleLogin(){

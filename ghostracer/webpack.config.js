@@ -22,7 +22,8 @@ module.exports = {
         }
     },
     entry: {
-        index: './index.jsx'
+        index: './index.jsx',
+        vendor: ['phaser']
     },
     output: {
         path: distPath,
