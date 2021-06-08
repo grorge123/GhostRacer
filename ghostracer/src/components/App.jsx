@@ -20,11 +20,14 @@ import {
   Link
 } from 'react-router-dom';
 
+import './App.css';
 import Login from './Login.jsx';
 import FriendsPage from './FriendsPage/FriendsPage.jsx';
 import GlobalRank from './GlobalRank/GlobalRank.jsx';
 import MatchResult from './MatchResult/MatchResult.jsx';
 import RankedMatch from './RankedMatch/RankedMatch.jsx';
+import Play from './Play/Play.jsx';
+// import FriendsPage from './FriendsPage/FriendsPage.jsx';
 
 import './App.css';
 

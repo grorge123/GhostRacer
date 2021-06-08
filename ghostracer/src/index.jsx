@@ -5,7 +5,6 @@ import { CookiesProvider} from 'react-cookie';
 import App from './components/App.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-// import 'bootstrap/dist/css/bootstrap.css';
 import './index.css'
 
 window.onload = function() {
