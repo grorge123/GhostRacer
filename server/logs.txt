@@ -52,3 +52,135 @@
     at /home/grorge/Desktop/GITHUB/biological-blockchain/server/src/routers/account.js:50:15
 1621603604 ERROR  Error: You do not have permission
     at /home/grorge/Desktop/GITHUB/biological-blockchain/server/src/routers/account.js:54:15
+1623067842 ERROR  ReferenceError: swaggerSpec is not defined
+    at /home/grorge/Desktop/GITHUB/GhostRacer/server/src/server.js:38:12
+    at Layer.handle [as handle_request] (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/layer.js:95:5)
+    at /home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/index.js:335:12)
+    at next (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/index.js:275:10)
+    at expressInit (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/middleware/init.js:40:5)
+    at Layer.handle [as handle_request] (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/layer.js:95:5)
+1623067844 ERROR  ReferenceError: swaggerSpec is not defined
+    at /home/grorge/Desktop/GITHUB/GhostRacer/server/src/server.js:38:12
+    at Layer.handle [as handle_request] (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/layer.js:95:5)
+    at /home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/index.js:335:12)
+    at next (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/index.js:275:10)
+    at expressInit (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/middleware/init.js:40:5)
+    at Layer.handle [as handle_request] (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/layer.js:95:5)
+1623067845 ERROR  ReferenceError: swaggerSpec is not defined
+    at /home/grorge/Desktop/GITHUB/GhostRacer/server/src/server.js:38:12
+    at Layer.handle [as handle_request] (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/layer.js:95:5)
+    at /home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/index.js:335:12)
+    at next (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/index.js:275:10)
+    at expressInit (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/middleware/init.js:40:5)
+    at Layer.handle [as handle_request] (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/layer.js:95:5)
+1623067845 ERROR  ReferenceError: swaggerSpec is not defined
+    at /home/grorge/Desktop/GITHUB/GhostRacer/server/src/server.js:38:12
+    at Layer.handle [as handle_request] (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/layer.js:95:5)
+    at /home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/index.js:335:12)
+    at next (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/index.js:275:10)
+    at expressInit (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/middleware/init.js:40:5)
+    at Layer.handle [as handle_request] (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/layer.js:95:5)
+1623067846 ERROR  ReferenceError: swaggerSpec is not defined
+    at /home/grorge/Desktop/GITHUB/GhostRacer/server/src/server.js:38:12
+    at Layer.handle [as handle_request] (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/layer.js:95:5)
+    at /home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/index.js:335:12)
+    at next (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/index.js:275:10)
+    at expressInit (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/middleware/init.js:40:5)
+    at Layer.handle [as handle_request] (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/layer.js:95:5)
+1623077490 ERROR  TypeError: Cannot destructure property 'speed' of 'res.body' as it is undefined.
+    at /home/grorge/Desktop/GITHUB/GhostRacer/server/src/routers/account.js:46:12
+    at Layer.handle [as handle_request] (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/layer.js:95:5)
+    at /home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/index.js:335:12)
+    at next (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/index.js:275:10)
+    at jsonParser (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/body-parser/lib/types/json.js:119:7)
+    at Layer.handle [as handle_request] (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/layer.js:95:5)
+1623077497 ERROR  TypeError: Cannot destructure property 'speed' of 'res.body' as it is undefined.
+    at /home/grorge/Desktop/GITHUB/GhostRacer/server/src/routers/account.js:53:12
+    at Layer.handle [as handle_request] (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/layer.js:95:5)
+    at /home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/index.js:335:12)
+    at next (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/index.js:275:10)
+    at jsonParser (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/body-parser/lib/types/json.js:119:7)
+    at Layer.handle [as handle_request] (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/layer.js:95:5)
+1623077648 ERROR  TypeError: Cannot destructure property 'speed' of 'res.body' as it is undefined.
+    at /home/grorge/Desktop/GITHUB/GhostRacer/server/src/routers/account.js:53:12
+    at Layer.handle [as handle_request] (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/layer.js:95:5)
+    at /home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/index.js:335:12)
+    at next (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/index.js:275:10)
+    at jsonParser (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/body-parser/lib/types/json.js:119:7)
+    at Layer.handle [as handle_request] (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/layer.js:95:5)
+1623077828 ERROR  TypeError: Cannot destructure property 'speed' of 'res.body' as it is undefined.
+    at /home/grorge/Desktop/GITHUB/GhostRacer/server/src/routers/account.js:53:12
+    at Layer.handle [as handle_request] (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/layer.js:95:5)
+    at /home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/index.js:335:12)
+    at next (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/index.js:275:10)
+    at jsonParser (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/body-parser/lib/types/json.js:119:7)
+    at Layer.handle [as handle_request] (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/layer.js:95:5)
+1623077876 ERROR  TypeError: Cannot destructure property 'speed' of 'res.body' as it is undefined.
+    at /home/grorge/Desktop/GITHUB/GhostRacer/server/src/routers/account.js:53:12
+    at Layer.handle [as handle_request] (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/layer.js:95:5)
+    at /home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/index.js:335:12)
+    at next (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/index.js:275:10)
+    at /home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/body-parser/lib/read.js:130:5
+    at invokeCallback (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/raw-body/index.js:224:16)
+1623077905 ERROR  TypeError: Cannot destructure property 'speed' of 'res.body' as it is undefined.
+    at /home/grorge/Desktop/GITHUB/GhostRacer/server/src/routers/account.js:53:12
+    at Layer.handle [as handle_request] (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/layer.js:95:5)
+    at /home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/index.js:335:12)
+    at next (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/index.js:275:10)
+    at /home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/body-parser/lib/read.js:130:5
+    at invokeCallback (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/raw-body/index.js:224:16)
+1623077967 ERROR  TypeError: Cannot destructure property 'speed' of 'res.body' as it is undefined.
+    at /home/grorge/Desktop/GITHUB/GhostRacer/server/src/routers/account.js:54:12
+    at Layer.handle [as handle_request] (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/layer.js:95:5)
+    at /home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/index.js:335:12)
+    at next (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/index.js:275:10)
+    at /home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/body-parser/lib/read.js:130:5
+    at invokeCallback (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/raw-body/index.js:224:16)

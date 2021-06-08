@@ -1,10 +1,13 @@
 const express = require('express');
 
-const accountRouter = require('./routers/account.js');
+const Router = require('./routers/account.js');
 const requestLogger = require('./middleware/request-logger.js');
 const accessController = require('./middleware/accessController');
 const errorHandler = require('./middleware/error-handler.js');
 
+const swaggerJsdoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
+const swaggerFile = require('./swagger_output.json')
 
 const app = express();
 
@@ -16,8 +19,11 @@ const app = express();
 //     },
 //   })
 // );
+
+
 app.use(accessController);
-app.use('/account', accountRouter);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
+app.use('/', Router);
 app.get('/*', (req, res) => res.send("server"));
 app.use(errorHandler);
 
