@@ -7,11 +7,10 @@ WORKDIR /app
 
 # Install app dependencies inside our image.
 COPY package.json /app
-RUN npm install
+RUN npm instal
 
 # Bundle app source
 COPY . /app
-
 # Bind app to the specified port to be mapped by the Docker daemon.
 EXPOSE 8080
 
