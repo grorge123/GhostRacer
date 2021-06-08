@@ -7,7 +7,7 @@ WORKDIR /app
 
 # Install app dependencies inside our image.
 COPY package.json /app
-RUN npm instal
+RUN npm install
 
 # Bundle app source
 COPY . /app
