@@ -18,6 +18,11 @@
   color: #61dafb;
 }
 
+.footer{
+  width: 25%;
+  margin: auto;
+  bottom: 0;
+}
 
 .login-button {
 
