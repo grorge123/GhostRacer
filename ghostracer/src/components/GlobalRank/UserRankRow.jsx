@@ -27,12 +27,12 @@ class UserRankRow extends React.Component{
   render(){
     const mbot = { 'marginTop': '1rem' };
     return(
-        <div style={mbot}><Row>
-            <Col> 1st </Col>
-            <Col> Uncle Roger </Col>
-            <Col> 130 </Col>
-            <Col> 99% </Col>
-        </Row></div>
+        <tr>
+            <th scope="row"> 1st </th>
+            <td> Uncle Roger </td>
+            <td> 130 </td>
+            <td> 99% </td>
+        </tr>
     )
   }
 }

@@ -3,16 +3,7 @@ import PropTypes from 'prop-types';
 import {
   Container,
   Row,
-  Col,
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  Input,
-  Button
+  Table,
 } from 'reactstrap';
 
 import UserRankRow from './UserRankRow.jsx';
@@ -29,17 +20,19 @@ class UserRank extends React.Component{
   render(){
     return(
         <div>
-            <Container>
-                <Row>
-                    <Col></Col>
-                    <Col> Global Ranked </Col>
-                    <Col> avg wpm </Col>
-                    <Col> avg acc </Col>
-                </Row>
-                <UserRankRow></UserRankRow>
-                <UserRankRow></UserRankRow>
-                <UserRankRow></UserRankRow>
-            </Container>
+            <Table striped>
+                <thead><tr>
+                    <th>#</th>
+                    <th> Global Ranked </th>
+                    <th> avg wpm </th>
+                    <th> avg acc </th>
+                </tr></thead>
+                <tbody>
+                    <UserRankRow></UserRankRow>
+                    <UserRankRow></UserRankRow>
+                    <UserRankRow></UserRankRow>
+                </tbody>
+           </Table>
         </div>
     )
   }

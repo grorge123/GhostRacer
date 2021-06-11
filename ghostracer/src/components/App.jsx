@@ -22,7 +22,7 @@ import {
 import {
   BrowserRouter as Router,
   Route,
-  Link
+  Switch
 } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { withCookies, Cookies } from 'react-cookie';

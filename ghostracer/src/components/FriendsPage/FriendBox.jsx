@@ -47,15 +47,14 @@ class FriendBox extends React.Component{
                         <Col><label style={text_center}> 75  </label></Col>
                         <Col><label style={text_center}> 
                             <i className="fas fa-arrow-down"></i>
-                            <i className="fas fa-arrow-up"></i>
+                            {/*<i className="fas fa-arrow-up"></i>*/}
                         </label></Col>
                     </Row>          
                     <Row>
                         <Col><label style={text_center}> Last </label></Col>
-                        <Col>
+                        <Col xs="8">
                             <label style={green}> W </label>
                         </Col>
-                        <Col> </Col>
                     </Row></div>
                 </Container>
             </div>
