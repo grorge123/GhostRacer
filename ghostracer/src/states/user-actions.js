@@ -39,6 +39,12 @@ function listFriends() {
     }
 }
 
+export function loginAction(toggle){
+    return (dispatch, getState) => {
+
+    }
+}
+
 export function getUserProfileAction(username) {
     return (dispatch, getState) => {
         dispatch(startLoading());

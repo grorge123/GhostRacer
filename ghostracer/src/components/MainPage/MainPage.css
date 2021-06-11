@@ -1,0 +1,17 @@
+.title span{
+    position: absolute;
+    font-size: large;
+    color: white;
+    /* left:  */
+}
+
+.title1{
+    position: absolute;
+    left: 10%;
+    top: 30%;
+    font-size: 100px;
+}
+
+.title:first-child{
+    
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes, { bool } from 'prop-types';
+import PropTypes, { instanceOf, bool } from 'prop-types';
 import {
   Container,
   Row,
@@ -25,6 +25,7 @@ import {
   Link
 } from 'react-router-dom';
 import { connect } from 'react-redux'
+import { withCookies, Cookies } from 'react-cookie';
 
 import Login from 'components/Login.jsx';
 import FriendsPage from 'components/FriendsPage/FriendsPage.jsx';
@@ -33,11 +34,10 @@ import MatchResult from 'components/MatchResult/MatchResult.jsx';
 import RankedMatch from 'components/RankedMatch/RankedMatch.jsx';
 import MainPage from 'components/MainPage/MainPage.jsx';
 import Play from 'components/Play/Play.jsx';
-// import FriendsPage from './FriendsPage/FriendsPage.jsx';
 
 import { getUserProfileAction } from '../states/user-actions.js';
 
-import 'components/App.css';
+import './App.css';
 
 class App extends React.Component {
   static propTypes = {
@@ -46,10 +46,13 @@ class App extends React.Component {
     loggedIn: PropTypes.bool,
     loading: PropTypes.bool,
     username: PropTypes.string,
+    cookies: instanceOf(Cookies).isRequired
   }
 
   constructor(props) {
     super(props);
+    
+    const {cookies} = props.cookies
     this.state = {
       loggedIn: false,
       username: 'Leon',
@@ -57,14 +60,21 @@ class App extends React.Component {
     }
     this.userProfileDetail = this.userProfileDetail.bind(this)
     this.handleLogin = this.handleLogin.bind(this)
+
+    console.log(this.props)
+    console.log(this.state)
+  }
+
+  componentDidMount(){
+    this.props.store
   }
 
   render() {
     return (
       <Router>
         <div className='App'>
-          <div className="bg-faded">
-            <Navbar color='faded' light expand>
+          <div className="bg-faded bg-1">
+            <Navbar className="navbar" color='faded' light expand>
               <div className='container'>
                 <Collapse isOpen={this.props.navbarToggle} navbar>
                   <Nav navbar>
@@ -107,7 +117,8 @@ class App extends React.Component {
   }
 
   userProfileDetail() {
-    return (
+    let ret;
+    if (this.state.loggedIn) ret =
       <Box className='user-detail'>
         <TableContainer component={Paper}>
           <Table size="small" aria-label="a dense table">
@@ -127,15 +138,16 @@ class App extends React.Component {
             </TableBody>
           </Table>
         </TableContainer>
-      </Box>
+      </Box>;
 
-    )
+    return ret;
   }
 
   handleLogin() {
-
+    // cookies.set('field', content, {path: '/'})
+    this.props.store.dispatch()
   }
 
 }
 
-export default connect(state => ({...state}))(App)
+export default withCookies(connect(state => ({ ...state }))(App))

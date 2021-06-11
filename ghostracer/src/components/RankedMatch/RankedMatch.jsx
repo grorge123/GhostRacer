@@ -19,9 +19,9 @@ class RankedMatch extends React.Component{
   }
 
   render(){
-    const border = {'border-style': 'solid'};
-    const cent = {'text-align': 'center'};
-    const mtop = {'margin-top': '3rem'};
+    const border = {'borderStyle': 'solid'};
+    const cent = {'textAlign': 'center'};
+    const mtop = {'marginTop': '3rem'};
     return(
             <div>
                 <Container><Row style={cent}>

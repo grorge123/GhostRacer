@@ -3,6 +3,8 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import {makeStyles} from '@material-ui/core/styles'
 
+import './MainPage.css';
+
 // styles
 const useStyles = makeStyles({
     menuButtons: {
@@ -25,8 +27,8 @@ class MainPage extends React.Component{
         return (
             <div className={"mainpage"}>
                 <div className={"title"}>
-                    <span>Ghost</span>
-                    <span>Racer</span>
+                    <span className={'title1'}>Ghost</span>
+                    <span className={'title2'}>Racer</span>
                 </div>
                 <div className={"menu-box"}>
                     <div className={"menu-button "}></div>

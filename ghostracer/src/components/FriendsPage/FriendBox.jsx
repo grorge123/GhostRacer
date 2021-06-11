@@ -27,7 +27,7 @@ class FriendBox extends React.Component{
 
   render(){
     const text_center = {
-        'text-align': 'center',
+        'textAlign': 'center',
         'width': '100%'
     };
     const red = { 'color': 'red', ...text_center };

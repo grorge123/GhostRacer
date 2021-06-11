@@ -26,9 +26,9 @@ class MatchResult extends React.Component{
   }
 
   render(){
-    const mtop = { 'margin-top': '1rem' };
-    const m2top = { 'margin-top': '2rem', 'font-size': '1.5rem' };
-    const cent = { 'text-align': 'center' };
+    const mtop = { 'marginTop': '1rem' };
+    const m2top = { 'marginTop': '2rem', 'fontSize': '1.5rem' };
+    const cent = { 'textAlign': 'center' };
     return(
             <div>
                 <Container><Row style={cent}>
