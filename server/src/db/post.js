@@ -143,6 +143,32 @@ async function updateLadder(name, score){
     }
     return;
 }
+function setMoney(name, delta){
+    const checksql = `
+        SELECT * FROM account WHERE name=$1;
+    `;
+    return new Promise((resolve, reject) =>{
+        db.oneOrNone(checksql,[name]).then((data)=>{
+            if(data == null){
+                reject("Can't find user");
+                return;
+            }
+            if(data.money + delta < 0){
+                reject("This User have enough money");
+                return;
+            }
+            const sql = `
+            UPDATE account
+            SET money = $1
+            WHERE
+            name= $2
+            `;
+            db.any(sql, [data.money + delta, name]).then(()=>{
+                resolve();
+            });
+        });
+    });
+}
 module.exports = {
     checkaccount,
     listall,
@@ -158,5 +184,6 @@ module.exports = {
     getAllLadder,
     updateLadder,
     rankLadder,
+    setMoney,
 };
   

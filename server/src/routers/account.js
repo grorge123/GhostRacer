@@ -47,6 +47,7 @@ router.get('/getProfile', function (req, res, next){
             res.json({
                 'ID':data.name,
                 'speed':data.speed,
+                'money':data.money,
             })
         });
     }).catch(e=>{
@@ -274,5 +275,27 @@ router.get('/rankLadder', function (req, res, next){
         res.status(403).send(e);
     });
 });
-
+router.post('/changeMoney', function (req, res, next){
+    const {token} = req.headers;
+    const {delta} = req.body;
+    if(token == undefined){
+        res.status(401).send('You need request with token');
+        return;
+    }
+    check_access(token)
+    .then(()=>{
+        let name = token;
+        dbp.setMoney(name, delta).then(()=>{
+            res.json({"success":"true","throw":""})
+        }).catch((err)=>{
+            console.log(err);
+            res.status(403).json(
+                {"success":"false","throw":err.toString()}
+            )
+        })
+    }).catch(e=>{
+        console.log(e);
+        res.status(403).send(e);
+    });
+})
 module.exports = router;

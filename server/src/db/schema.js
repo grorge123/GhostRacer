@@ -20,6 +20,7 @@ const schemaSql = `
         id              serial PRIMARY KEY NOT NULL,
         name            text NOT NULL,
         speed           integer NOT NULL DEFAULT 1,
+        money           integer NOT NULL DEFAULT 0,
         times           integer NOT NULL DEFAULT 0
     );
     CREATE TABLE library(
