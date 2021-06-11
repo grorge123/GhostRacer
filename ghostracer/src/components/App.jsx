@@ -17,7 +17,7 @@ import {
 import {
   BrowserRouter as Router,
   Route,
-  Link
+  Switch
 } from 'react-router-dom';
 
 import Login from './Login.jsx';
@@ -37,15 +37,28 @@ class App extends React.Component{
     super(props);
   }
 
-  render(){
-    return(
+  render() {
+    return (
         <Router>
-            <FriendsPage></FriendsPage>
-            <GlobalRank></GlobalRank>
-            <MatchResult></MatchResult>
-            <RankedMatch></RankedMatch>
+            <Switch>
+                <Route path="/friendsPage">
+                    <FriendsPage></FriendsPage>
+                </Route>
+
+                <Route path="/globalRank">
+                    <GlobalRank></GlobalRank>
+                </Route>
+
+                <Route path="/matchResult">
+                    <MatchResult></MatchResult>
+                </Route>
+
+                <Route path="/rankedMatch">
+                    <RankedMatch></RankedMatch>
+                </Route>
+            </Switch>
         </Router>
-    )
+    );
   }
 }
 

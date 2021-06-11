@@ -12,7 +12,8 @@ import {
   NavItem,
   NavLink,
   Input,
-  Button
+  Button,
+  Table
 } from 'reactstrap';
 
 import UserRank from './UserRank.jsx';
@@ -27,45 +28,43 @@ class GlobalRank extends React.Component{
   }
 
   render(){
-    const centerize = { 'text-align': 'center' };
+    const centerize = { 'textAlign': 'center' };
     return(
         <div>
             <Container><Row>
                 <Col>
-                    <Row><Col>
-                        <h1 style={centerize}> [Your Statistics] </h1>
-                    </Col></Row>
-                    
-                    <Row><Col>
-                        <Row>
-                            <Col><h3>Todays races</h3></Col>
-                            <Col><h1>7</h1></Col>
-                        </Row>
-                    </Col></Row>
-                    
-                    <Row><Col>
-                        <Row>
-                            <Col><h3>Avg. Accuracy</h3></Col>
-                            <Col><h3>80%</h3></Col>
-                            <Col></Col>
-                        </Row>
-                    </Col></Row>
+                    <Table striped>
+                        <thead>
+                            <tr><th colSpan="3">
+                                <h1 style={centerize}> [Your Statistics] </h1>
+                            </th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><h3>Todays races</h3></td>
+                                <td colSpan="2"><h1>7</h1></td>
+                            </tr>
+                        
+                            <tr>
+                                <td><h3>Avg. Accuracy</h3></td>
+                                <td colSpan="2"><h3>80%</h3></td>
+                            </tr>
 
-                    <Row><Col>
-                        <Row>
-                            <Col><h3>Avg. Speed</h3></Col>
-                            <Col><h3>73 wpm</h3></Col>
-                            <Col>
-                                <Row>
-                                    <Col xs="1">
-                                        <i className="fas fa-arrow-down"></i>
-                                        {/* <i className="fas fa-arrow-up"></i> */}
-                                    </Col>
-                                    <Col>73 wpm</Col>
-                                </Row>
-                            </Col>
-                        </Row>
-                    </Col></Row>
+                            <tr>
+                                <td><h3>Avg. Speed</h3></td>
+                                <td><h3>73 wpm</h3></td>
+                                <td>
+                                    <Row>
+                                        <Col xs="1">
+                                            <i className="fas fa-arrow-down"></i>
+                                            {/* <i className="fas fa-arrow-up"></i> */}
+                                        </Col>
+                                        <Col>73 wpm</Col>
+                                    </Row>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </Table>
                 </Col>
 
 

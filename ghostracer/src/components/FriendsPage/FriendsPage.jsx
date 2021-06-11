@@ -31,12 +31,12 @@ class FriendsPage extends React.Component{
 
   render(){
     const h5_style = {
-        'text-align': 'center',
-        'font-size': '4rem',
-        'margin-bottom': '5rem'
+        'textAlign': 'center',
+        'fontSize': '4rem',
+        'marginBottom': '5rem'
     };
     const top_margin = {
-        'margin-top': '5rem'
+        'marginTop': '1rem'
     };
     return(
         <div>
