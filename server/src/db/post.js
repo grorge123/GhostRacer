@@ -1,5 +1,9 @@
 require('dotenv').config();
 
+function randomInt(min, max){
+    return Math.floor(Math.random() * (max - min) + min);
+}
+
 if (!global.db) {
     try {
         process.env.DB_URL = `postgres://${process.env.RDS_USERNAME}:${process.env.RDS_PASSWORD}@${process.env.RDS_HOSTNAME}:${process.env.RDS_PORT}/${process.env.RDS_DB_NAME}`;
@@ -15,17 +19,20 @@ if (!global.db) {
     db = pgp(process.env.DB_URL);
 }
   
-function uploadspeed(name, speed){
+function uploadspeed(name, speed, acc){
     checkaccount(name).then((data)=>{
         speed = parseInt(speed)
+        maxSpeed = parseInt(data.maxspeed)
         sql = `
             UPDATE account
             SET speed = $1,
-                times = $2
+                maxSpeed = $4,
+                times = $2,
+                acc = $5
             WHERE
                 name= $3
         `;
-        return db.none(sql,[(data.speed*data.times+speed)/(data.times+1), data.times + 1, name]);
+        return db.none(sql,[(data.speed*data.times+speed)/(data.times+1), data.times + 1, name, Math.max(maxSpeed, speed), (data.acc*data.times+acc)/(data.times+1)]);
     });
 }
 function addhistory(name, speed, hash){
@@ -36,9 +43,9 @@ function addhistory(name, speed, hash){
 }
 function createAccount(name){ 
     const dataSql = `
-        INSERT INTO account(name, speed) VALUES($1, 1);
+        INSERT INTO account(name, nickname, speed, img) VALUES($1, $1, 1, $2);
     `;
-    return db.none(dataSql,[name]);
+    return db.none(dataSql,[name, randomInt(0,5)]);
 }
 function listall(table){
     let sql = `

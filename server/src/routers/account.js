@@ -25,9 +25,7 @@ function check_access(token){
     });
 };
 function check_story(op){
-    console.log(op)
     for(const i of op){
-        console.log(i)
         if(i == "lawrence"){
             return "恭喜你打敗了終極魔王吳邦寧";
         }
@@ -48,6 +46,10 @@ router.get('/getProfile', function (req, res, next){
                 'ID':data.name,
                 'speed':data.speed,
                 'money':data.money,
+                'nickname':data.nickname,
+                'maxSpeed':data.maxSpeed,
+                'img':data.img,
+                'acc':data.acc,
             })
         });
     }).catch(e=>{
@@ -57,7 +59,7 @@ router.get('/getProfile', function (req, res, next){
 });
 
 router.post('/updateHistory', function (req, res, next){
-    const {speed, hash, Opponent1, Opponent2, Opponent3} = req.body;
+    const {acc, speed, hash, Opponent1, Opponent2, Opponent3} = req.body;
     const {token} = req.headers;
     if (token == undefined){
         res.status(401).send('You need request with token');
@@ -66,9 +68,10 @@ router.post('/updateHistory', function (req, res, next){
     check_access(token)
     .then(()=>{
         let name = token;
-        dbp.uploadspeed(name,speed);
+        dbp.uploadspeed(name,speed, acc);
         dbp.addhistory(name, speed, hash);
         res.json({"success":true,"throw":check_story([Opponent1, Opponent2, Opponent3])});
+        return;
     }).catch(e=>{
         console.log(e);
         res.status(403).send(e);
@@ -195,7 +198,6 @@ router.get('/getFriendList', function (req, res, next){
     .then(()=>{
         let name = token;
         dbp.getFriend(name).then((data)=>{
-            console.log(data);
             ret = {}
             for(let i = 0 ; i < data.length ; i++){
                 ret["friend" + i] = data[i].friend;
@@ -218,13 +220,12 @@ router.get('/getLadder', function (req, res, next){
     check_access(token)
     .then(()=>{
         dbp.getAllLadder().then((data)=>{
-            ret = {};
-            for(let i = 0 ; i < data.length ; i++){
-                ret["people"+i] = data[i].name;
-                ret["score"+i] = data[i].score;
-            }
-            ret["len"] = data.length;
-            req.json(ret);
+            ret = {
+                "data":data,
+                "len":data.length,
+            };
+            js = JSON.stringify(ret);
+            res.json(js);
         });
     }).catch(e=>{
         console.log(e);
@@ -298,4 +299,6 @@ router.post('/changeMoney', function (req, res, next){
         res.status(403).send(e);
     });
 })
+
+
 module.exports = router;

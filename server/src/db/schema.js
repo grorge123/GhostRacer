@@ -19,8 +19,12 @@ const schemaSql = `
     CREATE TABLE account(
         id              serial PRIMARY KEY NOT NULL,
         name            text NOT NULL,
+        nickname        text NOT NULL,
+        maxspeed        integer NOT NULL DEFAULT 0,
         speed           integer NOT NULL DEFAULT 1,
         money           integer NOT NULL DEFAULT 0,
+        acc             integer NOT NULL DEFAULT 0,
+        img             integer NOT NULL DEFAULT 0,
         times           integer NOT NULL DEFAULT 0
     );
     CREATE TABLE library(
@@ -45,7 +49,7 @@ const schemaSql = `
     CREATE INDEX history_speed ON history USING btree(speed);
 `;
 const dataSql = `
-        INSERT INTO account(name, speed, times) VALUES('admin', 64, 1);
+        INSERT INTO account(name, speed, times, nickname) VALUES('admin', 64, 1, 'admin');
 `;
 
 db.none(schemaSql)
