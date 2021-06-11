@@ -22,7 +22,8 @@ import {
 import {
   BrowserRouter as Router,
   Route,
-  Switch
+  Switch,
+  Link
 } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { withCookies, Cookies } from 'react-cookie';
@@ -51,8 +52,8 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
-    
-    const {cookies} = props.cookies
+
+    const { cookies } = props.cookies
     this.state = {
       loggedIn: false,
       username: 'Leon',
@@ -65,7 +66,7 @@ class App extends React.Component {
     console.log(this.state)
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.props.store
   }
 
@@ -97,20 +98,19 @@ class App extends React.Component {
                 </Collapse>
               </div>
             </Navbar>
-            <MainPage />
+            <Route exact path="/" render={() => (
+              <MainPage />
+            )} />
+            <Route exact path="/friends" render={() => (
+              <FriendsPage />
+            )} />
+            <Route exact path="/play" render={() => (
+              <Play />
+            )} />
+            <Route exact path="/globalrank" render={() => (
+              <GlobalRank />
+            )} />
           </div>
-          <Route exact path="/friends" render={() => (
-            <FriendsPage></FriendsPage>
-          )} />
-          <Route exact path="/play" render={() => (
-            <Play />
-          )} />
-          <Route exact path="/globalrank" render={() => (
-            <GlobalRank></GlobalRank>
-          )} />
-        </div>
-        <div className='footer'>
-          From Group 5 with ❤
         </div>
       </Router>
     )
