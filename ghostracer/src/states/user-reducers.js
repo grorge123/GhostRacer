@@ -8,6 +8,10 @@ const initUserState = {
     friendsListMore: false,
     maxSpeed: '',
     avgSpeed: '',
+    avgAccuracy: '',
+    avatarLink: '',
+    friendsListMore: false,
+    friendsList: ''
 }
 export function user(state = initUserState, action) {
     switch (action.type) {

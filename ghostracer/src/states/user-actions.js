@@ -39,6 +39,13 @@ function listFriends() {
     }
 }
 
+function getFriendsList(data) {
+    return {
+        type: '@USER/LIST_FRIENDS',
+        friendsList: data
+    };
+}
+
 export function loginAction(toggle){
     return (dispatch, getState) => {
 
@@ -62,5 +69,18 @@ export function listFriendsAction() {
     return (dispatch, getState) => {
         dispatch(startLoading());
         return listFriendsFromApi()
+    }
+}
+
+export function getFriendsAction(username) {
+    return (dispatch, getState) => {
+        dispatch(startLoading());
+        return getFriendsListFromApi(username).then(data => {
+            dispatch(getUserData(data));
+        }).catch(err => {
+            console.error(`Error getting user data`, err);
+        }).then(() => {
+            dispatch(endLoading());
+        })
     }
 }
