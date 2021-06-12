@@ -8,7 +8,7 @@ const initUserState = {
     friendsListMore: false,
     maxSpeed: '',
     avgSpeed: '',
-    avgAccuracy: '',
+    avgAccuracy: 50,
     avatarLink: '',
     friendsListMore: false,
     friendsList: ''
@@ -51,7 +51,6 @@ export function user(state = initUserState, action) {
                 friend: action.friends,
                 maxSpeed: action.maxSpeed,
                 avgSpeed: action.avgSpeed
-
             }
         default:
             return state;

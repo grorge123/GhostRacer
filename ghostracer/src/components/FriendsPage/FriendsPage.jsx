@@ -1,19 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-    Container,
-    Row,
-    Col,
-    Collapse,
-    Navbar,
-    NavbarToggler,
-    NavbarBrand,
-    Nav,
-    NavItem,
-    NavLink,
-    Input,
-    Button
-} from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 import './Button.css';
 
 import FriendBox from './FriendBox.jsx';
