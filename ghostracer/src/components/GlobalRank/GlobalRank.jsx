@@ -36,23 +36,23 @@ class GlobalRank extends React.Component{
                         
                             <tr>
                                 <td><h3>Avg. Accuracy</h3></td>
-                                <td colSpan="2"><h3>{this.props.play.accuracy}%</h3></td>
+                                <td colSpan="2"><h3>{this.props.user.avgAccuracy}%</h3></td>
                             </tr>
 
                             <tr>
                                 <td><h3>Avg. Speed</h3></td>
-                                <td><h3>{this.props.play.speed} wpm</h3></td>
+                                <td><h3>{this.props.user.avgSpeed} wpm</h3></td>
                                 <td>
                                     <Row>
                                         <Col xs="1">
                                             <i className={
-                                                this.props.play.speed > this.props.user.avgAccuracy ? 
+                                                this.props.user.avgSpeed > this.props.play.speed ? 
                                                 "fas fa-arrow-up" : 
                                                 "fas fa-arrow-down"
                                             }></i>
                                         </Col>
                                         <Col>{
-                                            this.abs(this.props.play.speed - this.props.user.avgAccuracy)
+                                            this.abs(this.props.user.avgSpeed - this.props.play.speed)
                                         } wpm</Col>
                                     </Row>
                                 </td>

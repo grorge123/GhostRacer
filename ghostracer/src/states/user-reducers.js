@@ -7,7 +7,7 @@ const initUserState = {
     friends: [],
     friendsListMore: false,
     maxSpeed: '',
-    avgSpeed: '',
+    avgSpeed: 3,
     avgAccuracy: 50,
     avatarLink: '',
     friendsListMore: false,

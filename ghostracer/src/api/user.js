@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { listFriendsAction } from '../states/user-actions'
 
-const userBaseUrl = 'http://ghostracer-dev.us-east-1.elasticbeanstalk.com/';
+const userBaseUrl = 'http://ghostracer-dev.us-east-1.elasticbeanstalk.com';
 
 export function getUserProfile(username){
     let url = `${userBaseUrl}/getProfile`;
@@ -35,11 +35,6 @@ export function getFriendList(username){
             throw new Error(`Unexpected response: ${res.status}, ${res.statusText}`)
         return res.data
     })
-}
-
-export function getTodayRaces(username) {
-    /* This is currently a mock up function */
-    return 1;
 }
 
 export function listFriends(searchText = ''){
