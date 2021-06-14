@@ -1,31 +1,36 @@
 /* play */
 
 const initPlayState = {
-    stakeSize: 0,
+    stakeSize: 3,
+    time: 100,
     speed: 100,
-    accuracy: 1
+    accuracy: 1,
+    opponentTime: 98,
+    opponentSpeed: 300,
+    opponentAccuracy: 2,
+    gameResult: false,
+    gainedCoin: -10,
+    gainedRank: -15,
 }
+
+function max(a, b) { return a > b ? a : b; }
+
 export function play(state = initPlayState, action) {
     switch (action.type) {
         case '@PLAY/ADD_STAKE':
             return {
                 ...state,
-                stakeSize: stakeSize + 1
+                stakeSize: state.stakeSize + 1
             }
         case '@PLAY/LESS_STAKE':
             return {
                 ...state,
-                stakeSize: stakeSize - 1
+                stakeSize: max(state.stakeSize - 1, 0)
             }
-        case '@PLAY/SET_WPM':
+        case '@PLAY/SET_RESULT':
             return {
                 ...state,
-                speed: action.speed
-            }
-        case '@PLAY/SET_ACC':
-            return {
-                ...state,
-                accuracy: action.accuracy
+                ...action
             }
         default:
             return state;

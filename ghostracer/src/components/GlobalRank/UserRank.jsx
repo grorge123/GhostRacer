@@ -9,6 +9,8 @@ import {
 import UserRankRow from './UserRankRow.jsx';
 import { getLadder } from '../../api/ladder.js';
 import { getUserProfile } from '../../api/user.js';
+import { connect } from 'react-redux'
+
 
 class UserRank extends React.Component{
   // static propTypes = {
@@ -21,7 +23,7 @@ class UserRank extends React.Component{
   }
 
   componentDidMount() {
-    getLadder("lawrence").then(
+    getLadder(this.props.user.ID).then(
       ladder => Promise.all(
         JSON.parse(ladder).data
       ).then(
@@ -60,4 +62,6 @@ class UserRank extends React.Component{
   }
 }
 
-export default UserRank;
+export default connect(state => ({
+  ...state
+}))(UserRank);

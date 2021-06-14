@@ -1,6 +1,7 @@
 /* user */
 
 const initUserState = {
+    ID: "admin",
     loggedIn: false,
     loading: false,
     username: 'Guest',

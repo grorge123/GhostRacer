@@ -5,61 +5,132 @@ import './Button.css';
 
 import FriendBox from './FriendBox.jsx';
 import FriendList from './FriendList.jsx';
+import { getUserProfile } from '../../api/user.js';
+import { getFriendList, addFriend } from '../../api/friend.js';
+
+import { connect } from 'react-redux'
+import { withRouter } from "react-router";
 
 class FriendsPage extends React.Component {
-    // static propTypes = {
-    //   loggedIn: PropTypes.bool
-    // }
-
     constructor(props) {
         super(props);
         this.state = {
-            loggedIn: false,
+            friends: {},
+            showIndex: undefined
         }
+        this.changeShown = this.changeShown.bind(this)
+        this.challenge = this.challenge.bind(this)
     }
 
-  render(){
-    const h5_style = {
-        'textAlign': 'center',
-        'fontSize': '4rem',
-        'marginBottom': '5rem'
-    };
-    const top_margin = {
-        'marginTop': '1rem'
-    };
-    return(
-        <div>
-            <Container>
-                <Row>
-                    <Col>
-                        <Container>
-                            <Row>
-                                <Col> 
-                                    <h5 style={h5_style}> Frenemies </h5>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col>
-                                    <FriendBox></FriendBox>
-                                </Col>
-                            </Row>
-                        </Container>
-                    </Col>
-                    <Col>
-                        <div className="button-wrapper">
-                            <button className="circle-button">Challenge!</button>
-                        </div>
-                    </Col>
-                    <Col>
-                        <div>
-                            <div style={top_margin}><FriendList></FriendList></div>
-                        </div>
-                    </Col>
-                </Row>
-            </Container>
-        </div>
-    )
-  }
+    challenge() {
+        this.props.history.push('/typingScreen')
+    }
+
+    changeShown(id) {
+        this.setState({
+            ...this.state,
+            showIndex: id
+        })
+    }
+
+    componentDidMount() {
+        getFriendList(this.props.user.ID).then(
+            result => {
+                for (var i = 0; i < result.len; i++)
+                    getUserProfile(result['friend' + i.toString()]).then(
+                        ans => this.setState(
+                            prev => ({
+                                friends: {
+                                    ...prev.friends,
+                                    [ans.ID]: ans
+                                }
+                            })
+                        ).then(() => {
+                            this.setState({
+                                showIndex: this.state.friends.keys[0]
+                            })
+                        })
+                    )
+            }
+        )
+    }
+
+    render() {
+        const h5_style = {
+            'textAlign': 'center',
+            'fontSize': '4rem',
+            'marginBottom': '5rem'
+        };
+        const top_margin = { 'marginTop': '1rem' };
+        let friendsList = []
+        for (var i in this.state.friends)
+            friendsList.push(this.state.friends[i])
+
+        let friendBox = {
+            name: "You have no friend",
+            wpm: 0,
+            acc: 0,
+            last: [false, false, false]
+        }
+
+        if (this.state.showIndex !== undefined)
+            friendBox = {
+                ...friendBox,
+                name: this.state.friends[this.state.showIndex].nickname,
+                wpm: this.state.friends[this.state.showIndex].speed,
+                acc: this.state.friends[this.state.showIndex].acc
+            }
+
+
+        return (
+            <div>
+                <Container>
+                    <Row>
+                        <Col>
+                            <Container>
+                                <Row>
+                                    <Col>
+                                        <h5 style={h5_style}> Frenemies </h5>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col>
+                                        <FriendBox
+                                            name={friendBox.name}
+                                            wpm={friendBox.wpm}
+                                            acc={friendBox.acc}
+                                            last={friendBox.last}
+                                        ></FriendBox>
+                                    </Col>
+                                </Row>
+                            </Container>
+                        </Col>
+                        <Col>
+                            <div className="button-wrapper">
+                                <button
+                                    className="circle-button"
+                                    onClick={this.challenge}>Challenge!
+                                </button>
+                            </div>
+                        </Col>
+                        <Col>
+                            <div>
+                                <div style={top_margin}>
+                                    <FriendList
+                                        onChange={this.changeShown}
+                                        friends={friendsList}>
+                                    </FriendList>
+                                </div>
+                            </div>
+                        </Col>
+                    </Row>
+                </Container>
+            </div>
+        )
+    }
 }
 
-export default FriendsPage;
+export default connect(state => ({
+    ...state
+}))(withRouter(FriendsPage));
+

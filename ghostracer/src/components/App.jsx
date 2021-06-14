@@ -87,7 +87,7 @@ class App extends React.Component {
                       <NavLink tag={Link} to='/globalrank'>Global Rank</NavLink>
                     </NavItem>
                     <NavItem>
-                      <NavLink tag={Link} to='/play'>Start Game</NavLink>
+                      <NavLink tag={Link} to='/typingScreen'>Start Game</NavLink>
                     </NavItem>
                     <NavItem>
                       <NavLink tag={Link} to='/leaderboard'>Leaderboard</NavLink>
@@ -104,11 +104,17 @@ class App extends React.Component {
             <Route exact path="/friends" render={() => (
               <FriendsPage />
             )} />
-            <Route exact path="/play" render={() => (
+            <Route exact path="/typingScreen" render={() => (
               <Play />
             )} />
             <Route exact path="/globalrank" render={() => (
               <GlobalRank />
+            )} />
+            <Route exact path="/matchResult" render={() => (
+              <MatchResult />
+            )} />
+            <Route exact path="/rankedMatch" render={() => (
+              <RankedMatch />
             )} />
           </div>
         </div>
