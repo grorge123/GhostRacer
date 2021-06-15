@@ -1,6 +1,7 @@
 /* play */
 
 const initPlayState = {
+    opponentID: 'lawrence',
     stakeSize: 3,
     time: 100,
     speed: 100,
@@ -28,6 +29,11 @@ export function play(state = initPlayState, action) {
                 stakeSize: max(state.stakeSize - 1, 0)
             }
         case '@PLAY/SET_RESULT':
+            return {
+                ...state,
+                ...action
+            }
+        case '@PLAY/SET_OPPONENT':
             return {
                 ...state,
                 ...action

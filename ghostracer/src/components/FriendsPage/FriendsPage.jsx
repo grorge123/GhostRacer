@@ -5,9 +5,11 @@ import './Button.css';
 
 import FriendBox from './FriendBox.jsx';
 import FriendList from './FriendList.jsx';
-import { getUserProfile } from '../../api/user.js';
-import { getFriendList, addFriend } from '../../api/friend.js';
 
+import { getUserProfile } from '../../api/user.js';
+import { getFriendList } from '../../api/friend.js';
+
+import { setOpponent } from '../../states/play-actions.js'
 import { connect } from 'react-redux'
 import { withRouter } from "react-router";
 
@@ -23,10 +25,14 @@ class FriendsPage extends React.Component {
     }
 
     challenge() {
-        this.props.history.push('/typingScreen')
+        if(this.state.showIndex == undefined)
+        this.props.history.push('/typingScreen?mode=single')
+        else
+            this.props.history.push('/rankedMatch')
     }
 
     changeShown(id) {
+        this.props.setOpponent(id)
         this.setState({
             ...this.state,
             showIndex: id
@@ -36,21 +42,19 @@ class FriendsPage extends React.Component {
     componentDidMount() {
         getFriendList(this.props.user.ID).then(
             result => {
-                for (var i = 0; i < result.len; i++)
-                    getUserProfile(result['friend' + i.toString()]).then(
-                        ans => this.setState(
-                            prev => ({
-                                friends: {
-                                    ...prev.friends,
-                                    [ans.ID]: ans
-                                }
-                            })
-                        ).then(() => {
-                            this.setState({
-                                showIndex: this.state.friends.keys[0]
-                            })
-                        })
-                    )
+                for (var i = 0; i < result.len; i++) {
+                    if(result['friend' + i.toString()] != this.props.user.ID)
+                        getUserProfile(result['friend' + i.toString()]).then(
+                            ans => this.setState(
+                                prev => ({
+                                    friends: {
+                                        ...prev.friends,
+                                        [ans.ID]: ans
+                                    }
+                                })
+                            )
+                        )
+                }
             }
         )
     }
@@ -130,7 +134,13 @@ class FriendsPage extends React.Component {
     }
 }
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setOpponent: (x) => dispatch(setOpponent(x))
+    }
+};
+
 export default connect(state => ({
     ...state
-}))(withRouter(FriendsPage));
+}), mapDispatchToProps)(withRouter(FriendsPage));
 

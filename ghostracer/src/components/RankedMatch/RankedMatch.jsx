@@ -20,7 +20,6 @@ class RankedMatch extends React.Component{
     super(props);
     this.state = { 
         countDown: 10, 
-        rank: -1,
         self: {},
         opponent: {}
     }
@@ -31,19 +30,15 @@ class RankedMatch extends React.Component{
         this.setState(prev => ({...prev, countDown: prev.countDown - 1}))
         if(this.state.countDown == 0) {
             clearInterval(handle)
-            // this.props.history.push('/typingScreen')
+            this.props.history.push('/typingScreen?mode=multiple')
         }
       }).bind(this), 1000)
-
-      rankLadder(this.props.user.ID).then(
-          ans => this.setState(prev => ({ ...prev, rank: ans.result }))
-      )
 
       getUserProfile(this.props.user.ID).then(
         ans => this.setState(prev => ({ ...prev, self: ans }))
       )
 
-      getUserProfile("lawrence").then(
+      getUserProfile(this.props.play.opponentID).then(
         ans => this.setState(prev => ({ ...prev, opponent: ans }))
       )
   }
@@ -81,11 +76,11 @@ class RankedMatch extends React.Component{
                             </Col>
                         </Row>
 
-                        <Row><Col><h3 style={mtop}>Rank Change</h3></Col></Row>
+                        <Row><Col><h3 style={mtop}>Coin Change</h3></Col></Row>
                         <Row>
-                            <Col><i className="fas fa-arrow-down"></i><h5>17</h5></Col>
-                            <Col><h3>{this.state.rank}</h3></Col>
-                            <Col><i className="fas fa-arrow-up"></i><h5>20</h5></Col>
+                            <Col><i className="fas fa-arrow-down"></i><h5>{Math.floor(this.props.play.stakeSize / 2)}</h5></Col>
+                            <Col><h3>{this.state.self.money}</h3></Col>
+                            <Col><i className="fas fa-arrow-up"></i><h5>{this.props.play.stakeSize}</h5></Col>
                         </Row>
                     </Col>
                     <Col><UserStatistics info={this.state.opponent}></UserStatistics></Col>

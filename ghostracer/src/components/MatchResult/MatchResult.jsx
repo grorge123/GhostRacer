@@ -7,13 +7,13 @@ import { withRouter } from "react-router";
 
 import Arrow from '../Arrows/arrows.jsx';
 import { rankLadder } from '../../api/ladder.js'
+import Avatar from '../Avatar/avatar.jsx';
 
 class MatchResult extends React.Component{
   constructor(props) {
     super(props);
-    this.state = {
-        rank: -1
-    }
+    this.state = { rank: -1 }
+    this.submit = this.submit.bind(this)
   }
 
   componentDidMount() {
@@ -30,6 +30,10 @@ class MatchResult extends React.Component{
       if(x < 0) return '<';
   }
 
+  submit() {
+    this.props.history.push('/')
+  }
+
   render(){
     const mtop = { 'marginTop': '1rem' };
     const m2top = { 'marginTop': '2rem', 'fontSize': '1.5rem' };
@@ -39,7 +43,7 @@ class MatchResult extends React.Component{
                 <Container><Row style={cent}>
                     <Col>
                         <Row style={mtop}><Col>
-                            <img src="https://i.pinimg.com/474x/39/17/1f/39171fff9e994180efbe7e7f320af67e.jpg" />
+                            <Avatar width={"20rem"} id={this.props.user.avatar}></Avatar>
                         </Col></Row>
                         <Row style={mtop}>
                             <Col xs="4"></Col>
@@ -70,7 +74,7 @@ class MatchResult extends React.Component{
                             </u></Col>
                         </Row>                       
                         <Row style={mtop}>
-                            <Col><Button>Continue</Button></Col>
+                            <Col><Button onClick={this.submit}>Continue</Button></Col>
                         </Row>
                     </Col>
 
