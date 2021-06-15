@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 import './Canvas.css';
 import Sky from './Sky.jsx';
 import Ground from './Ground.jsx';
-import ProgressBar from './ProgressBar.jsx'
+import PlayerBar from './PlayerBar.jsx'
 import TextInput from './TextInput.jsx';
 
 
@@ -14,6 +14,8 @@ class Canvas extends React.Component {
   	
     constructor(props) {
         super(props);
+
+      
     }
 
   	render() {
@@ -27,7 +29,7 @@ class Canvas extends React.Component {
         >
         <Sky />
         <Ground />
-        <ProgressBar />
+        <PlayerBar />
         </svg>
       );
   };

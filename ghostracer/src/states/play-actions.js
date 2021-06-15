@@ -1,0 +1,52 @@
+/* Text input */
+
+export function getParagraph() {
+	const initialWords = "It is raining so hard outside. There is lightning and thunder. Good thing I dont need to go out. Yay!"
+	return {
+		type:'@INPUT/START_GET_PARAGRAPH',
+		initialWords,
+
+	};
+}
+
+/* Player Stats */
+
+export function setWpm(wpm) {
+	return {
+		type:'@PLAYER_STAT/SET_WMP',
+		wpm
+	};
+}
+
+export function setAccuracy(accuracy) {
+	return {
+		type:'@PLAYER_STAT/SET_ACCURACY',
+		accuracy
+	};
+}
+
+export function setTotalTime(totalTime) {
+	return {
+		type:'@PLAYER_STAT/SET_ACCURACY',
+		totalTime,
+	};
+}
+
+/* Game State */
+export function setGameHold() {
+	return {
+		type: '@GAME_STATE/GAME_HOLD'
+	};
+}
+
+export function setGameStart() {
+	return {
+		type: '@GAME_STATE/GAME_START'
+	};
+}
+
+export function setGameEnd() {
+	return {
+		type: '@GAME_STATE/GAME_END'
+	};
+}
