@@ -5,6 +5,7 @@ import * as Constants from './constants.js';
 import TextInput from './TextInput.jsx';
 import SpeedBar from './SpeedBar.jsx';
 import Pause from './Pause.jsx';
+import Opponent from './Opponent.jsx';
 
 import {connect} from 'react-redux';
 
@@ -12,16 +13,30 @@ import './PlayerBar.css';
 
 class PlayerBar extends React.Component {
 
-    static PropTypes = {
+    static propTypes = {
       wpm: PropTypes.number,
-    }
+      gameState: PropTypes.number,
+    };
 
     constructor(props) {
         super(props);
+    }
 
-        this.state = {
-          opponentOffsetMultiply: [0],
-        }
+    componentDidMount() {
+
+      // const updateOffsetChar = (this.state.opponentWpm - this.props.wpm) * 5;
+      // console.log(this.state.opponentOffsetChar[0]);
+      // console.log(this.props.wpm);
+      // if(updateOffsetChar != this.state.opponentOffsetChar[0]) {
+      //   this.setState({
+      //     opponentOffsetChar: [updateOffsetChar],
+      //   });
+
+      // }
+    }
+
+    componentDidUpdate() {
+      
     }
 
     render() {
@@ -34,10 +49,6 @@ class PlayerBar extends React.Component {
           strokeWidth: '3px',
         };
 
-        const oponent1_division = {
-          stroke: '#0090ff',
-          strokeWidth: '3px',
-        }
 
         const userName = "Alice";
 
@@ -45,17 +56,11 @@ class PlayerBar extends React.Component {
         const barYPosition = Constants.barYPosition;
         const barHeight = Constants.barHeight;
 
-        const playerImg = ["https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/365e45cb-f07a-4c88-a433-10e18063baad/d3iapfh-fc5d77be-fcf5-43a9-b676-83b7553bf246.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwic3ViIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsImF1ZCI6WyJ1cm46c2VydmljZTpmaWxlLmRvd25sb2FkIl0sIm9iaiI6W1t7InBhdGgiOiIvZi8zNjVlNDVjYi1mMDdhLTRjODgtYTQzMy0xMGUxODA2M2JhYWQvZDNpYXBmaC1mYzVkNzdiZS1mY2Y1LTQzYTktYjY3Ni04M2I3NTUzYmYyNDYuZ2lmIn1dXX0.rrySX_gaiVqKQMHRVerWDvqInE6C5qFuLyvdCt6TCcw"];
+        const playerImg = ["https://64.media.tumblr.com/8210fd413c5ce209678ef82d65731443/tumblr_mjphnqLpNy1s5jjtzo1_400.gifv"];
         const playerX = Constants.startTypeX-150;
         const playerY = Constants.barYPosition+150;
         const playerWidth = Constants.playerWidth;
         const playerHeight = Constants.playerHeight;
-
-        const opponentOffset = [40 * 10];
-        const opponentWidth = Constants.opponentWidth;
-        const opponentHeight = Constants.opponentHeight;
-
-
 
         return (
           <g id="progress">
@@ -89,25 +94,16 @@ class PlayerBar extends React.Component {
               y2={barYPosition}
               style={division}
             />
-            <line
-              x1={Constants.startTypeX+15+opponentOffset[0]}
-              y1={barYPosition+barHeight}
-              x2={Constants.startTypeX+15+opponentOffset[0]}
-              y2={barYPosition}
-              style={oponent1_division}
-            />
+            
             <SpeedBar/>
-            <TextInput/>
 
             <foreignObject x={playerX} y={playerY} width={playerWidth} height={playerHeight}>
-                <img src={playerImg[0]} width="300" alt="player img" />
+                <img src={playerImg[0]} width="250" alt="player img" />
                 <div className="text-center"><span className="username">{userName}</span></div>
             </foreignObject>
 
-            <foreignObject x={playerX+50+opponentOffset[0]} y={playerY} width={opponentWidth} height={opponentHeight}>
-                <img src={playerImg[0]} width="150" alt="player img" />
-                <div className="text-center"><span className="username">{userName}</span></div>
-            </foreignObject>
+            <Opponent />
+            <TextInput/>
           </g>
         );
     }
@@ -115,6 +111,7 @@ class PlayerBar extends React.Component {
     
 }
 
-export default connect((state) => {
-  return state.playerStat.wpm;
-})(PlayerBar);
+export default connect(state => ({
+    wpm: state.playerStat.wpm,
+    gameState: state.gameState.gameState,
+}))(PlayerBar);

@@ -9,7 +9,7 @@ import './Sky.css';
 class Sky extends React.Component {
 
   static propTypes = {
-    wpm: PropTypes.numer,
+    wpm: PropTypes.number,
   }
 
   constructor(props) {

@@ -27,7 +27,7 @@ export function setAccuracy(accuracy) {
 
 export function setTotalTime(totalTime) {
 	return {
-		type:'@PLAYER_STAT/SET_ACCURACY',
+		type:'@PLAYER_STAT/SET_TOTAL_TIME',
 		totalTime,
 	};
 }

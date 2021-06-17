@@ -41,6 +41,7 @@ class TextInput extends React.Component {
         this.currentTime = this.currentTime.bind(this);
         this.downHandler = this.downHandler.bind(this);
         this.upHandler = this.upHandler.bind(this);
+        this.interval = null;
     }
 
     componentDidMount() {
@@ -52,16 +53,28 @@ class TextInput extends React.Component {
     componentDidUpdate() {
       if(this.props.gameState == 0 && this.props.initialWords) {
         this.setInitialChar();
+
+        this.interval = setInterval(() => {
+          if(this.state.startTime && this.props.gameState == 1) {
+            const durationInMinutes = (this.currentTime() - this.state.startTime) / 60000.0;
+            const accuracy = Math.round((this.state.outgoingChars.length / this.state.typedChars.length) * 100);
+            this.props.dispatch(setAccuracy(accuracy))
+            if(durationInMinutes > 0.01) this.props.dispatch(setWpm(Math.round((this.state.wordCount) / durationInMinutes / 5)));
+          }
+        }, 500);
+
         this.props.dispatch(setGameStart());
       }
 
       if(this.state.currentChar == '' && this.props.gameState == 1) {
         console.log("gameover");
+        clearInterval(this.interval);
         this.removeKeyPressed();
         this.props.dispatch(setTotalTime((this.currentTime() - this.state.startTime)/60000.0));
         this.props.dispatch(setGameEnd());
       }
     }
+
 
     render() {
       const startPosition = Constants.startTypeX;
@@ -77,7 +90,7 @@ class TextInput extends React.Component {
           <span className="text"> 
             {this.state.incomingChars.substr(0, 50)}
           </span>
-          <span className={`text ${this.props.gameState==2 ? '' : 'd-none'}`}> GAME OVER!!!!! </span>
+          <span className={`text ${this.props.gameState==2 ? '' : 'd-none'}`}> &nbsp;&nbsp;GAME OVER!!!!! </span>
         </foreignObject>
       );
     };
@@ -134,13 +147,6 @@ class TextInput extends React.Component {
         });
       
         
-      }
-
-      if(startTime && key) {
-        const durationInMinutes = (this.currentTime() - newStartTime) / 60000.0;
-        const accuracy = Math.round((updatedOutgoingChars.length / updatedTypedChars.length) * 100);
-        this.props.dispatch(setAccuracy(accuracy))
-        if(durationInMinutes > 0.01) this.props.dispatch(setWpm(Math.round((wordCount + 1) / durationInMinutes / 5)));
       }
       
     }
