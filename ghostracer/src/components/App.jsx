@@ -36,7 +36,11 @@ import RankedMatch from 'components/RankedMatch/RankedMatch.jsx';
 import MainPage from 'components/MainPage/MainPage.jsx';
 import Play from 'components/Play/Play.jsx';
 
-import { getUserProfileAction } from '../states/user-actions.js';
+import { getUserProfileAction, loginAction } from '../states/user-actions.js';
+
+import { Auth, Amplify } from "aws-amplify";
+import { withAuthenticator } from "@aws-amplify/ui-react";
+import { AmplifyGreeting, AmplifySignOut } from "@aws-amplify/ui-react";
 
 import './App.css';
 
@@ -59,11 +63,24 @@ class App extends React.Component {
       username: 'Leon',
       maxspeed: 100
     }
+    Auth.currentAuthenticatedUser().then(user => {
+      let username,
+      if (user.name) {
+        this.setState({ username: user.name });
+        username = user.name
+      }
+      if (user.username) {
+        this.setState({ username: user.username });
+        username = user.username
+      }
+      // this.props.dispatch(loginAction)
+      // console.log(user)
+    });
     this.userProfileDetail = this.userProfileDetail.bind(this)
     this.handleLogin = this.handleLogin.bind(this)
 
-    console.log(this.props)
-    console.log(this.state)
+    // console.log(this.props)
+    // console.log(this.state)
   }
 
   componentDidMount() {
@@ -74,30 +91,30 @@ class App extends React.Component {
     return (
       <Router>
         <div className='App'>
-          <div className="bg-faded bg-1">
-            <Navbar className="navbar" color='faded' light expand>
-              <div className='container'>
-                <Collapse isOpen={this.props.navbarToggle} navbar>
-                  <Nav navbar>
-                    <NavbarBrand className='text-info' href="/">Ghost Racer</NavbarBrand>
-                    <NavItem>
-                      <NavLink tag={Link} to='/friends'>Friends</NavLink>
-                    </NavItem>
-                    <NavItem>
-                      <NavLink tag={Link} to='/globalrank'>Global Rank</NavLink>
-                    </NavItem>
-                    <NavItem>
-                      <NavLink tag={Link} to='/typingScreen'>Start Game</NavLink>
-                    </NavItem>
-                    <NavItem>
-                      <NavLink tag={Link} to='/leaderboard'>Leaderboard</NavLink>
-                    </NavItem>
-                  </Nav>
-                  <Login loggedIn={this.state.loggedIn} onClick={this.handleLogin}>Login</Login>
-                  {this.userProfileDetail()}
-                </Collapse>
-              </div>
-            </Navbar>
+          <Navbar className="navbar" color='faded' light expand>
+            <div className='container'>
+              <Collapse isOpen={this.props.navbarToggle} navbar>
+                <Nav navbar>
+                  <NavbarBrand className='text-info' href="/">Ghost Racer</NavbarBrand>
+                  <NavItem>
+                    <NavLink tag={Link} to='/friends'>Friends</NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink tag={Link} to='/globalrank'>Global Rank</NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink tag={Link} to='/play'>Start Game</NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink tag={Link} to='/leaderboard'>Leaderboard</NavLink>
+                  </NavItem>
+                </Nav>
+                <Login loggedIn={this.state.loggedIn} onClick={this.handleLogin}>Login</Login>
+                {this.userProfileDetail()}
+              </Collapse>
+            </div>
+          </Navbar>
+          <Switch>
             <Route exact path="/" render={() => (
               <MainPage />
             )} />
@@ -116,7 +133,10 @@ class App extends React.Component {
             <Route exact path="/rankedMatch" render={() => (
               <RankedMatch />
             )} />
-          </div>
+            <Route>
+              <div><h1>Invalid Link</h1></div>
+            </Route>
+          </Switch>
         </div>
       </Router>
     )
@@ -151,9 +171,10 @@ class App extends React.Component {
 
   handleLogin() {
     // cookies.set('field', content, {path: '/'})
-    this.props.store.dispatch()
+    loginAction();
+    console.log('triggered')
   }
 
 }
 
-export default withCookies(connect(state => ({ ...state }))(App))
+export default withAuthenticator(withCookies(connect(state => ({ ...state }))(App)))

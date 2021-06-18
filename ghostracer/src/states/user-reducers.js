@@ -51,7 +51,8 @@ export function user(state = initUserState, action) {
                 ...state,
                 friend: action.friends,
                 maxSpeed: action.maxSpeed,
-                avgSpeed: action.avgSpeed
+                avgSpeed: action.avgSpeed,
+                avgAccuracy: action.avgAccuracy
             }
         default:
             return state;

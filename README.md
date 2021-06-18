@@ -6,4 +6,3 @@ Boo
 - "@material-ui/core": "^4.11.4",
 
 
-- "phaser": "^3.55.2",

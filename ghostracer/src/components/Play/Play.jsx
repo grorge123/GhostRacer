@@ -5,10 +5,7 @@ import './Play.css';
 import Canvas from './Canvas.jsx';
 
 class Play extends React.Component {
-	static propTypes = {
-
-	}
-
+	
 	constructor(props) {
 		super(props);
 	}

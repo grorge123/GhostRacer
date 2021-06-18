@@ -1,17 +1,40 @@
-.title span{
-    position: absolute;
-    font-size: large;
-    color: white;
-    /* left:  */
+.mainpage {
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    z-index: 1;
 }
 
-.title1{
+.bg-dim{
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.452);
+    height: 100%;
+    width: 100%;
+}
+
+.title span {
+    color: white;
+}
+
+.title1 {
     position: absolute;
     left: 10%;
     top: 30%;
     font-size: 100px;
 }
 
-.title:first-child{
-    
+.title2 {
+    position: absolute;
+    left: 20%;
+    top: 50%;
+    font-size: 100px;
 }
+
+.menu-box {
+    position: absolute;
+    right: 0;
+    width: 40%;
+    height: 100%;
+}
+
+/* .title:first-child {} */

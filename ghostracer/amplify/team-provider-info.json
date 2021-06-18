@@ -1,0 +1,55 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-ghostracer-dev-115530-authRole",
+      "UnauthRoleArn": "arn:aws:iam::194349285036:role/amplify-ghostracer-dev-115530-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::194349285036:role/amplify-ghostracer-dev-115530-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-ghostracer-dev-115530-deployment",
+      "UnauthRoleName": "amplify-ghostracer-dev-115530-unauthRole",
+      "StackName": "amplify-ghostracer-dev-115530",
+      "StackId": "arn:aws:cloudformation:us-east-1:194349285036:stack/amplify-ghostracer-dev-115530/0a76c010-cb32-11eb-8659-0e00cd5253c1",
+      "AmplifyAppId": "dla0zjpsixyux",
+      "AuthTriggerTemplateURL": ""
+    },
+    "categories": {
+      "auth": {
+        "ghostracer0c41ce91": {},
+        "userPoolGroups": {}
+      },
+      "function": {
+        "AdminQueriesb71944a7": {
+          "deploymentBucketName": "amplify-ghostracer-dev-115530-deployment",
+          "s3Key": "amplify-builds/AdminQueriesb71944a7-596a6a524a7734572b4c-build.zip"
+        }
+      }
+    }
+  },
+  "ghostracer": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-ghostracer-ghostracer-131816-authRole",
+      "UnauthRoleArn": "arn:aws:iam::194349285036:role/amplify-ghostracer-ghostracer-131816-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::194349285036:role/amplify-ghostracer-ghostracer-131816-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-ghostracer-ghostracer-131816-deployment",
+      "UnauthRoleName": "amplify-ghostracer-ghostracer-131816-unauthRole",
+      "StackName": "amplify-ghostracer-ghostracer-131816",
+      "StackId": "arn:aws:cloudformation:us-east-1:194349285036:stack/amplify-ghostracer-ghostracer-131816/c547f6f0-cc06-11eb-8979-126b6ef530bb",
+      "AmplifyAppId": "d1jf1zfl6ilyew"
+    },
+    "categories": {
+      "auth": {
+        "ghostracer0c41ce91": {
+          "googleClientId": "277180343147-rtoj1qohu41plhoceg3p0l3c2bqmvs97.apps.googleusercontent.com"
+        },
+        "userPoolGroups": {}
+      },
+      "function": {
+        "AdminQueriesb71944a7": {
+          "deploymentBucketName": "amplify-ghostracer-ghostracer-131816-deployment",
+          "s3Key": "amplify-builds/AdminQueriesb71944a7-596a6a524a7734572b4c-build.zip"
+        }
+      }
+    }
+  }
+}

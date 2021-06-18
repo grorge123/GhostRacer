@@ -15,7 +15,7 @@ class Login extends React.Component{
 
     render(){
         return (
-            <Button color="primary">{(this.props.loggedIn) ? "Logout" : "Login"}</Button>
+            <Button color="primary" onClick={this.props.onClick}>{(this.props.loggedIn) ? "Logout" : "Login"}</Button>
         )
     }
 }

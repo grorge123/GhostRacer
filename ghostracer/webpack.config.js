@@ -7,8 +7,8 @@ const distPath = path.resolve(__dirname, 'public');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 const htmlPlugin = new HtmlWebPackPlugin({
-  template: "./index.html",
-  filename: "./index.html"
+    template: "./index.html",
+    filename: "./index.html"
 });
 
 module.exports = {
@@ -59,7 +59,7 @@ module.exports = {
                     'style-loader',
                     {
                         loader: 'css-loader',
-                        options : {
+                        options: {
                             url: false
                         }
                     }
@@ -69,7 +69,7 @@ module.exports = {
     },
     optimization: {
         splitChunks: {
-          chunks: "all"
+            chunks: "all"
         }
     },
     plugins: [htmlPlugin],
@@ -79,5 +79,5 @@ module.exports = {
         port: 8083,
         historyApiFallback: true,
     },
-    devtool: 'cheap-source-map'
+    devtool: 'cheap-source-map',
 };

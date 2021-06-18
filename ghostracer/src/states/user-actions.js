@@ -29,6 +29,7 @@ function logout() {
 function getUserData(data) {
     return {
         type: '@USER/GET_DATA',
+        username: data['username'],
         speed: data['speed']
     }
 }
@@ -39,9 +40,16 @@ function listFriends() {
     }
 }
 
-export function loginAction(toggle){
+export function loginAction(){
     return (dispatch, getState) => {
-
+        console.log(getState)
+        if (getState.loggedIn){
+            dispatch(logout())
+            console.log('logged out')
+        } else{
+            dispatch(login())
+            console.log('logged in')
+        }
     }
 }
 
