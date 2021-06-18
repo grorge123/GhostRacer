@@ -64,7 +64,7 @@ class App extends React.Component {
       maxspeed: 100
     }
     Auth.currentAuthenticatedUser().then(user => {
-      let username,
+      let username;
       if (user.name) {
         this.setState({ username: user.name });
         username = user.name
