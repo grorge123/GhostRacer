@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ListGroup, ListGroupItem } from 'reactstrap';
-import FriendListItem from './FriendListItem.jsx';
 
-class FriendList extends React.Component{
+class FriendList extends React.Component {
   // static propTypes = {
   //   loggedIn: PropTypes.bool
   // }
@@ -12,19 +11,22 @@ class FriendList extends React.Component{
     super(props);
   }
 
-  render(){
-    return(
-        <div>
-            <ListGroup>
-                <FriendListItem></FriendListItem>
-                <FriendListItem></FriendListItem>
-                <FriendListItem></FriendListItem>
-                <FriendListItem></FriendListItem>
-                <FriendListItem></FriendListItem>
-                <FriendListItem></FriendListItem>
-                <FriendListItem></FriendListItem>
-            </ListGroup>
-        </div>
+  click(id) { this.props.onChange(id) }
+
+  render() {
+    let friends = this.props.friends.map(
+      item => {
+        return (
+          <ListGroupItem key={item.ID}>
+            <a href="#" onClick={this.click.bind(this, item.ID)}>
+              {item.nickname}
+            </a>
+          </ListGroupItem>
+        )
+      }
+    )
+    return (
+      <div><ListGroup>{friends}</ListGroup></div>
     )
   }
 }

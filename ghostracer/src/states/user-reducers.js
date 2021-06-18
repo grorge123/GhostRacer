@@ -1,13 +1,18 @@
 /* user */
 
 const initUserState = {
+    ID: "admin",
     loggedIn: false,
     loading: false,
     username: 'Guest',
     friends: [],
     friendsListMore: false,
     maxSpeed: '',
-    avgSpeed: '',
+    avgSpeed: 3,
+    avgAccuracy: 50,
+    avatar: 3,
+    friendsListMore: false,
+    friendsList: ''
 }
 export function user(state = initUserState, action) {
     switch (action.type) {
@@ -47,7 +52,6 @@ export function user(state = initUserState, action) {
                 friend: action.friends,
                 maxSpeed: action.maxSpeed,
                 avgSpeed: action.avgSpeed
-
             }
         default:
             return state;

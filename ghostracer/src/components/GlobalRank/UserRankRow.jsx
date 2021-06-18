@@ -28,13 +28,13 @@ class UserRankRow extends React.Component{
     const mbot = { 'marginTop': '1rem' };
     return(
         <tr>
-            <th scope="row"> 1st </th>
-            <td> Uncle Roger </td>
-            <td> 130 </td>
-            <td> 99% </td>
+            <th scope="row"> #{this.props.info.rank} </th>
+            <td> {this.props.info.nickname} </td>
+            <td> {this.props.info.speed} </td>
+            <td> {this.props.info.acc}% </td>
         </tr>
     )
-  }
+  } 
 }
 
 export default UserRankRow;

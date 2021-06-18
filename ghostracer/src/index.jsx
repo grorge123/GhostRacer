@@ -13,12 +13,13 @@ import './index.css'
 
 import App from './components/App.jsx';
 import { user } from './states/user-reducers.js'
+import { play } from './states/play-reducers.js'
 
 
 window.onload = function () {
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   const store = createStore(combineReducers({
-    user
+    user, play
   }), composeEnhancers(applyMiddleware(thunkMiddleware)));
 
   store.subscribe(() => {console.log(store.getState())}) // TODO: disable at prod

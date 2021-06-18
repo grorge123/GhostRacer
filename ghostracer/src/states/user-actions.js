@@ -45,22 +45,3 @@ export function loginAction(toggle){
     }
 }
 
-export function getUserProfileAction(username) {
-    return (dispatch, getState) => {
-        dispatch(startLoading());
-        return getUserProfileFromApi(username).then(data => {
-            dispatch(getUserData(data));
-        }).catch(err => {
-            console.error(`Error getting user data`, err);
-        }).then(() => {
-            dispatch(endLoading());
-        })
-    }
-}
-
-export function listFriendsAction() {
-    return (dispatch, getState) => {
-        dispatch(startLoading());
-        return listFriendsFromApi()
-    }
-}

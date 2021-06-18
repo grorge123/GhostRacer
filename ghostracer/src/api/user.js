@@ -1,13 +1,11 @@
 import axios from 'axios'
 import { listFriendsAction } from '../states/user-actions'
 
-const userBaseUrl = 'http://ghostracer-dev.us-east-1.elasticbeanstalk.com/';
+const userBaseUrl = 'http://ghostracer-dev.us-east-1.elasticbeanstalk.com';
 
 export function getUserProfile(username){
     let url = `${userBaseUrl}/getProfile`;
-    const reqHeader = {
-        'token': username
-    }
+    const reqHeader = { 'token': username }
 
     console.log(`Making GET request to ${url}, headers: ${reqHeader}`);
 
@@ -19,7 +17,6 @@ export function getUserProfile(username){
         return res.data
     })
 }
-
 
 export function listFriends(searchText = ''){
 
