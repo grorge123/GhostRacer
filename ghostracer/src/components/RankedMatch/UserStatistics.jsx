@@ -31,9 +31,9 @@ class UserStatistics extends React.Component {
         </Row>
         <Row>
           <Col style={left}>Last 3</Col>
-          <Col xs="1" style={right}>W</Col>
-          <Col xs="1" style={right}>L</Col>
-          <Col xs="1" style={right}>W</Col>
+          <Col xs="1" style={right}>{this.props.info.lastThree[0] ? "W" : "L"}</Col>
+          <Col xs="1" style={right}>{this.props.info.lastThree[1] ? "W" : "L"}</Col>
+          <Col xs="1" style={right}>{this.props.info.lastThree[2] ? "W" : "L"}</Col>
         </Row>
       </Container>
     )

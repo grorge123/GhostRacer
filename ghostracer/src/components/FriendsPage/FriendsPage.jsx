@@ -82,7 +82,8 @@ class FriendsPage extends React.Component {
                 ...friendBox,
                 name: this.state.friends[this.state.showIndex].nickname,
                 wpm: this.state.friends[this.state.showIndex].speed,
-                acc: this.state.friends[this.state.showIndex].acc
+                acc: this.state.friends[this.state.showIndex].acc,
+                last: this.state.friends[this.state.showIndex].lastThree
             }
 
 
