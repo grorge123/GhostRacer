@@ -10,10 +10,38 @@ class Sky extends React.Component {
 
   static propTypes = {
     wpm: PropTypes.number,
+    gameState: PropTypes.number
   }
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      cloudX: 0,
+    }
+
+    this.interval = null;
+  }
+
+  componentDidMount() {
+    this.interval = setInterval(() => {
+      if(this.props.gameState == 1) {
+        const cur = this.state.cloudX;
+        this.setState({
+          cloudX: cur-this.props.wpm/5,
+        });
+      }
+    }, 37);
+  }
+
+  componentDidUpdate() {
+    if(this.state.cloudX < -900) {
+      this.state.cloudX = 1000;
+    }
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   render() {
@@ -23,7 +51,7 @@ class Sky extends React.Component {
     const skyWidth = Constants.skyAndGroundWidth;
     const gameHeight = 1200;
 
-    const cloudX = 0;
+    const cloudX = this.state.cloudX;
     const cloudY = -550;
     const cloudWidth = 250;
     const cloudHeight = 200;
@@ -50,5 +78,6 @@ class Sky extends React.Component {
 };
 
 export default connect(state => ({
-  ...state.playerStat.wpm,
+  wpm: state.playerStat.wpm,
+  ...state.gameState,
 }))(Sky);
