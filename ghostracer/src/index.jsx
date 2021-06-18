@@ -7,7 +7,7 @@ import { CookiesProvider} from 'react-cookie';
 import { Provider } from 'react-redux';
 
 import App from './components/App.jsx';
-import {input, playerStat, gameState} from './states/play-reducers.js';
+import {input, playerStat, gameState, play} from './states/play-reducers.js';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css'
@@ -16,7 +16,7 @@ window.onload = function () {
 
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   const store = createStore(combineReducers({
-    input, playerStat, gameState
+    input, playerStat, gameState, play
   }), composeEnhancers(applyMiddleware(thunkMiddleware)));
 
   store.subscribe(() => { console.log(store.getState()) }) // TODO: disable at prod

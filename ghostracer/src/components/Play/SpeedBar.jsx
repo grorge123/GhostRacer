@@ -101,4 +101,5 @@ class SpeedBar extends React.Component {
 
 export default connect(state => ({
   ...state.playerStat,
+  ...state.gameState,
 }))(SpeedBar);

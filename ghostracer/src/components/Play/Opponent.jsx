@@ -58,9 +58,9 @@ class PlayerBar extends React.Component {
 
     render() {
 
-        const opponent1_division = {
-          stroke: '#0090ff',
-          fill: '#0090ff',
+        const division = {
+          stroke: '#ff5000',
+          fill: '#ff5000',
           strokeWidth: '3px',
         }
 
@@ -70,9 +70,8 @@ class PlayerBar extends React.Component {
         const barYPosition = Constants.barYPosition;
         const barHeight = Constants.barHeight;
 
-        const playerImg = ["https://64.media.tumblr.com/8210fd413c5ce209678ef82d65731443/tumblr_mjphnqLpNy1s5jjtzo1_400.gifv"];
-        const playerX = Constants.startTypeX-150;
-        const playerY = Constants.barYPosition+150;
+        const playerX = Constants.playerX;
+        const playerY = Constants.playerY;
 
         const opponentOffset = this.state.opponentOffsetChar;
         const opponentWidth = Constants.opponentWidth;
@@ -87,11 +86,10 @@ class PlayerBar extends React.Component {
               y1={barYPosition+barHeight}
               x2={Constants.startTypeX+15+opponentOffset[0]}
               y2={barYPosition}
-              style={opponent1_division}
+              style={division}
             />
-            <foreignObject x={playerX+50+opponentOffset[0]} y={playerY} width={opponentWidth} height={opponentHeight}>
-                <img src={playerImg[0]} width="100" alt="player img" />
-                <div className="text-center"><span className="username">{userName}</span></div>
+            <foreignObject x={playerX+40+opponentOffset[0]} y={playerY} width={opponentWidth} height={opponentHeight}>
+                <div className="text-center"><span style={{backgroundColor: "#ff5000",}} className="username">{userName}</span></div>
             </foreignObject>
           </g>
         );

@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import {getParagraph} from '../../states/play-actions.js';
 import {setWpm, setAccuracy, setTotalTime} from '../../states/play-actions.js';
 import {setGameHold, setGameStart, setGameEnd} from '../../states/play-actions.js';
+import {setResult} from '../../states/play-actions.js';;
 
 import './TextInput.css'
 
@@ -70,8 +71,16 @@ class TextInput extends React.Component {
         console.log("gameover");
         clearInterval(this.interval);
         this.removeKeyPressed();
-        this.props.dispatch(setTotalTime((this.currentTime() - this.state.startTime)/60000.0));
+        this.props.dispatch(setTotalTime((this.currentTime() - this.state.startTime)/1000.0));
         this.props.dispatch(setGameEnd());
+      }
+
+      if(this.props.gameState == 2) {
+        this.props.dispatch(setResult({
+          wpm: this.props.wpm,
+          accuracy: this.props.accuracy,
+          time: this.props.totalTime,
+        }));
       }
     }
 

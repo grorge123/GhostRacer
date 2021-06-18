@@ -50,3 +50,12 @@ export function setGameEnd() {
 		type: '@GAME_STATE/GAME_END'
 	};
 }
+
+
+/* Play State */
+export function setResult(info) {
+    return {
+        type: '@PLAY/SET_RESULT',
+        ...info
+    }
+}

@@ -57,8 +57,8 @@ class PlayerBar extends React.Component {
         const barHeight = Constants.barHeight;
 
         const playerImg = ["https://64.media.tumblr.com/8210fd413c5ce209678ef82d65731443/tumblr_mjphnqLpNy1s5jjtzo1_400.gifv"];
-        const playerX = Constants.startTypeX-150;
-        const playerY = Constants.barYPosition+150;
+        const playerX = Constants.playerX;
+        const playerY = Constants.playerY;
         const playerWidth = Constants.playerWidth;
         const playerHeight = Constants.playerHeight;
 
