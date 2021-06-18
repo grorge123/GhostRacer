@@ -7,6 +7,7 @@ import SpeedBar from './SpeedBar.jsx';
 import Pause from './Pause.jsx';
 
 import {connect} from 'react-redux';
+import {setOpponent} from '../../states/play-actions.js';
 
 import './PlayerBar.css';
 
@@ -15,6 +16,9 @@ class PlayerBar extends React.Component {
     static propTypes = {
       wpm: PropTypes.number,
       gameState: PropTypes.number,
+      oppWpm: PropTypes.number,
+      oppID: PropTypes.string,
+      dispatch: PropTypes.func,
     }
 
     constructor(props) {
@@ -22,7 +26,6 @@ class PlayerBar extends React.Component {
 
         this.state = {
           opponentOffsetChar: [0],
-          opponentWpm: 85,
         }
 
         this.OppInterval = null;
@@ -31,7 +34,7 @@ class PlayerBar extends React.Component {
     componentDidMount() {
       if(this.props.gameState == 0) {
         this.OppInterval = setInterval(() => {
-          const updateOffsetChar = (this.state.opponentWpm - this.props.wpm) * 5 * 40;
+          const updateOffsetChar = (this.props.oppWpm - this.props.wpm) * 5 * 40;
           const currentOffsetChar = this.state.opponentOffsetChar[0];
          
           if((updateOffsetChar-currentOffsetChar) && this.props.wpm && this.props.gameState == 1) {
@@ -64,7 +67,7 @@ class PlayerBar extends React.Component {
           strokeWidth: '3px',
         }
 
-        const userName = "Alice";
+        const userName = this.props.oppID;
 
         const barWidth = Constants.skyAndGroundWidth;
         const barYPosition = Constants.barYPosition;
@@ -80,7 +83,7 @@ class PlayerBar extends React.Component {
 
 
         return (
-          <g id="opponnent">
+          <g id="opponent">
             <line
               x1={Constants.startTypeX+15+opponentOffset[0]}
               y1={barYPosition+barHeight}
@@ -101,4 +104,6 @@ class PlayerBar extends React.Component {
 export default connect(state => ({
     wpm: state.playerStat.wpm,
     gameState: state.gameState.gameState,
+    oppWpm: state.play.opponentSpeed,
+    oppID: state.play.opponentID,
 }))(PlayerBar);

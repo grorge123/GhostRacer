@@ -9,6 +9,7 @@ export function getParagraph() {
 	};
 }
 
+
 /* Player Stats */
 
 export function setWpm(wpm) {
@@ -58,4 +59,16 @@ export function setResult(info) {
         type: '@PLAY/SET_RESULT',
         ...info
     }
+}
+
+export function setOpponent() {
+	const stat = {
+		opponentSpeed: 60,
+		opponentID: "Alice",
+	};
+
+	return {
+		type: '@PLAY/SET_OPPONENT',
+		...stat,
+	};
 }

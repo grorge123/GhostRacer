@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import * as Constants from './constants.js';
 
@@ -16,23 +17,15 @@ class PlayerBar extends React.Component {
     static propTypes = {
       wpm: PropTypes.number,
       gameState: PropTypes.number,
+      mode: PropTypes.string,
     };
 
     constructor(props) {
         super(props);
+        this.element = null;
     }
 
     componentDidMount() {
-
-      // const updateOffsetChar = (this.state.opponentWpm - this.props.wpm) * 5;
-      // console.log(this.state.opponentOffsetChar[0]);
-      // console.log(this.props.wpm);
-      // if(updateOffsetChar != this.state.opponentOffsetChar[0]) {
-      //   this.setState({
-      //     opponentOffsetChar: [updateOffsetChar],
-      //   });
-
-      // }
     }
 
     componentDidUpdate() {
@@ -101,8 +94,11 @@ class PlayerBar extends React.Component {
                 <img src={playerImg[0]} width="250" alt="player img" />
                 <div className="text-center"><span className="username">{userName}</span></div>
             </foreignObject>
-
-            <Opponent />
+            {
+              this.props.mode == 'multiple' &&
+              <Opponent />
+            }
+            
             <TextInput/>
           </g>
         );
@@ -114,4 +110,5 @@ class PlayerBar extends React.Component {
 export default connect(state => ({
     wpm: state.playerStat.wpm,
     gameState: state.gameState.gameState,
+    mode: state.play.mode,
 }))(PlayerBar);

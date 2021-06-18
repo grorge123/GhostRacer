@@ -7,7 +7,8 @@ import { CookiesProvider} from 'react-cookie';
 import { Provider } from 'react-redux';
 
 import App from './components/App.jsx';
-import {input, playerStat, gameState, play} from './states/play-reducers.js';
+import {input, playerStat, gameState,
+        play} from './states/play-reducers.js';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css'

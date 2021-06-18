@@ -17,11 +17,6 @@ class SpeedBar extends React.Component {
     
     constructor(props) {
         super(props);
-
-        this.state = {
-        	accuracyState: true, //true: fire, false: cool
-        	accuracySizeChange: false,
-        }
     }
 
     componentDidUpdate() {
@@ -61,13 +56,6 @@ class SpeedBar extends React.Component {
 		if(this.props.wpm > 70) {color = 0;}
 		else if(this.props.wpm > 40) {color = 1;}
 		else {color = 2;}
-
-		// if(this.props.accuracy > 90 && !this.state.accuracyState) { 
-		// 	this.setState({
-		// 		accuracySizeChange: true,
-		// 		accuracyState: true,
-		// 	});
-		// }
 	  	
 	  	return (
 	  		<g>

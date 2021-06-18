@@ -51,7 +51,7 @@ const initGameState = {
 	gameState: 0,
 }
 
-//gameState -- 0: hold; 1: start; 2: end
+/* gameState -- 0: hold; 1: start; 2: end */
 export function gameState(state = initGameState, action) {
 	switch (action.type) {
 		case '@GAME_STATE/GAME_HOLD':
@@ -68,13 +68,14 @@ export function gameState(state = initGameState, action) {
 
 /* Play State */
 const initPlayState = {
+	mode: 'single',
     opponentID: 'lawrence',
     stakeSize: 3,
     time: 100,
     speed: 100,
     accuracy: 1,
     opponentTime: 98,
-    opponentSpeed: 300,
+    opponentSpeed: 60,
     opponentAccuracy: 2,
     gameResult: false,
     gainedCoin: -10,

@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 import {getParagraph} from '../../states/play-actions.js';
 import {setWpm, setAccuracy, setTotalTime} from '../../states/play-actions.js';
 import {setGameHold, setGameStart, setGameEnd} from '../../states/play-actions.js';
-import {setResult} from '../../states/play-actions.js';;
+import {setResult} from '../../states/play-actions.js';
 
 import './TextInput.css'
 
