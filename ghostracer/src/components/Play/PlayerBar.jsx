@@ -49,7 +49,7 @@ class PlayerBar extends React.Component {
         const barYPosition = Constants.barYPosition;
         const barHeight = Constants.barHeight;
 
-        const playerImg = ["https://64.media.tumblr.com/8210fd413c5ce209678ef82d65731443/tumblr_mjphnqLpNy1s5jjtzo1_400.gifv"];
+        const playerImg = "https://64.media.tumblr.com/8210fd413c5ce209678ef82d65731443/tumblr_mjphnqLpNy1s5jjtzo1_400.gifv";
         const playerX = Constants.playerX;
         const playerY = Constants.playerY;
         const playerWidth = Constants.playerWidth;
@@ -91,7 +91,7 @@ class PlayerBar extends React.Component {
             <SpeedBar/>
 
             <foreignObject x={playerX} y={playerY} width={playerWidth} height={playerHeight}>
-                <img src={playerImg[0]} width="250" alt="player img" />
+                <img src={playerImg} width="250" alt="player img" />
                 <div className="text-center"><span className="username">{userName}</span></div>
             </foreignObject>
             {

@@ -68,7 +68,7 @@ export function gameState(state = initGameState, action) {
 
 /* Play State */
 const initPlayState = {
-	mode: 'single',
+	mode: 'multiple',
     opponentID: 'lawrence',
     stakeSize: 3,
     time: 100,

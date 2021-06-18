@@ -73,6 +73,7 @@ class PlayerBar extends React.Component {
         const barYPosition = Constants.barYPosition;
         const barHeight = Constants.barHeight;
 
+        const playerImg = "https://64.media.tumblr.com/8210fd413c5ce209678ef82d65731443/tumblr_mjphnqLpNy1s5jjtzo1_400.gifv";
         const playerX = Constants.playerX;
         const playerY = Constants.playerY;
 
@@ -84,15 +85,9 @@ class PlayerBar extends React.Component {
 
         return (
           <g id="opponent">
-            <line
-              x1={Constants.startTypeX+15+opponentOffset[0]}
-              y1={barYPosition+barHeight}
-              x2={Constants.startTypeX+15+opponentOffset[0]}
-              y2={barYPosition}
-              style={division}
-            />
             <foreignObject x={playerX+40+opponentOffset[0]} y={playerY} width={opponentWidth} height={opponentHeight}>
-                <div className="text-center"><span style={{backgroundColor: "#ff5000",}} className="username">{userName}</span></div>
+              <img src={playerImg} width="150" alt="player img" />
+              <div className="text-center"><span style={{backgroundColor: "#ff5000",}} className="username">{userName}</span></div>
             </foreignObject>
           </g>
         );

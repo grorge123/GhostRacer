@@ -7,4 +7,4 @@ export const playerHeight = 300;
 export const playerX = startTypeX-100;
 export const playerY = barYPosition+150;
 export const opponentWidth = 150;
-export const opponentHeight = 150;
+export const opponentHeight = 300;
