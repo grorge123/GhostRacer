@@ -4,12 +4,13 @@ class Avatar extends React.Component {
     constructor(props) {
         super(props);
         this.state = [
-            'https://truth.bahamut.com.tw/s01/201612/6a027039066fea21351e7ec153928138.JPG',
-            'https://sdl-stickershop.line.naver.jp/stickershop/v1/sticker/58661698/android/sticker.png',
-            'https://sdl-stickershop.line.naver.jp/stickershop/v1/sticker/58661698/android/sticker.png',
-            'https://truth.bahamut.com.tw/s01/201612/6a027039066fea21351e7ec153928138.JPG',
-            'https://sdl-stickershop.line.naver.jp/stickershop/v1/sticker/58661698/android/sticker.png',
-            'https://truth.bahamut.com.tw/s01/201612/6a027039066fea21351e7ec153928138.JPG'
+            'https://i.imgur.com/mB96cNt.png',
+            'https://i.imgur.com/8dUZcgo.png',
+            'https://i.imgur.com/RWyuTnn.png',
+            'https://i.imgur.com/AbcNuKY.gif',
+            'https://i.imgur.com/jBLJVyJ.png',
+            'https://i.imgur.com/egdXY3r.jpg',
+            'https://lh3.googleusercontent.com/proxy/uLtjiqiVouErCouyYwO1y0VtZtf8j51uvSpe30Omr_5qZ0QQz90-D4TwmqhizWb5mIMXCtjWu15D9VsBJvKHxexMH6jyQlYZVcnJvA'
         ]
     }
 
