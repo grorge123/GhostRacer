@@ -1,112 +1,74 @@
-/* TextInput state */
-const initInputState = {
-	initialWords: "",
-}
+/* Text input */
 
-export function input(state = initInputState, action) {
-	switch (action.type) {
-		case '@INPUT/START_GET_PARAGRAPH':
-			return {
-				...state,
-				initialWords: action.initialWords,
-			};
-		default:
-			return state;
-		
-	}
-}
+export function getParagraph() {
+	const initialWords = "It is raining so hard outside. There is lightning and thunder. Good thing I dont need to go out. Yay!"
+	return {
+		type:'@INPUT/START_GET_PARAGRAPH',
+		initialWords,
 
-/* PlayerBar state */
-const initPlayerStats = {
-	wpm: 0,
-	accuracy: 100,
-	totalTime: 0,
-}
-
-export function playerStat(state = initPlayerStats, action) {
-	switch (action.type) {
-		case '@PLAYER_STAT/SET_WMP':
-			return {
-				...state,
-				wpm: action.wpm,
-			};
-		case '@PLAYER_STAT/SET_ACCURACY':
-			return {
-				...state,
-				accuracy: action.accuracy,
-			};
-		case '@PLAYER_STAT/SET_TOTAL_TIME':
-			return {
-				...state,
-				totalTime: action.totalTime,
-			};
-		default:
-			return state;
-	}
+	};
 }
 
 
-/* Game state */
-const initGameState = {
-	gameState: 0,
+/* Player Stats */
+
+export function setWpm(wpm) {
+	return {
+		type:'@PLAYER_STAT/SET_WMP',
+		wpm
+	};
 }
 
-/* gameState -- 0: hold; 1: start; 2: end */
-export function gameState(state = initGameState, action) {
-	switch (action.type) {
-		case '@GAME_STATE/GAME_HOLD':
-			return {gameState: 0};
-		case '@GAME_STATE/GAME_START':
-			return {gameState: 1};
-		case '@GAME_STATE/GAME_END':
-			return {gameState: 2};
-		default:
-			return state;
-
-	}
+export function setAccuracy(accuracy) {
+	return {
+		type:'@PLAYER_STAT/SET_ACCURACY',
+		accuracy
+	};
 }
+
+export function setTotalTime(totalTime) {
+	return {
+		type:'@PLAYER_STAT/SET_TOTAL_TIME',
+		totalTime,
+	};
+}
+
+/* Game State */
+export function setGameHold() {
+	return {
+		type: '@GAME_STATE/GAME_HOLD'
+	};
+}
+
+export function setGameStart() {
+	return {
+		type: '@GAME_STATE/GAME_START'
+	};
+}
+
+export function setGameEnd() {
+	return {
+		type: '@GAME_STATE/GAME_END'
+	};
+}
+
 
 /* Play State */
-const initPlayState = {
-	mode: 'multiple',
-    opponentID: 'lawrence',
-    stakeSize: 3,
-    time: 100,
-    speed: 100,
-    accuracy: 1,
-    opponentTime: 98,
-    opponentSpeed: 60,
-    opponentAccuracy: 2,
-    gameResult: false,
-    gainedCoin: -10,
-    gainedRank: -15,
+export function setResult(info) {
+    return {
+        type: '@PLAY/SET_RESULT',
+        ...info
+    }
 }
 
-function max(a, b) { return a > b ? a : b; }
+export function setOpponent() {
+	const stat = {
+		opponentSpeed: 60,
+		opponentID: "Alice",
+	};
 
-export function play(state = initPlayState, action) {
-    switch (action.type) {
-        case '@PLAY/ADD_STAKE':
-            return {
-                ...state,
-                stakeSize: state.stakeSize + 1
-            }
-        case '@PLAY/LESS_STAKE':
-            return {
-                ...state,
-                stakeSize: max(state.stakeSize - 1, 0)
-            }
-        case '@PLAY/SET_RESULT':
-            return {
-                ...state,
-                ...action
-            }
-        case '@PLAY/SET_OPPONENT':
-            return {
-                ...state,
-                ...action
-            }
-        default:
-            return state;
-    }
+	return {
+		type: '@PLAY/SET_OPPONENT',
+		...stat,
+	};
 }
