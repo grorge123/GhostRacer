@@ -58,12 +58,7 @@ export function setResult(info) {
     }
 }
 
-export function setOpponent() {
-	const stat = {
-		opponentSpeed: 60,
-		opponentID: "Alice",
-	};
-
+export function setOpponent(stat) {
 	return {
 		type: '@PLAY/SET_OPPONENT',
 		...stat,

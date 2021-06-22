@@ -33,7 +33,10 @@ class FriendsPage extends React.Component {
     }
 
     changeShown(id) {
-        this.props.setOpponent(id)
+        this.props.setOpponent({
+            opponentID: id,
+            opponentSpeed: friends[id].acc
+        })
         this.setState({
             ...this.state,
             showIndex: id
