@@ -4,10 +4,10 @@ import { Container, Row, Col } from 'reactstrap';
 import UserStatistics from './UserStatistics.jsx';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import { connect, useDispatch } from 'react-redux'
+import { connect } from 'react-redux'
 import { withRouter } from "react-router";
 
-import { addStake, lessStake } from '../../states/play-actions.js';
+import { addStake, lessStake, setMode, getParagraph } from '../../states/play-actions.js';
 import { rankLadder } from '../../api/ladder.js'
 import { getUserProfile } from '../../api/user.js'
 
@@ -22,8 +22,26 @@ class RankedMatch extends React.Component{
     super(props);
     this.state = { 
         countDown: 10, 
-        self: {},
-        opponent: {}
+        self: {
+            "ID":"root",
+            "speed":1,
+            "money":0,
+            "nickname":"root",
+            "img":4,
+            "acc":0,
+            "todayRaces": 12,
+            "lastThree": [0, 0, 1]
+        },
+        opponent: {
+            "ID":"root",
+            "speed":1,
+            "money":0,
+            "nickname":"root",
+            "img":4,
+            "acc":0,
+            "todayRaces": 12,
+            "lastThree": [0, 0, 1]
+        }
     }
   }
 
@@ -32,17 +50,18 @@ class RankedMatch extends React.Component{
         this.setState(prev => ({...prev, countDown: prev.countDown - 1}))
         if(this.state.countDown == 0) {
             clearInterval(handle)
-            preload(this.dispatch, this.history, 'multiple')
+            this.props.setMode('multiple')
+            preload(this.props.getParagraph, this.props.history)
         }
       }).bind(this), 1000)
 
-      getUserProfile(this.props.user.ID).then(
-        ans => this.setState(prev => ({ ...prev, self: ans }))
+      /* getUserProfile(this.props.user.ID).then(
+        ans => this.setState(prev => ({ ...prev, opponent: ans }))
       )
 
       getUserProfile(this.props.play.opponentID).then(
         ans => this.setState(prev => ({ ...prev, opponent: ans }))
-      )
+      )*/
   }
 
   render() {
@@ -94,7 +113,9 @@ class RankedMatch extends React.Component{
 const mapDispatchToProps = (dispatch) => {
     return {
         add: () => dispatch(addStake()),
-        less: () => dispatch(lessStake())
+        less: () => dispatch(lessStake()),
+        setMode: (x) => dispatch(setMode(x)),
+        getParagraph: (x) => dispatch(getParagraph(x))
     }
 };
 

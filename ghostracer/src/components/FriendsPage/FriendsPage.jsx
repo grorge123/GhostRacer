@@ -10,7 +10,7 @@ import { getUserProfile } from '../../api/user.js';
 import { getFriendList } from '../../api/friend.js';
 import { preload } from '../Play/Preload';
 
-import { setOpponent } from '../../states/play-actions.js'
+import { setOpponent, setMode, getParagraph } from '../../states/play-actions.js'
 import { connect } from 'react-redux'
 import { withRouter } from "react-router";
 
@@ -26,16 +26,16 @@ class FriendsPage extends React.Component {
     }
 
     challenge() {
-        if(this.state.showIndex == undefined)
-            preload(this.dispatch, this.history, 'single')
-        else
-            this.props.history.push('/rankedMatch')
+        if(this.state.showIndex == undefined) {
+            this.props.setMode('single')
+            preload(this.props.getParagraph, this.props.history)
+        } else this.props.history.push('/rankedMatch')
     }
 
     changeShown(id) {
         this.props.setOpponent({
             opponentID: id,
-            opponentSpeed: friends[id].acc
+            opponentSpeed: this.state.friends[id].speed
         })
         this.setState({
             ...this.state,
@@ -141,7 +141,9 @@ class FriendsPage extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setOpponent: (x) => dispatch(setOpponent(x))
+        setOpponent: (x) => dispatch(setOpponent(x)),
+        setMode: (x) => dispatch(setMode(x)),
+        getParagraph: (x) => dispatch(getParagraph(x))
     }
 };
 

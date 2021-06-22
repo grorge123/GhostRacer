@@ -71,3 +71,7 @@ export function setMode(mode) {
 		mode: mode
 	};
 }
+
+
+export function addStake() { return { type: '@PLAY/ADD_STAKE' } }
+export function lessStake() { return { type: '@PLAY/LESS_STAKE' } }
