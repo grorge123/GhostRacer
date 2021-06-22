@@ -106,6 +106,11 @@ export function play(state = initPlayState, action) {
                 ...state,
                 ...action
             }
+		case '@PLAY/SET_MODE':
+			return {
+				...state,
+				mode: action.mode
+			}
         default:
             return state;
     }

@@ -11,6 +11,8 @@ import { addStake, lessStake } from '../../states/play-actions.js';
 import { rankLadder } from '../../api/ladder.js'
 import { getUserProfile } from '../../api/user.js'
 
+import { preload } from '../Play/Preload';
+
 class RankedMatch extends React.Component{
   // static propTypes = {
   //   loggedIn: PropTypes.bool
@@ -30,7 +32,7 @@ class RankedMatch extends React.Component{
         this.setState(prev => ({...prev, countDown: prev.countDown - 1}))
         if(this.state.countDown == 0) {
             clearInterval(handle)
-            this.props.history.push('/typingScreen?mode=multiple')
+            preload(this.dispatch, this.history, 'multiple')
         }
       }).bind(this), 1000)
 
@@ -44,7 +46,6 @@ class RankedMatch extends React.Component{
   }
 
   render() {
-    console.log(this.state)
     const border = {'borderStyle': 'solid'};
     const cent = {'textAlign': 'center'};
     const mtop = {'marginTop': '3rem'};

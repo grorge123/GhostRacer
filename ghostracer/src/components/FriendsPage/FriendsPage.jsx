@@ -8,6 +8,7 @@ import FriendList from './FriendList.jsx';
 
 import { getUserProfile } from '../../api/user.js';
 import { getFriendList } from '../../api/friend.js';
+import { preload } from '../Play/Preload';
 
 import { setOpponent } from '../../states/play-actions.js'
 import { connect } from 'react-redux'
@@ -26,7 +27,7 @@ class FriendsPage extends React.Component {
 
     challenge() {
         if(this.state.showIndex == undefined)
-        this.props.history.push('/typingScreen?mode=single')
+            preload(this.dispatch, this.history, 'single')
         else
             this.props.history.push('/rankedMatch')
     }

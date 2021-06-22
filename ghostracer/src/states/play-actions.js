@@ -1,11 +1,9 @@
 /* Text input */
 
-export function getParagraph() {
-	const initialWords = "It is raining so hard outside. There is lightning and thunder. Good thing I dont need to go out. Yay!"
+export function getParagraph(initialWords) {
 	return {
 		type:'@INPUT/START_GET_PARAGRAPH',
-		initialWords,
-
+		initialWords
 	};
 }
 
@@ -52,7 +50,6 @@ export function setGameEnd() {
 	};
 }
 
-
 /* Play State */
 export function setResult(info) {
     return {
@@ -70,5 +67,12 @@ export function setOpponent() {
 	return {
 		type: '@PLAY/SET_OPPONENT',
 		...stat,
+	};
+}
+
+export function setMode(mode) {
+	return {
+		type: '@PLAY/SET_MODE',
+		mode: mode
 	};
 }
