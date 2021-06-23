@@ -14,6 +14,7 @@ const schemaSql = `
     DROP TABLE IF EXISTS history;
     DROP INDEX IF EXISTS account_name;
     DROP INDEX IF EXISTS history_speed;
+    DROP INDEX IF EXISTS history_time;
 
     -- Create
     CREATE TABLE account(
@@ -41,12 +42,15 @@ const schemaSql = `
         score           integer NOT NULL
     );
     CREATE TABLE history(
+        time            integer NOT NULL DEFAULT extract(epoch from now()),
         hash            text NOT NULL,
         name            text NOT NULL,
-        speed           integer NOT NULL
+        speed           integer NOT NULL,
+        winner          bool NOT NULL DEFAULT false
     );
     CREATE INDEX account_name ON account USING btree(name);
     CREATE INDEX history_speed ON history USING btree(speed);
+    CREATE INDEX history_time ON history USING btree(time);
 `;
 const dataSql = `
         INSERT INTO account(name, speed, times, nickname) VALUES('admin', 64, 1, 'admin');

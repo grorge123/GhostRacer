@@ -32,6 +32,9 @@ function check_story(op){
     }
     return '';
 }
+function BoolToINT(bo){
+    return bo?1:0;
+}
 router.get('/getProfile', function (req, res, next){
     const {token} = req.headers;
     if (token == undefined){
@@ -42,14 +45,22 @@ router.get('/getProfile', function (req, res, next){
     .then(()=>{
         let name = token;
         dbp.checkaccount(name).then((data)=>{
-            res.json({
-                'ID':data.name,
-                'speed':data.speed,
-                'money':data.money,
-                'nickname':data.nickname,
-                'maxSpeed':data.maxSpeed,
-                'img':data.img,
-                'acc':data.acc,
+            dbp.getToday(name).then((today_data)=>{
+                dbp.getLasthistory(name).then((last_data)=>{
+                    re = {
+                        'ID':data.name,
+                        'speed':data.speed,
+                        'money':data.money,
+                        'nickname':data.nickname,
+                        'maxSpeed':data.maxSpeed,
+                        'img':data.img,
+                        'acc':data.acc,
+                        "todayRaces": today_data.count,
+                        "lastThree":[(last_data[0]==undefined?-1:BoolToINT(last_data[0].winner)),(last_data[1]==undefined?-1:BoolToINT(last_data[1].winner)),(last_data[2]==undefined?-1:BoolToINT(last_data[2].winner))]
+                    }
+                    js = JSON.stringify(re);
+                    res.json(js);
+                })
             })
         });
     }).catch(e=>{
@@ -57,19 +68,22 @@ router.get('/getProfile', function (req, res, next){
         res.status(403).send(e)
     });
 });
-
 router.post('/updateHistory', function (req, res, next){
-    const {acc, speed, hash, Opponent1, Opponent2, Opponent3} = req.body;
+    const {acc, speed, hash, Opponent1, Opponent2, Opponent3, win} = req.body;
     const {token} = req.headers;
     if (token == undefined){
         res.status(401).send('You need request with token');
+        return;
+    }
+    if(acc == undefined || speed == undefined || hash == undefined || Opponent1 == undefined || Opponent2 == undefined || Opponent3 == undefined || win == undefined){
+        res.status(403).send('You lack necessary parameters');
         return;
     }
     check_access(token)
     .then(()=>{
         let name = token;
         dbp.uploadspeed(name,speed, acc);
-        dbp.addhistory(name, speed, hash);
+        dbp.addhistory(name, speed, hash, win);
         res.json({"success":true,"throw":check_story([Opponent1, Opponent2, Opponent3])});
         return;
     }).catch(e=>{
@@ -112,6 +126,10 @@ router.post('/randomOpponent', function (req, res, next){
     const {token} = req.headers;
     if (token == undefined){
         res.status(401).send('You need request with token');
+        return;
+    }
+    if(ID == undefined || hash == undefined || Ladder == undefined){
+        res.status(403).send('You lack necessary parameters');
         return;
     }
     check_access(token)
@@ -173,6 +191,10 @@ router.post('/addFriend', function (req, res, next){
         res.status(401).send('You need request with token');
         return;
     }
+    if(ID == undefined){
+        res.status(403).send('You lack necessary parameters');
+        return;
+    }
     check_access(token)
     .then(()=>{
         let name = token;
@@ -232,12 +254,16 @@ router.get('/getLadder', function (req, res, next){
         res.status(403).send(e);
     });
 });
-
+// checker
 router.post('/updateLadder', function (req, res, next){
-    const {speed, hash, money} = req.body;
+    const {speed, hash, money, win} = req.body;
     const {token} = req.headers;
     if (token == undefined){
         res.status(401).send('You need request with token');
+        return;
+    }
+    if(speed == undefined || hash == undefined || money == undefined || win == undefined){
+        res.status(403).send('You lack necessary parameters');
         return;
     }
     check_access(token)
@@ -247,6 +273,7 @@ router.post('/updateLadder', function (req, res, next){
             let score = parseInt(speed) * parseInt(money);
             dbp.updateLadder(name, score).then(()=>{
                 dbp.rankLadder(name).then((newrank)=>{
+                    dbp.addhistory(name, speed, hash, win);
                     res.json({"success":"true", "throw":"", "result":String(parseInt(oldrank) == 2147483647?2147483647:parseInt(oldrank)-parseInt(newrank))});
                 })
             })
@@ -261,6 +288,10 @@ router.get('/rankLadder', function (req, res, next){
     const {token} = req.headers;
     if (token == undefined){
         res.status(401).send('You need request with token');
+        return;
+    }
+    if(speed == undefined || hash == undefined || money == undefined){
+        res.status(403).send('You lack necessary parameters');
         return;
     }
     check_access(token)
@@ -281,6 +312,10 @@ router.post('/changeMoney', function (req, res, next){
     const {delta} = req.body;
     if(token == undefined){
         res.status(401).send('You need request with token');
+        return;
+    }
+    if(delta == undefined){
+        res.status(403).send('You lack necessary parameters');
         return;
     }
     check_access(token)

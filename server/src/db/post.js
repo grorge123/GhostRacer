@@ -35,11 +35,11 @@ function uploadspeed(name, speed, acc){
         return db.none(sql,[(data.speed*data.times+speed)/(data.times+1), data.times + 1, name, Math.max(maxSpeed, speed), (data.acc*data.times+acc)/(data.times+1)]);
     });
 }
-function addhistory(name, speed, hash){
+function addhistory(name, speed, hash, win){
     sql = `
-    INSERT INTO history(hash, name, speed) VALUES($1, $2, $3);
+    INSERT INTO history(hash, name, speed, winner) VALUES($1, $2, $3, $4);
     `;
-    return db.none(sql,[hash, name, speed]);
+    return db.none(sql,[hash, name, speed, win]);
 }
 function createAccount(name){ 
     const dataSql = `
@@ -176,6 +176,18 @@ function setMoney(name, delta){
         });
     });
 }
+function getToday(name){
+    now = new Date();
+    time = new Date(now.getFullYear(),now.getMonth(),now.getDate(),8,0,0);
+    console.log(time)
+    let query_time = time.getTime()/1000;
+    sql = `SELECT COUNT(*) FROM history WHERE time>$1 AND name=$2 AND winner=true`;
+    return db.one(sql, [query_time, name]);
+}
+function getLasthistory(name){
+    sql = `SELECT * FROM history WHERE name=$1 ORDER BY time DESC LIMIT 3;`;
+    return db.any(sql, [name]);
+}
 module.exports = {
     checkaccount,
     listall,
@@ -192,5 +204,7 @@ module.exports = {
     updateLadder,
     rankLadder,
     setMoney,
+    getToday,
+    getLasthistory,
 };
   
