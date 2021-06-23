@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import { connect, useDispatch } from 'react-redux'
 import { withRouter } from "react-router";
+import BackButton from '../BackButton/BackButton.jsx'
 
 import { addStake, lessStake } from '../../states/play-actions.js';
 import { rankLadder } from '../../api/ladder.js'
@@ -50,6 +51,7 @@ class RankedMatch extends React.Component{
     const mtop = {'marginTop': '3rem'};
     return(
             <div>
+                <BackButton />
                 <Container><Row style={cent}>
                     <Col><UserStatistics info={this.state.self}></UserStatistics></Col>
                     <Col>

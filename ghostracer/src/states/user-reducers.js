@@ -1,13 +1,12 @@
 /* user */
 
 const initUserState = {
-    ID: "admin",
+    ID: '',
     loggedIn: false,
-    loading: false,
-    username: 'Guest',
+    username: '',
     friends: [],
     friendsListMore: false,
-    maxSpeed: '',
+    maxSpeed: 'test speed',
     avgSpeed: 3,
     avgAccuracy: 50,
     avatar: 3,
@@ -15,17 +14,8 @@ const initUserState = {
     friendsList: ''
 }
 export function user(state = initUserState, action) {
+    // console.log(action)
     switch (action.type) {
-        case '@USER/START_LOADING':
-            return {
-                ...state,
-                loading: true
-            }
-        case '@USER/END_LOADING':
-            return {
-                ...state,
-                loading: false
-            }
         case '@USER/LOGIN':
             return {
                 ...state,
@@ -39,6 +29,9 @@ export function user(state = initUserState, action) {
         case '@USER/GET_DATA':
             return {
                 ...state,
+                ID: action.ID,
+                username: action.username,
+                avgAccuracy: action.acc,
                 maxSpeed: action.speed
             }
         case '@USER/LIST_FRIENDS':

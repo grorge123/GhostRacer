@@ -11,3 +11,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: 'gunplay';
+  src: url("../fonts/gunplay_rg.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'devil-breeze';
+  src: url("../fonts/devil_breeze_medium.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.main-title{
+  font-family: 'devil-breeze';
+}

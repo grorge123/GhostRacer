@@ -1,3 +1,7 @@
+.smooth{
+	transition: all 0.6s cubic-bezier(0.83, 0, 0.17, 1);
+}
+
 .mainpage {
     height: 100%;
     width: 100%;
@@ -5,7 +9,7 @@
     z-index: 1;
 }
 
-.bg-dim{
+.bg-dim {
     z-index: 2;
     background-color: rgba(0, 0, 0, 0.452);
     height: 100%;
@@ -14,6 +18,7 @@
 
 .title span {
     color: white;
+    text-shadow: 10px 0px 10px black;
 }
 
 .title1 {
@@ -30,11 +35,43 @@
     font-size: 100px;
 }
 
+.greeting {
+    font-size: 3em;
+    color: white;
+    text-align: center;
+    position: absolute;
+    left: 20%;
+    bottom: 20%;
+}
+
 .menu-box {
     position: absolute;
     right: 0;
+    top: 10%;
     width: 40%;
-    height: 100%;
+    height: 90%;
 }
 
+.nav {
+    position: absolute;
+    margin: auto;
+    top: 1%;
+    right: 0;
+    width: 40%;
+    height: 8%;
+}
+
+
+.user-detail{
+    visibility: hidden;
+    position: absolute;
+    top: 5%;
+    z-index: 5;
+    width: 10em;
+    height: 10em;
+}
+
+.user-detail:hover{
+    visibility:visible;
+}
 /* .title:first-child {} */

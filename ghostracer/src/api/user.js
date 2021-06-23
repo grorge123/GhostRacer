@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { listFriendsAction } from '../states/user-actions'
 
 const userBaseUrl = 'http://ghostracer-dev.us-east-1.elasticbeanstalk.com';
 
@@ -14,10 +13,8 @@ export function getUserProfile(username){
     }).then(function(res) {
         if (res.status !== 200)
             throw new Error(`Unexpected response: ${res.status}, ${res.statusText}`)
-        return res.data
+        // console.log(res.data)
+        return JSON.parse(res.data)
     })
 }
 
-export function listFriends(searchText = ''){
-
-}

@@ -17,6 +17,7 @@ import './index.css'
 import App from './components/App.jsx';
 import { user } from './states/user-reducers.js'
 import { play } from './states/play-reducers.js'
+import { page } from './states/page-reducers.js'
 
 const federated = {
   googleClientId: '277180343147-rtoj1qohu41plhoceg3p0l3c2bqmvs97.apps.googleusercontent.com'
@@ -27,10 +28,10 @@ window.onload = function () {
   Auth.currentAuthenticatedUser().then(user=>{console.log(user)});
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   const store = createStore(combineReducers({
-    user, play
+    user, play, page
   }), composeEnhancers(applyMiddleware(thunkMiddleware)));
 
-  store.subscribe(() => { console.log(store.getState()) }) // TODO: disable at prod
+  // store.subscribe(() => { console.log(store.getState()) }) // TODO: disable at prod
 
   ReactDOM.render(
     <CookiesProvider>

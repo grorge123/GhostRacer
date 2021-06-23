@@ -9,8 +9,9 @@ const styles = {
         border: 0,
         borderRadius: 3,
         boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-        height: '33.3%',
-        width: '100%',
+        margin: '0 5% 3% 5%',
+        height: '30%',
+        width: '90%',
         color: 'white',
         fontSize: '2em',
         backgroundSize: 'cover',
@@ -35,8 +36,11 @@ class MainButton extends React.Component {
 
     constructor(props){
         super(props)
-        console.log(this.props)
+        // console.log(this.props)
     }
+
+
+    
 
     render() {
         return <Button classes={this.props.classes}>{this.props.text}</Button>

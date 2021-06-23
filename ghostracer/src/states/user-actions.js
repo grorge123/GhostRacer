@@ -1,18 +1,7 @@
 import { getUserProfile as getUserProfileFromApi } from 'api/user.js';
+import { startLoading, endLoading } from './page-actions.js'
 
 /* User */
-
-function startLoading() {
-    return {
-        type: '@USER/START_LOADING'
-    }
-}
-
-function endLoading() {
-    return {
-        type: '@USER/END_LOADING'
-    }
-}
 
 function login() {
     return {
@@ -29,8 +18,10 @@ function logout() {
 function getUserData(data) {
     return {
         type: '@USER/GET_DATA',
-        username: data['username'],
-        speed: data['speed']
+        ID: data['ID'],
+        speed: data['speed'],
+        username: data['nickname'],
+        acc: data['acc']
     }
 }
 
@@ -40,16 +31,20 @@ function listFriends() {
     }
 }
 
-export function loginAction(){
+export function loginAction(username) {
     return (dispatch, getState) => {
-        console.log(getState)
-        if (getState.loggedIn){
+        dispatch(startLoading())
+        if (getState.loggedIn) {
             dispatch(logout())
             console.log('logged out')
-        } else{
+        } else {
+            getUserProfileFromApi(username).then(data => {
+                dispatch(getUserData(data))
+            }).catch(error => console.log('Error fetch user data from server. ', error))
             dispatch(login())
             console.log('logged in')
         }
+        dispatch(endLoading())
     }
 }
 
