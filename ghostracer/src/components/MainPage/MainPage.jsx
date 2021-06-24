@@ -4,18 +4,20 @@ import PropTypes, { instanceOf, bool } from 'prop-types';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { withCookies, Cookies } from 'react-cookie';
+import { Auth } from 'aws-amplify';
 
 import { IconButton, Icon } from '@material-ui/core';
 import PeopleIcon from '@material-ui/icons/People'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import SettingsIcon from '@material-ui/icons/Settings';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { makeStyles, withStyles, styled } from '@material-ui/core/styles'
 import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core'
 import MainButton from './MainButton.jsx';
 import BackButton from '../BackButton/BackButton.jsx'
 import './MainPage.css';
 
-import ReachabilityNavigator from '@aws-amplify/core/lib-esm/Util/Reachability';
+import { loginAction } from '../../states/user-actions.js';
 
 const bgImageUrls = {
     story: '../images/intro-story.png',
@@ -47,6 +49,13 @@ class MainPage extends React.Component {
         console.log(props)
         this.userProfileDetail = this.userProfileDetail.bind(this)
         this.toggleShowProfile = this.toggleShowProfile.bind(this)
+        this.signout = this.signout.bind(this)
+    }
+
+    signout(){
+        Auth.signOut()
+        this.props.dispatch(loginAction)
+        window.location.reload()
     }
 
     toggleShowProfile(){
@@ -93,6 +102,7 @@ class MainPage extends React.Component {
                             <UButton><PeopleIcon /></UButton>
                         </Link>
                         <UButton><SettingsIcon /></UButton>
+                        <UButton onClick={this.signout}><ExitToAppIcon /></UButton>
                         {this.userProfileDetail()}
                     </div>
                     <div className={'greeting smooth'}>
