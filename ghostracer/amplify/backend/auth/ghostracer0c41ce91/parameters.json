@@ -15,7 +15,7 @@
     "emailVerificationSubject": "Password Reset for Ghost Racer",
     "emailVerificationMessage": "Your verification code is {####}",
     "defaultPasswordPolicy": true,
-    "passwordPolicyMinLength": 8,
+    "passwordPolicyMinLength": "6",
     "passwordPolicyCharacters": [
         "Requires Lowercase",
         "Requires Uppercase",
@@ -60,8 +60,8 @@
     "authProviders": [
         "accounts.google.com"
     ],
-    "userPoolGroups": false,
-    "adminQueries": false,
+    "userPoolGroups": true,
+    "adminQueries": true,
     "triggers": "{}",
     "hostedUI": false,
     "parentStack": {

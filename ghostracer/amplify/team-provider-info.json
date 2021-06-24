@@ -14,13 +14,15 @@
     },
     "categories": {
       "auth": {
-        "ghostracer0c41ce91": {},
+        "ghostracer0c41ce91": {
+          "googleClientId": "277180343147-rtoj1qohu41plhoceg3p0l3c2bqmvs97.apps.googleusercontent.com"
+        },
         "userPoolGroups": {}
       },
       "function": {
         "AdminQueriesb71944a7": {
           "deploymentBucketName": "amplify-ghostracer-ghostracer-131816-deployment",
-          "s3Key": "amplify-builds/AdminQueriesb71944a7-596a6a524a7734572b4c-build.zip"
+          "s3Key": "amplify-builds/AdminQueriesb71944a7-745571616535427a7054-build.zip"
         }
       }
     }
