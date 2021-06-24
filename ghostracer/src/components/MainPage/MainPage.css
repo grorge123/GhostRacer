@@ -61,6 +61,9 @@
     height: 8%;
 }
 
+.nav-button{
+    margin: auto;
+}
 
 .user-detail{
     visibility: hidden;

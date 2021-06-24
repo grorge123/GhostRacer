@@ -41,8 +41,16 @@ class MainPage extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            showProfile: false
+        }
         console.log(props)
         this.userProfileDetail = this.userProfileDetail.bind(this)
+        this.toggleShowProfile = this.toggleShowProfile.bind(this)
+    }
+
+    toggleShowProfile(){
+        this.setState({showProfile: !showProfile})
     }
 
     userProfileDetail() {
@@ -81,7 +89,9 @@ class MainPage extends React.Component {
                     </div>
                     <div className={'nav'}>
                         <UButton><AccountCircleIcon /></UButton>
-                        <UButton><PeopleIcon /></UButton>
+                        <Link className={'nav-button'} to="/friends">
+                            <UButton><PeopleIcon /></UButton>
+                        </Link>
                         <UButton><SettingsIcon /></UButton>
                         {this.userProfileDetail()}
                     </div>
@@ -89,13 +99,13 @@ class MainPage extends React.Component {
                         <span>Hi, {this.props.user.username}</span>
                     </div>
                     <div className={"menu-box"}>
-                        <Link to='/play'>
+                        <Link to='/typingScreen'>
                             <MainButton className={'menu-button'} bg={bgImageUrls.story} text={'Story Mode'}></MainButton>
                         </Link>
                         <Link to='/globalrank'>
                             <MainButton bg={bgImageUrls.ranked} text={'Ranked Mode'}></MainButton>
                         </Link>
-                        <Link to='/play'>
+                        <Link to='/typingScreen'>
                             <MainButton bg={bgImageUrls.quick} text={'Quick Game'}></MainButton>
                         </Link>
                     </div>
