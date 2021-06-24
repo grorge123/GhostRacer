@@ -86,6 +86,7 @@ const initPlayState = {
 function max(a, b) { return a > b ? a : b; }
 
 export function play(state = initPlayState, action) {
+	console.log(state)
     switch (action.type) {
         case '@PLAY/ADD_STAKE':
             return {
@@ -105,7 +106,7 @@ export function play(state = initPlayState, action) {
         case '@PLAY/SET_OPPONENT':
             return {
                 ...state,
-                ...action
+                ...action.action
             }
 		case '@PLAY/SET_MODE':
 			return {

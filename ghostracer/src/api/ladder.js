@@ -53,3 +53,33 @@ export function randomArticle(username) {
         return res.data
     })
 }
+
+export function updateLadder(username, param){
+    let url = `${userBaseUrl}/updateLadder`;
+    const reqHeader = {'token': username }
+
+    console.log(`Making POST request to ${url}, headers: ${reqHeader}`);
+
+    return axios.post(url, param, {
+        headers: reqHeader,
+    }).then(function(res) {
+        if (res.status !== 200)
+            throw new Error(`Unexpected response: ${res.status}, ${res.statusText}`)
+        return JSON.parse(res.data)
+    })
+}
+
+export function changeMoney(username, param){
+    let url = `${userBaseUrl}/changeMoney`;
+    const reqHeader = {'token': username }
+
+    console.log(`Making POST request to ${url}, headers: ${reqHeader}`);
+
+    return axios.post(url, param, {
+        headers: reqHeader,
+    }).then(function(res) {
+        if (res.status !== 200)
+            throw new Error(`Unexpected response: ${res.status}, ${res.statusText}`)
+        return JSON.parse(res.data)
+    })
+}

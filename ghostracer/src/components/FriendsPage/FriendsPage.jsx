@@ -28,15 +28,17 @@ class FriendsPage extends React.Component {
     challenge() {
         if(this.state.showIndex == undefined) {
             this.props.setMode('single')
-            this.props.getParagraph("qwer")
             preload(this.props.getParagraph, this.props.history)
         } else this.props.history.push('/rankedMatch')
     }
 
     changeShown(id) {
+        console.log(this.state, this.props)
         this.props.setOpponent({
             opponentID: id,
-            opponentSpeed: this.state.friends[id].speed
+            opponentSpeed: this.state.friends[id].speed,
+            opponentTime: 60 / this.state.friends[id].speed,
+            opponentAccuracy: this.state.friends[id].acc
         })
         this.setState({
             ...this.state,
