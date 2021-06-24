@@ -1,0 +1,13 @@
+.accuracy-fire span {
+  font-size: 72px;
+  background: -webkit-linear-gradient(#FFFF00, #ff0f7b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.accuracy-cool span {
+  font-size: 72px;
+  background: -webkit-linear-gradient(#e81cff, #40c9ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

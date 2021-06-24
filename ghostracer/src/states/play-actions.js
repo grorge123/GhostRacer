@@ -1,9 +1,11 @@
 /* Text input */
 
-export function getParagraph(initialWords) {
+export function getParagraph() {
+	const initialWords = "It is raining so hard outside. There is lightning and thunder. Good thing I dont need to go out. Yay!"
 	return {
 		type:'@INPUT/START_GET_PARAGRAPH',
-		initialWords
+		initialWords,
+
 	};
 }
 
@@ -50,6 +52,7 @@ export function setGameEnd() {
 	};
 }
 
+
 /* Play State */
 export function setResult(info) {
     return {
@@ -58,20 +61,14 @@ export function setResult(info) {
     }
 }
 
-export function setOpponent(stat) {
+export function setOpponent() {
+	const stat = {
+		opponentSpeed: 60,
+		opponentID: "Alice",
+	};
+
 	return {
 		type: '@PLAY/SET_OPPONENT',
 		...stat,
 	};
 }
-
-export function setMode(mode) {
-	return {
-		type: '@PLAY/SET_MODE',
-		mode: mode
-	};
-}
-
-
-export function addStake() { return { type: '@PLAY/ADD_STAKE' } }
-export function lessStake() { return { type: '@PLAY/LESS_STAKE' } }

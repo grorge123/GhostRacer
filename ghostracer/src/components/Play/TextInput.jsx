@@ -2,21 +2,29 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as Constants from './constants.js';
 
+import {connect} from 'react-redux';
+import {getParagraph} from '../../states/play-actions.js';
+import {setWpm, setAccuracy, setTotalTime} from '../../states/play-actions.js';
+import {setGameHold, setGameStart, setGameEnd} from '../../states/play-actions.js';
+import {setResult} from '../../states/play-actions.js';
+
 import './TextInput.css'
 
 class TextInput extends React.Component {
     static propTypes = {
-        setAccuracy: PropTypes.func,
-        setWpm: PropTypes.func,
-        handleGameOver: PropTypes.func,
-        gameOver: PropTypes.bool,
+        initialWords: PropTypes.string,
+        wpm: PropTypes.number,
+        accuracy: PropTypes.number,
+        totalTime: PropTypes.number,
+        gameState: PropTypes.number,
+        dispatch: PropTypes.func,
+
     };
     
     constructor(props) {
         super(props);
 
         this.state = {
-          initialWords: "It is raining so hard outside. There is lightning and thunder. Good thing I dont need to go out. Yay!",
           keyPressed: null,
           leftPadding: new Array(20).fill(' ').join(''),
           outgoingChars: '',
@@ -27,31 +35,55 @@ class TextInput extends React.Component {
           typedChars: '',
         }
 
+        this.setInitialChar = this.setInitialChar.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
         this.setKeyPressed = this.setKeyPressed.bind(this);
         this.removeKeyPressed = this.removeKeyPressed.bind(this);
         this.currentTime = this.currentTime.bind(this);
         this.downHandler = this.downHandler.bind(this);
         this.upHandler = this.upHandler.bind(this);
+        this.interval = null;
     }
 
     componentDidMount() {
-      const currentChar = this.state.initialWords.charAt(0);
-      const incomingChars = this.state.initialWords.substr(1);
-      this.setState({
-        currentChar: currentChar,
-        incomingChars: incomingChars,
-      });
+      this.props.dispatch(getParagraph());
+      this.props.dispatch(setGameHold());
       this.setKeyPressed();
     }
 
     componentDidUpdate() {
-      if(this.state.currentChar == '' && !this.props.gameOver) {
+      if(this.props.gameState == 0 && this.props.initialWords) {
+        this.setInitialChar();
+
+        this.interval = setInterval(() => {
+          if(this.state.startTime && this.props.gameState == 1) {
+            const durationInMinutes = (this.currentTime() - this.state.startTime) / 60000.0;
+            const accuracy = Math.round((this.state.outgoingChars.length / this.state.typedChars.length) * 100);
+            this.props.dispatch(setAccuracy(accuracy))
+            if(durationInMinutes > 0.01) this.props.dispatch(setWpm(Math.round((this.state.wordCount) / durationInMinutes / 5)));
+          }
+        }, 500);
+
+        this.props.dispatch(setGameStart());
+      }
+
+      if(this.state.currentChar == '' && this.props.gameState == 1) {
         console.log("gameover");
+        clearInterval(this.interval);
         this.removeKeyPressed();
-        this.props.handleGameOver();
+        this.props.dispatch(setTotalTime((this.currentTime() - this.state.startTime)/1000.0));
+        this.props.dispatch(setGameEnd());
+      }
+
+      if(this.props.gameState == 2) {
+        this.props.dispatch(setResult({
+          wpm: this.props.wpm,
+          accuracy: this.props.accuracy,
+          time: this.props.totalTime,
+        }));
       }
     }
+
 
     render() {
       const startPosition = Constants.startTypeX;
@@ -67,21 +99,34 @@ class TextInput extends React.Component {
           <span className="text"> 
             {this.state.incomingChars.substr(0, 50)}
           </span>
+          <span className={`text ${this.props.gameState==2 ? '' : 'd-none'}`}> &nbsp;&nbsp;GAME OVER!!!!! </span>
         </foreignObject>
       );
     };
 
+    setInitialChar() {
+      const currentChar = this.props.initialWords.charAt(0);
+      const incomingChars = this.props.initialWords.substr(1);
+      this.setState({
+        currentChar: currentChar,
+        incomingChars: incomingChars,
+      });
+    }
+
     handleKeyPress(key) {
-      const { initialWords, leftPadding, outgoingChars, currentChar, incomingChars, startTime, wordCount, typedChars} = this.state;
+      const {leftPadding, outgoingChars, currentChar, incomingChars, startTime, wordCount, typedChars} = this.state;
+      const initialWords = this.props.initialWords;
 
       let updatedOutgoingChars = outgoingChars;
       let updatedIncomingChars = incomingChars;
-      let newleftPadding = leftPadding;
+      let newLeftPadding = leftPadding;
       let newCurrentChar = currentChar;
       let newStartTime = startTime;
       const updatedTypedChars = typedChars+key;
 
-      this.setState({typedChars: updatedTypedChars,});
+      this.setState({
+          typedChars: updatedTypedChars,
+        });
 
       if(!newStartTime) {
         newStartTime = this.currentTime();
@@ -89,7 +134,7 @@ class TextInput extends React.Component {
 
       if (key === currentChar) {
         if(leftPadding.length > 0) {
-          newleftPadding = leftPadding.substr(1);
+          newLeftPadding = leftPadding.substr(1);
         }
 
         updatedOutgoingChars += currentChar;
@@ -100,40 +145,34 @@ class TextInput extends React.Component {
         //   updatedIncomingChars += ' ' + initialWords;
         // }
 
-        this.setState({ 
+        this.setState({
           startTime: newStartTime,
-          leftPadding: newleftPadding,
-          incomingChars: updatedIncomingChars, 
+          leftPadding: newLeftPadding,
+          incomingChars: updatedIncomingChars,
           outgoingChars: updatedOutgoingChars,
           wordCount: wordCount+1,
-          currentChar: newCurrentChar,
+          currentChar: newCurrentChar, 
+          typedChars: updatedTypedChars,
         });
+      
         
-      }
-
-      if(startTime && key) {
-        const durationInMinutes = (this.currentTime() - newStartTime) / 60000.0;
-        const accuracy = (updatedOutgoingChars.length / updatedTypedChars.length).toFixed(2) * 100;
-        this.props.setAccuracy(accuracy);
-        this.props.setWpm(((wordCount + 1) / durationInMinutes / 5).toFixed(2));
       }
       
     }
 
     setKeyPressed() {
       console.log("setKeyPressed");
-      window.addEventListener('keydown', ({key}) => { this.downHandler(key) });
-      window.addEventListener('keyup', () => { this.upHandler() });
+      window.addEventListener('keydown', this.downHandler);
+      window.addEventListener('keyup', this.upHandler );
     }
 
     removeKeyPressed() {
       console.log("removeKeyPressed");
-      window.removeEventListener('keydown', () => { this.downHandler(key) });
-      window.removeEventListener('keyup', () => { this.upHandler() });
+      window.removeEventListener('keydown', this.downHandler);
+      window.removeEventListener('keyup', this.upHandler);
     }
 
-    downHandler(key) {
-      console.log(key);
+    downHandler({key}) {
       let keyPressed = this.state.keyPressed;
       if (keyPressed !== key && key.length === 1) {
         keyPressed = key;
@@ -147,6 +186,9 @@ class TextInput extends React.Component {
 
     upHandler(key) {
       let keyPressed = null
+      this.setState({
+        keyPressed: keyPressed,
+      });
     }
     
 
@@ -156,4 +198,8 @@ class TextInput extends React.Component {
 
 }
 
-export default TextInput;
+export default connect(state => ({
+  ...state.input,
+  ...state.playerStat,
+  ...state.gameState,
+}))(TextInput);
