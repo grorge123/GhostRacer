@@ -46,6 +46,7 @@ class TextInput extends React.Component {
     }
 
     componentDidMount() {
+      console.log(this.props)
       this.props.dispatch(getParagraph());
       this.props.dispatch(setGameHold());
       this.setKeyPressed();

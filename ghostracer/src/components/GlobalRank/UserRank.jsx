@@ -62,6 +62,4 @@ class UserRank extends React.Component{
   }
 }
 
-export default connect(state => ({
-  ...state
-}))(UserRank);
+export default connect(state => state)(UserRank);

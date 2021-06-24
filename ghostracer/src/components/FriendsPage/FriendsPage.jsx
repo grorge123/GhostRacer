@@ -7,7 +7,7 @@ import FriendBox from './FriendBox.jsx';
 import FriendList from './FriendList.jsx';
 
 import { getUserProfile } from '../../api/user.js';
-import { getFriendList } from '../../api/friend.js';
+import { addFriend, getFriendList } from '../../api/friend.js';
 import { preload } from '../Play/Preload';
 
 import { setOpponent, setMode, getParagraph } from '../../states/play-actions.js'
@@ -28,6 +28,7 @@ class FriendsPage extends React.Component {
     challenge() {
         if(this.state.showIndex == undefined) {
             this.props.setMode('single')
+            this.props.getParagraph("qwer")
             preload(this.props.getParagraph, this.props.history)
         } else this.props.history.push('/rankedMatch')
     }

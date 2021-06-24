@@ -38,7 +38,7 @@ export function rankLadder(username) {
 }
 
 export function randomArticle(username) {
-    let url = `${userBaseUrl}/rankLadder`;
+    let url = `${userBaseUrl}/randomArticle`;
     const reqHeader = {
         'token': username
     }
@@ -50,6 +50,6 @@ export function randomArticle(username) {
     }).then(function(res) {
         if (res.status !== 200)
             throw new Error(`Unexpected response: ${res.status}, ${res.statusText}`)
-        return JSON.parse(res.data)
+        return res.data
     })
 }

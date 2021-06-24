@@ -15,10 +15,6 @@ import { getUserProfile } from '../../api/user.js'
 import { preload } from '../Play/Preload';
 
 class RankedMatch extends React.Component{
-  // static propTypes = {
-  //   loggedIn: PropTypes.bool
-  // }
-
   constructor(props) {
     super(props);
     this.state = { 
@@ -56,13 +52,13 @@ class RankedMatch extends React.Component{
         }
       }).bind(this), 1000)
 
-      /* getUserProfile(this.props.user.ID).then(
+      getUserProfile(this.props.user.ID).then(
         ans => this.setState(prev => ({ ...prev, opponent: ans }))
       )
 
       getUserProfile(this.props.play.opponentID).then(
         ans => this.setState(prev => ({ ...prev, opponent: ans }))
-      )*/
+      )
   }
 
   render() {

@@ -1,6 +1,7 @@
 /* TextInput state */
 const initInputState = {
 	initialWords: "",
+	hash: ""
 }
 
 export function input(state = initInputState, action) {
@@ -8,7 +9,7 @@ export function input(state = initInputState, action) {
 		case '@INPUT/START_GET_PARAGRAPH':
 			return {
 				...state,
-				initialWords: action.initialWords,
+				...action
 			};
 		default:
 			return state;
@@ -106,6 +107,11 @@ export function play(state = initPlayState, action) {
                 ...state,
                 ...action
             }
+		case '@PLAY/SET_MODE':
+			return {
+				...state,
+				mode: action
+			}
         default:
             return state;
     }

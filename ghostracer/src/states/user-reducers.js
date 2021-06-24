@@ -1,7 +1,7 @@
 /* user */
 
 const initUserState = {
-    ID: '',
+    ID: 'lawrence',
     loggedIn: false,
     username: '',
     friends: [],
