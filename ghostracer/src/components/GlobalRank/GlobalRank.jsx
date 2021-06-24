@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Row, Col, Table } from 'reactstrap';
 import { useSelector, useDispatch, useStore, connect } from 'react-redux'
 import PropTypes from 'prop-types';
-import { getTodayRaces } from '../../api/user.js';
+import { getUserProfile } from '../../api/user.js';
 import { getUserData } from '../../states/user-actions.js'
 
 import UserRank from './UserRank.jsx';
@@ -10,6 +10,13 @@ import UserRank from './UserRank.jsx';
 class GlobalRank extends React.Component{
   constructor(props) {
     super(props);
+    this.state = { self: {} }
+  }
+
+  componentDidMount() {
+    getUserProfile(this.props.user.ID).then(
+        ans => this.setState(prev => ({ ...prev, self: ans }))
+    )
   }
   
   abs(item) { return item > 0 ? item : -item; }
@@ -31,7 +38,7 @@ class GlobalRank extends React.Component{
                         <tbody>
                             <tr>
                                 <td><h3>Todays races</h3></td>
-                                <td colSpan="2"><h1>ERROR</h1></td>
+                                <td colSpan="2"><h1>{this.state.self.todayRaces}</h1></td>
                             </tr>
                         
                             <tr>
