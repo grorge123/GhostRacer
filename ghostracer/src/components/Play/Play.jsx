@@ -12,7 +12,7 @@ class Play extends React.Component {
 
 	render() {
 		return (
-			<div id="game" className="container">
+			<div id="game">
 				<Canvas />
 			</div>
 		);

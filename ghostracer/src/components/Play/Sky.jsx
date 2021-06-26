@@ -49,7 +49,7 @@ class Sky extends React.Component {
       fill: '#30abef',
     };
     const skyWidth = Constants.skyAndGroundWidth;
-    const gameHeight = 1200;
+    const gameHeight = 2400;
 
     const cloudX = this.state.cloudX;
     const cloudY = -550;

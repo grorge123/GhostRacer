@@ -100,7 +100,7 @@ export function play(state = initPlayState, action) {
             return {
                 ...state,
                 ...action,
-                gameResult: action.speed > opponentSpeed ? true : false
+                gameResult: action.speed > state.opponentSpeed ? true : false
             }
         case '@PLAY/SET_OPPONENT':
             return {

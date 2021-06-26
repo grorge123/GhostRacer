@@ -1,7 +1,6 @@
 /* Text input */
 
-export function getParagraph() {
-	const initialWords = "It is raining so hard outside. There is lightning and thunder. Good thing I dont need to go out. Yay!"
+export function getParagraph(initialWords) {
 	return {
 		type:'@INPUT/START_GET_PARAGRAPH',
 		initialWords,
