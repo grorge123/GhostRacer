@@ -92,7 +92,7 @@ router.post('/updateHistory', function (req, res, next){
     });
 });
 
-router.get('/randomAticle', function (req, res, next){
+router.get('/randomArticle', function (req, res, next){
     const {token} = req.headers;
     if (token == undefined){
         res.status(401).send('You need request with token');
