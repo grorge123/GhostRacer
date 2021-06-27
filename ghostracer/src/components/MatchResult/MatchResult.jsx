@@ -20,31 +20,23 @@ class MatchResult extends React.Component {
     componentDidMount() {
         updateLadder(this.props.user.ID, {
             speed: this.props.play.speed,
-            hash: this.props.input.hash,
+            hash: this.props.play.hash,
             money: this.props.play.stakeSize,
             win: this.props.play.gameResult
         }).then(
             result => this.setState({ gainedRank: result })
         )
 
-        rankLadder(this.props.user.ID, {
-            speed: this.props.play.speed,
-            hash: this.props.input.hash,
-            money: this.props.play.stakeSize
-        }).then(
+        rankLadder(this.props.user.ID).then(
             ans => this.setState({ rank: ans })
         )
         
         getUserProfile(this.props.user.ID).then(
             ans => this.setState({ coin: ans.money })
-        ).then(() => {
-            changeMoney(this.props.user.ID, {
-                delta: this.state.gainedCoin
-            })  
-        })
+        )
 
         this.setState({
-            gainedCoin: this.props.play.gameResult ? this.props.play.stakeSize : -Math.floor(this.props.play.stakeSize / 2)
+            gainedCoin: this.props.play.gameResult ? this.props.play.stakeSize : -this.props.play.stakeSize / 2
         })
     }
 
@@ -57,12 +49,13 @@ class MatchResult extends React.Component {
     }
 
     submit() {
-
+        changeMoney(this.props.user.ID, {
+            delta: this.state.gainedCoin
+        })
         this.props.history.push('/')
     }
 
     render() {
-        console.log(this.props)
         const mtop = { 'marginTop': '1rem' };
         const m2top = { 'marginTop': '2rem', 'fontSize': '1.5rem' };
         const cent = { 'textAlign': 'center' };
@@ -84,7 +77,7 @@ class MatchResult extends React.Component {
                                 {this.abs(this.state.gainedCoin)}
                             </Col>
                             <Col xs="1"><u>
-                                {Math.max(0, this.state.gainedCoin + this.state.coin)}
+                                {this.state.gainedCoin + this.state.coin}
                             </u></Col>
                         </Row>
                         <Row style={mtop}>

@@ -20,7 +20,7 @@ export function getLadder(username) {
     })
 }
 
-export function rankLadder(username, param) {
+export function rankLadder(username) {
     let url = `${userBaseUrl}/rankLadder`;
     const reqHeader = {
         'token': username
@@ -29,8 +29,7 @@ export function rankLadder(username, param) {
     console.log(`Making GET request to ${url}, headers: ${reqHeader}`);
 
     return axios.get(url, {
-        headers: reqHeader,
-        params: param
+        headers: reqHeader
     }).then(function(res) {
         if (res.status !== 200)
             throw new Error(`Unexpected response: ${res.status}, ${res.statusText}`)
@@ -39,7 +38,7 @@ export function rankLadder(username, param) {
 }
 
 export function randomArticle(username) {
-    let url = `${userBaseUrl}/randomAticle`;
+    let url = `${userBaseUrl}/randomArticle`;
     const reqHeader = {
         'token': username
     }
@@ -59,7 +58,7 @@ export function updateLadder(username, param){
     let url = `${userBaseUrl}/updateLadder`;
     const reqHeader = {'token': username }
 
-    console.log(`Making POST request to ${url}, headers: ${reqHeader}, param: ${JSON.stringify(param)}`);
+    console.log(`Making POST request to ${url}, headers: ${reqHeader}`);
 
     return axios.post(url, param, {
         headers: reqHeader,

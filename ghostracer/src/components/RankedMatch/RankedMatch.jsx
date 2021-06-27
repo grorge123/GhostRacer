@@ -9,6 +9,7 @@ import { withRouter } from "react-router";
 import BackButton from '../BackButton/BackButton.jsx'
 
 import { addStake, lessStake, setMode, getParagraph } from '../../states/play-actions.js';
+import { rankLadder } from '../../api/ladder.js'
 import { getUserProfile } from '../../api/user.js'
 
 import { preload } from '../Play/Preload';
@@ -48,7 +49,6 @@ class RankedMatch extends React.Component {
                 clearInterval(handle)
                 this.props.setMode('multiple')
                 preload(this.props.getParagraph, this.props.history)
-                this.props.history.push('/matchResult')
             }
         }).bind(this), 1000)
 
