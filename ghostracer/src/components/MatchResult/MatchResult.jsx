@@ -24,7 +24,7 @@ class MatchResult extends React.Component {
             money: this.props.play.stakeSize,
             win: this.props.play.gameResult
         }).then(
-            result => this.setState({ gainedRank: result })
+            ans => this.setState(prev => ({ ...prev, gainedRank: parseInt(ans.result) }))
         )
 
         rankLadder(this.props.user.ID, {
@@ -32,11 +32,11 @@ class MatchResult extends React.Component {
             hash: this.props.input.hash,
             money: this.props.play.stakeSize
         }).then(
-            ans => this.setState({ rank: ans })
+            ans => this.setState(prev => ({ ...prev, rank: parseInt(ans.result) }))
         )
         
         getUserProfile(this.props.user.ID).then(
-            ans => this.setState({ coin: ans.money })
+            ans => this.setState(prev => ({ ...prev, coin: ans.money }))
         ).then(() => {
             changeMoney(this.props.user.ID, {
                 delta: this.state.gainedCoin
@@ -57,12 +57,11 @@ class MatchResult extends React.Component {
     }
 
     submit() {
-
         this.props.history.push('/')
     }
 
     render() {
-        console.log(this.props)
+        console.log(this.state)
         const mtop = { 'marginTop': '1rem' };
         const m2top = { 'marginTop': '2rem', 'fontSize': '1.5rem' };
         const cent = { 'textAlign': 'center' };

@@ -48,7 +48,7 @@ class RankedMatch extends React.Component {
                 clearInterval(handle)
                 this.props.setMode('multiple')
                 preload(this.props.getParagraph, this.props.history)
-                this.props.history.push('/matchResult')
+                //this.props.history.push('/matchResult')
             }
         }).bind(this), 1000)
 
