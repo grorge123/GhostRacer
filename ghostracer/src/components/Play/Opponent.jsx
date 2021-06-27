@@ -38,7 +38,7 @@ class PlayerBar extends React.Component {
           const currentOffsetChar = this.state.opponentOffsetChar[0];
          
           if((updateOffsetChar-currentOffsetChar) && this.props.wpm && this.props.gameState == 1) {
-            const diff = (updateOffsetChar-currentOffsetChar) / 1200;
+            const diff = (updateOffsetChar-currentOffsetChar) / 200;
               this.setState({
                 opponentOffsetChar: [currentOffsetChar+diff],
               });
