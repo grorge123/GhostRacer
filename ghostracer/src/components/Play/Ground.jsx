@@ -21,7 +21,7 @@ const Ground = () => {
         x={groundWidth / -2}
         y={0}
         width={groundWidth}
-        height={1200}
+        height={100}
       />
       <line
         x1={groundWidth / -2}

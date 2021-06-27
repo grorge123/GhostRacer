@@ -19,7 +19,8 @@ class Canvas extends React.Component {
     }
 
   	render() {
-      const viewBox = [- window.innerWidth/2, 100 - window.innerHeight, window.innerWidth, window.innerHeight];
+      const viewBox = [window.innerWidth / -2, 100 - window.innerHeight, window.innerWidth, window.innerHeight];
+      
       return (
         <svg
           id="canvas"

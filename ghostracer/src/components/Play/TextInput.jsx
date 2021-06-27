@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import * as Constants from './constants.js';
 
 import {connect} from 'react-redux';
+import {getParagraph} from '../../states/play-actions.js';
 import {setWpm, setAccuracy, setTotalTime} from '../../states/play-actions.js';
 import {setGameHold, setGameStart, setGameEnd} from '../../states/play-actions.js';
 import {setResult} from '../../states/play-actions.js';
@@ -47,21 +48,21 @@ class TextInput extends React.Component {
     componentDidMount() {
       this.props.dispatch(setGameHold());
       this.setKeyPressed();
-      this.setInitialChar();
-      this.interval = setInterval(() => {
-        if(this.state.startTime && this.props.gameState == 1) {
-          const durationInMinutes = (this.currentTime() - this.state.startTime) / 60000.0;
-          const accuracy = Math.round((this.state.outgoingChars.length / this.state.typedChars.length) * 100);
-          this.props.dispatch(setAccuracy(accuracy))
-          if(durationInMinutes > 0.01) this.props.dispatch(setWpm(Math.round((this.state.wordCount) / durationInMinutes / 5)));
-        }
-      }, 500);
-
     }
 
     componentDidUpdate() {
+      if(this.props.gameState == 0 && this.props.initialWords) {
+        this.setInitialChar();
 
-      if(this.props.wpm) {
+        this.interval = setInterval(() => {
+          if(this.state.startTime && this.props.gameState == 1) {
+            const durationInMinutes = (this.currentTime() - this.state.startTime) / 60000.0;
+            const accuracy = Math.round((this.state.outgoingChars.length / this.state.typedChars.length) * 100);
+            this.props.dispatch(setAccuracy(accuracy))
+            if(durationInMinutes > 0.01) this.props.dispatch(setWpm(Math.round((this.state.wordCount) / durationInMinutes / 5)));
+          }
+        }, 500);
+
         this.props.dispatch(setGameStart());
       }
 
