@@ -284,14 +284,9 @@ router.post('/updateLadder', function (req, res, next){
     });
 });
 router.get('/rankLadder', function (req, res, next){
-    const {speed, hash, money} = req.body;
     const {token} = req.headers;
     if (token == undefined){
         res.status(401).send('You need request with token');
-        return;
-    }
-    if(speed == undefined || hash == undefined || money == undefined){
-        res.status(403).send('You lack necessary parameters');
         return;
     }
     check_access(token)
