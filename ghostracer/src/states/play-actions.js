@@ -1,9 +1,10 @@
 /* Text input */
 
-export function getParagraph(initialWords) {
+export function getParagraph(x) {
 	return {
 		type:'@INPUT/START_GET_PARAGRAPH',
-		initialWords,
+		initialWords: x.text,
+		hash: x.hash
 	};
 }
 
@@ -72,10 +73,10 @@ export function setOpponent(x) {
 	};
 }
 
-export function setMode(x) {
+export function setMode(mode) {
 	return {
 		type: '@PLAY/SET_MODE',
-		action: x
+		mode
 	};
 }
 

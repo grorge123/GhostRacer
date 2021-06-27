@@ -67,6 +67,7 @@ class FriendsPage extends React.Component {
     }
 
     render() {
+        console.log(this.props)
         const h5_style = {
             'textAlign': 'center',
             'fontSize': '4rem',
