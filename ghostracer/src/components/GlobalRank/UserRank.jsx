@@ -25,11 +25,13 @@ class UserRank extends React.Component{
   componentDidMount() {
     getLadder(this.props.user.ID).then(
       ladder => Promise.all(
-        JSON.parse(ladder).data
+        ladder.data
       ).then(
         result => result.map(
           item => getUserProfile(item.name).then(
-            info => console.log(info)
+            info => this.setState(prevState => ({
+              ranking: [...prevState.ranking, info]
+            }))
           )
         )
       )
