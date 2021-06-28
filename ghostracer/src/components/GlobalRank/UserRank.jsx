@@ -29,9 +29,7 @@ class UserRank extends React.Component{
       ).then(
         result => result.map(
           item => getUserProfile(item.name).then(
-            info => this.setState(prevState => ({
-              ranking: [...prevState.ranking, info]
-            }))
+            info => console.log(info)
           )
         )
       )
