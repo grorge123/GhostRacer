@@ -5,7 +5,7 @@ const initInputState = {
 }
 
 export function input(state = initInputState, action) {
-	console.log("Log of getParagraph (redux)", state, action)
+	// console.log("Log of getParagraph (redux)", state, action)
 	switch (action.type) {
 		case '@INPUT/START_GET_PARAGRAPH':
 			return {
