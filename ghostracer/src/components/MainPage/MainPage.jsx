@@ -64,6 +64,7 @@ class MainPage extends React.Component {
 
     userProfileDetail() {
         let ret;
+        if (this.state.showProfile) classes = {}
         if (this.props.user.loggedIn) ret =
             <Box className='user-detail smooth'>
                 <TableContainer component={Paper}>

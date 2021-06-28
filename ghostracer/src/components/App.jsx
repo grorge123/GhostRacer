@@ -63,6 +63,12 @@ class App extends React.Component {
     // this.props.store
   }
 
+  handleLogin() {
+    // cookies.set('field', content, {path: '/'})
+    loginAction();
+    console.log('triggered')
+  }
+
   render() {
     return (
       <Router>
@@ -93,13 +99,6 @@ class App extends React.Component {
         </div>
       </Router>
     )
-  }
-
-
-  handleLogin() {
-    // cookies.set('field', content, {path: '/'})
-    loginAction();
-    console.log('triggered')
   }
 
 }
