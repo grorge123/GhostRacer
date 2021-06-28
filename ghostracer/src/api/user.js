@@ -13,6 +13,7 @@ export function getUserProfile(username){
     }).then(function(res) {
         if (res.status !== 200)
             throw new Error(`Unexpected response: ${res.status}, ${res.statusText}`)
+        console.log(res.data)
         return JSON.parse(res.data)
     })
 }
