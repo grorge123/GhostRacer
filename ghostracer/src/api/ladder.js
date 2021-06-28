@@ -84,3 +84,18 @@ export function changeMoney(username, param){
         return JSON.parse(res.data)
     })
 }
+
+export function randomOpponent(username, param){
+    let url = `${userBaseUrl}/randomOpponent`;
+    const reqHeader = {'token': username }
+
+    console.log(`Making POST request to ${url}, headers: ${reqHeader}`);
+
+    return axios.post(url, param, {
+        headers: reqHeader,
+    }).then(function(res) {
+        if (res.status !== 200)
+            throw new Error(`Unexpected response: ${res.status}, ${res.statusText}`)
+        return res.data
+    })
+}
