@@ -7,7 +7,7 @@ import FriendBox from './FriendBox.jsx';
 import FriendList from './FriendList.jsx';
 
 import { getUserProfile } from '../../api/user.js';
-import { getFriendList } from '../../api/friend.js';
+import { addFriend, getFriendList } from '../../api/friend.js';
 import { preload } from '../Play/Preload';
 
 import { setOpponent, setMode, getParagraph } from '../../states/play-actions.js'
@@ -33,9 +33,12 @@ class FriendsPage extends React.Component {
     }
 
     changeShown(id) {
+        console.log(this.state, this.props)
         this.props.setOpponent({
             opponentID: id,
-            opponentSpeed: this.state.friends[id].speed
+            opponentSpeed: this.state.friends[id].speed,
+            opponentTime: 60 / this.state.friends[id].speed,
+            opponentAccuracy: this.state.friends[id].acc
         })
         this.setState({
             ...this.state,
@@ -64,6 +67,7 @@ class FriendsPage extends React.Component {
     }
 
     render() {
+        console.log(this.props)
         const h5_style = {
             'textAlign': 'center',
             'fontSize': '4rem',

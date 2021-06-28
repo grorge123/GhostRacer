@@ -1,7 +1,7 @@
 /* user */
 
 const initUserState = {
-    ID: '',
+    ID: 'lawrence',
     loggedIn: false,
     username: '',
     friends: [],
@@ -37,7 +37,6 @@ export function user(state = initUserState, action) {
         case '@USER/LIST_FRIENDS':
             return {
                 ...state,
-
             }
         case '@USER/UPDATE_LOCAL':
             return {
