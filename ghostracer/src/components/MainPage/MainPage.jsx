@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes, { instanceOf, bool } from 'prop-types';
 
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { withCookies, Cookies } from 'react-cookie';
 import { Auth } from 'aws-amplify';
@@ -18,6 +18,7 @@ import BackButton from '../BackButton/BackButton.jsx'
 import './MainPage.css';
 
 import { loginAction } from '../../states/user-actions.js';
+import { StoreMallDirectoryRounded } from '@material-ui/icons';
 
 const bgImageUrls = {
     story: '../images/intro-story.png',
@@ -50,6 +51,9 @@ class MainPage extends React.Component {
         this.userProfileDetail = this.userProfileDetail.bind(this)
         this.toggleShowProfile = this.toggleShowProfile.bind(this)
         this.signout = this.signout.bind(this)
+        this.storyModePage = this.storyModePage.bind(this)
+        this.rankedModePage = this.rankedModePage.bind(this)
+        this.quickGamePage = this.quickGamePage.bind(this)
     }
 
     signout(){
@@ -61,6 +65,27 @@ class MainPage extends React.Component {
     toggleShowProfile(){
         this.setState({showProfile: !showProfile})
     }
+
+    // page switch functions
+
+    storyModePage(){
+        // do stuff here first then switch screen
+        
+        this.props.history.push('/typingScreen')
+    }
+
+    rankedModePage(){
+        
+        this.props.history.push('/globalrank')
+    }
+
+    quickGamePage(){
+        
+        this.props.history.push('/typingScreen')
+    }
+
+    // page switch functions end
+
 
     userProfileDetail() {
         let ret;
@@ -110,15 +135,22 @@ class MainPage extends React.Component {
                         <span>Hi, {this.props.user.username}</span>
                     </div>
                     <div className={"menu-box"}>
-                        <Link to='/typingScreen'>
-                            <MainButton className={'menu-button'} bg={bgImageUrls.story} text={'Story Mode'}></MainButton>
-                        </Link>
-                        <Link to='/globalrank'>
-                            <MainButton bg={bgImageUrls.ranked} text={'Ranked Mode'}></MainButton>
-                        </Link>
-                        <Link to='/typingScreen'>
-                            <MainButton bg={bgImageUrls.quick} text={'Quick Game'}></MainButton>
-                        </Link>
+                        <MainButton
+                            className={'menu-button'}
+                            bg={bgImageUrls.story}
+                            text={'Story Mode'}
+                            onClick={this.storyModePage}
+                        />
+                        <MainButton
+                            bg={bgImageUrls.ranked}
+                            text={'Ranked Mode'}
+                            onclick={this.rankedModePage}
+                        />
+                        <MainButton
+                            bg={bgImageUrls.quick}
+                            text={'Quick Game'}
+                            onClick={this.quickGamePage}
+                        />
                     </div>
                 </div>
             </div>
@@ -129,4 +161,4 @@ class MainPage extends React.Component {
 export default withCookies(connect(state => ({
     ...state,
 
-}))(MainPage));
+}))(withRouter(MainPage)));

@@ -56,6 +56,7 @@ class App extends React.Component {
       }
       this.props.dispatch(loginAction(username))
     });
+    console.log(this.props)
     this.handleLogin = this.handleLogin.bind(this)
   }
 
