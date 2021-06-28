@@ -5,6 +5,7 @@ import './Button.css';
 
 import FriendBox from './FriendBox.jsx';
 import FriendList from './FriendList.jsx';
+import Avatar from '../Avatar/avatar.jsx'
 
 import { getUserProfile } from '../../api/user.js';
 import { addFriend, getFriendList } from '../../api/friend.js';
@@ -26,11 +27,13 @@ class FriendsPage extends React.Component {
         this.challenge = this.challenge.bind(this)
         this.addFriendHandler = this.addFriendHandler.bind(this)
         this.handleChangeFriendId = this.handleChangeFriendId.bind(this)
-        this.load = this.load.bind(this)    
+        this.load = this.load.bind(this)
+
+        console.log(this.props.user)
     }
 
     challenge() {
-        if(this.state.showIndex == undefined) {
+        if (this.state.showIndex == undefined) {
             this.props.setMode('single')
             preload(this.props.getParagraph, this.props.history)
         } else this.props.history.push('/rankedMatch')
@@ -59,25 +62,27 @@ class FriendsPage extends React.Component {
     }
 
     load() {
-        console.log(this.state)
         this.setState({
             friends: {},
             showIndex: undefined,
-            addFriendId: ""
+            addFriendId: "",
+            img: 2
         })
         getFriendList(this.props.user.ID).then(
             result => {
                 for (var i = 0; i < result.len; i++) {
-                    if(result['friend' + i.toString()] != this.props.user.ID)
+                    if (result['friend' + i.toString()] != this.props.user.ID)
                         getUserProfile(result['friend' + i.toString()]).then(
-                            ans => this.setState(
-                                prev => ({
-                                    friends: {
-                                        ...prev.friends,
-                                        [ans.ID]: ans
-                                    }
-                                })
-                            )
+                            ans => {
+                                this.setState(
+                                    prev => ({
+                                        friends: {
+                                            ...prev.friends,
+                                            [ans.ID]: ans
+                                        }
+                                    })
+                                )
+                            }
                         )
                 }
             }
@@ -98,7 +103,7 @@ class FriendsPage extends React.Component {
             friendsList.push(this.state.friends[i])
 
         let friendBox = {
-            name: "You have no friend",
+            name: "Choose a friend to challenge",
             wpm: 0,
             acc: 0,
             last: [false, false, false]
@@ -110,7 +115,8 @@ class FriendsPage extends React.Component {
                 name: this.state.friends[this.state.showIndex].nickname,
                 wpm: this.state.friends[this.state.showIndex].speed,
                 acc: this.state.friends[this.state.showIndex].acc,
-                last: this.state.friends[this.state.showIndex].lastThree
+                last: this.state.friends[this.state.showIndex].lastThree,
+                img: this.state.friends[this.state.showIndex].img
             }
 
 
@@ -123,6 +129,11 @@ class FriendsPage extends React.Component {
                                 <Row>
                                     <Col>
                                         <h5 style={h5_style}> Frenemies </h5>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col>
+                                        <Avatar width={'15rem'} id={2}></Avatar>
                                     </Col>
                                 </Row>
                                 <Row>
@@ -158,7 +169,7 @@ class FriendsPage extends React.Component {
                     </Row>
                     <hr></hr>
                     <Row><Col>
-                        <Row><Col><input placeholder="Input user id" value={this.addFriendId} onChange={this.handleChangeFriendId}/></Col></Row>
+                        <Row><Col><input placeholder="Input User ID" value={this.addFriendId} onChange={this.handleChangeFriendId} /></Col></Row>
                         <Row><Col><Button onClick={this.addFriendHandler}>Add Friend</Button></Col></Row>
                     </Col></Row>
                 </Container>

@@ -53,7 +53,7 @@ class RankedMatch extends React.Component {
         }).bind(this), 1000)
 
         getUserProfile(this.props.user.ID).then(
-            ans => this.setState(prev => ({ ...prev, opponent: ans }))
+            ans => this.setState(prev => ({ ...prev, self: ans }))
         )
 
         getUserProfile(this.props.play.opponentID).then(

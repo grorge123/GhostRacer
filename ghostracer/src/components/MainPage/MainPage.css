@@ -66,15 +66,20 @@
 }
 
 .user-detail{
-    visibility: hidden;
+    transition: all cubic-bezier(1, 0, 0, 1) 1s;
     position: absolute;
-    top: 5%;
+    top: 50%;
+    left: -50%;
     z-index: 5;
-    width: 10em;
-    height: 10em;
+    width: 15em;
+    height: 15em;
 }
 
-.user-detail:hover{
-    visibility:visible;
+.user-detail.hide{
+    opacity: 0;
+}
+
+.user-detail.show{
+    opacity: 100;
 }
 /* .title:first-child {} */

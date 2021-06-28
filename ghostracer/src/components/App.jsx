@@ -84,7 +84,7 @@ class App extends React.Component {
             <Route exact path="/typingScreen" render={() => (
               <Play />
             )} />
-            <Route exact path="/globalrank" render={() => (
+            <Route exact path="/globalRank" render={() => (
               <GlobalRank />
             )} />
             <Route exact path="/matchResult" render={() => (

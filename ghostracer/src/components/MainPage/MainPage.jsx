@@ -67,7 +67,8 @@ class MainPage extends React.Component {
     }
 
     toggleShowProfile(){
-        this.setState({showProfile: !showProfile})
+        console.log('show profile:', this.state.showProfile)
+        this.setState({showProfile: !this.state.showProfile})
     }
 
     // page switch functions
@@ -95,7 +96,7 @@ class MainPage extends React.Component {
         )
     }
 
-    rankedModePage() { this.props.history.push('/globalrank') }
+    rankedModePage() { console.log("globalrank"); this.props.history.push('/globalRank') }
 
     quickGamePage(){
         this.props.setMode('single')
@@ -106,16 +107,18 @@ class MainPage extends React.Component {
 
 
     userProfileDetail() {
-        let ret;
-        if (this.state.showProfile) classes = {}
+        let ret, classes;
+        if (this.state.showProfile) classes = 'show'
+        else classes = 'hide'
         if (this.props.user.loggedIn) ret =
-            <Box className='user-detail smooth'>
+            <Box className={`user-detail smooth ${classes}`}>
                 <TableContainer component={Paper}>
                     <Table size="small" aria-label="a dense table">
                         <TableHead>
                             <TableRow>
                                 <TableCell>Name</TableCell>
                                 <TableCell align="right">Max Speed (WPM)</TableCell>
+                                <TableCell align="right">Coins</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -124,6 +127,7 @@ class MainPage extends React.Component {
                                     {this.props.user.username}
                                 </TableCell>
                                 <TableCell align="right">{this.props.maxspeed}</TableCell>
+                                <TableCell align="right">{this.props.user.money}</TableCell>
                             </TableRow>
                         </TableBody>
                     </Table>
@@ -141,7 +145,7 @@ class MainPage extends React.Component {
                         <span className={'title2'}>RACER</span>
                     </div>
                     <div className={'nav'}>
-                        <UButton><AccountCircleIcon /></UButton>
+                        <UButton onClick={this.toggleShowProfile}><AccountCircleIcon /></UButton>
                         <Link className={'nav-button'} to="/friends">
                             <UButton><PeopleIcon /></UButton>
                         </Link>
@@ -162,7 +166,7 @@ class MainPage extends React.Component {
                         <MainButton
                             bg={bgImageUrls.ranked}
                             text={'Ranked Mode'}
-                            onclick={this.rankedModePage}
+                            onClick={this.rankedModePage}
                         />
                         <MainButton
                             bg={bgImageUrls.quick}

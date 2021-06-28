@@ -6,12 +6,14 @@ const initUserState = {
     username: '',
     friends: [],
     friendsListMore: false,
-    maxSpeed: 'test speed',
+    maxSpeed: '68',
     avgSpeed: 3,
     avgAccuracy: 50,
     avatar: 3,
     friendsListMore: false,
-    friendsList: ''
+    friendsList: '',
+    img: 2,
+    money: 10
 }
 export function user(state = initUserState, action) {
     // console.log(action)
@@ -32,7 +34,9 @@ export function user(state = initUserState, action) {
                 ID: action.ID,
                 username: action.username,
                 avgAccuracy: action.acc,
-                maxSpeed: action.speed
+                maxSpeed: action.speed,
+                img: action.img,
+                money: action.money
             }
         case '@USER/LIST_FRIENDS':
             return {
