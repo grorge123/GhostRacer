@@ -19,6 +19,10 @@ import './MainPage.css';
 
 import { loginAction } from '../../states/user-actions.js';
 import { StoreMallDirectoryRounded } from '@material-ui/icons';
+import { randomArticle, randomOpponent } from '../../api/ladder.js';
+import { getUserProfile } from '../../api/user.js';
+import { setOpponent, setMode, getParagraph } from '../../states/play-actions.js';
+import { preload } from '../Play/Preload.js';
 
 const bgImageUrls = {
     story: '../images/intro-story.png',
@@ -70,18 +74,32 @@ class MainPage extends React.Component {
 
     storyModePage(){
         // do stuff here first then switch screen
-        
-        this.props.history.push('/typingScreen')
+        this.props.setMode('multiple')
+        randomArticle(this.props.user.ID).then(
+            ans => this.props.getParagraph(ans)
+        ).then(
+            () => randomOpponent(this.props.user.ID, {
+                ID: this.props.user.ID,
+                Ladder: 0,
+                hash: this.props.input.hash
+            }).then(
+                oppo => this.props.setOpponent({
+                    opponentID: oppo.Opponent0,
+                    opponentSpeed: oppo.Speed0,
+                    opponentTime: Math.floor(60 / oppo.Speed0),
+                    opponentAccuracy: 100
+                })
+            ).then(
+                () => this.props.history.push('/typingScreen')
+            )
+        )
     }
 
-    rankedModePage(){
-        
-        this.props.history.push('/globalrank')
-    }
+    rankedModePage() { this.props.history.push('/globalrank') }
 
     quickGamePage(){
-        
-        this.props.history.push('/typingScreen')
+        this.props.setMode('single')
+        preload(this.props.getParagraph, this.props.history)
     }
 
     // page switch functions end
@@ -158,7 +176,15 @@ class MainPage extends React.Component {
     }
 }
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setOpponent: (x) => dispatch(setOpponent(x)),
+        setMode: (x) => dispatch(setMode(x)),
+        getParagraph: (x) => dispatch(getParagraph(x))
+    }
+};
+
 export default withCookies(connect(state => ({
     ...state,
 
-}))(withRouter(MainPage)));
+}), mapDispatchToProps)(withRouter(MainPage)));
