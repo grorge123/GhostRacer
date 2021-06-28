@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col, Button } from 'reactstrap';
 import './Button.css';
 
 import FriendBox from './FriendBox.jsx';
@@ -19,10 +19,14 @@ class FriendsPage extends React.Component {
         super(props);
         this.state = {
             friends: {},
-            showIndex: undefined
+            showIndex: undefined,
+            addFriendId: ""
         }
         this.changeShown = this.changeShown.bind(this)
         this.challenge = this.challenge.bind(this)
+        this.addFriendHandler = this.addFriendHandler.bind(this)
+        this.handleChangeFriendId = this.handleChangeFriendId.bind(this)
+        this.load = this.load.bind(this)    
     }
 
     challenge() {
@@ -46,7 +50,21 @@ class FriendsPage extends React.Component {
         })
     }
 
-    componentDidMount() {
+    handleChangeFriendId(e) { this.setState({ addFriendId: e.target.value }) }
+
+    addFriendHandler() {
+        addFriend(this.props.user.ID, this.state.addFriendId).then(
+            this.load
+        )
+    }
+
+    load() {
+        console.log(this.state)
+        this.setState({
+            friends: {},
+            showIndex: undefined,
+            addFriendId: ""
+        })
         getFriendList(this.props.user.ID).then(
             result => {
                 for (var i = 0; i < result.len; i++) {
@@ -66,8 +84,9 @@ class FriendsPage extends React.Component {
         )
     }
 
+    componentDidMount() { this.load(); }
+
     render() {
-        console.log(this.props)
         const h5_style = {
             'textAlign': 'center',
             'fontSize': '4rem',
@@ -137,6 +156,11 @@ class FriendsPage extends React.Component {
                             </div>
                         </Col>
                     </Row>
+                    <hr></hr>
+                    <Row><Col>
+                        <Row><Col><input placeholder="Input user id" value={this.addFriendId} onChange={this.handleChangeFriendId}/></Col></Row>
+                        <Row><Col><Button onClick={this.addFriendHandler}>Add Friend</Button></Col></Row>
+                    </Col></Row>
                 </Container>
             </div>
         )
