@@ -1,21 +1,28 @@
 import React from 'react';
 import PropTypes, { instanceOf, bool } from 'prop-types';
 
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { withCookies, Cookies } from 'react-cookie';
+import { Auth } from 'aws-amplify';
 
 import { IconButton, Icon } from '@material-ui/core';
 import PeopleIcon from '@material-ui/icons/People'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import SettingsIcon from '@material-ui/icons/Settings';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { makeStyles, withStyles, styled } from '@material-ui/core/styles'
 import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core'
 import MainButton from './MainButton.jsx';
 import BackButton from '../BackButton/BackButton.jsx'
 import './MainPage.css';
 
-import ReachabilityNavigator from '@aws-amplify/core/lib-esm/Util/Reachability';
+import { loginAction } from '../../states/user-actions.js';
+import { StoreMallDirectoryRounded } from '@material-ui/icons';
+import { randomArticle, randomOpponent } from '../../api/ladder.js';
+import { getUserProfile } from '../../api/user.js';
+import { setOpponent, setMode, getParagraph } from '../../states/play-actions.js';
+import { preload } from '../Play/Preload.js';
 
 const bgImageUrls = {
     story: '../images/intro-story.png',
@@ -47,22 +54,71 @@ class MainPage extends React.Component {
         console.log(props)
         this.userProfileDetail = this.userProfileDetail.bind(this)
         this.toggleShowProfile = this.toggleShowProfile.bind(this)
+        this.signout = this.signout.bind(this)
+        this.storyModePage = this.storyModePage.bind(this)
+        this.rankedModePage = this.rankedModePage.bind(this)
+        this.quickGamePage = this.quickGamePage.bind(this)
+    }
+
+    signout(){
+        Auth.signOut()
+        this.props.dispatch(loginAction)
+        window.location.reload()
     }
 
     toggleShowProfile(){
-        this.setState({showProfile: !showProfile})
+        console.log('show profile:', this.state.showProfile)
+        this.setState({showProfile: !this.state.showProfile})
     }
 
+    // page switch functions
+
+    storyModePage(){
+        // do stuff here first then switch screen
+        this.props.setMode('multiple')
+        randomArticle(this.props.user.ID).then(
+            ans => this.props.getParagraph(ans)
+        ).then(
+            () => randomOpponent(this.props.user.ID, {
+                ID: this.props.user.ID,
+                Ladder: 0,
+                hash: this.props.input.hash
+            }).then(
+                oppo => this.props.setOpponent({
+                    opponentID: oppo.Opponent0,
+                    opponentSpeed: oppo.Speed0,
+                    opponentTime: Math.floor(60 / oppo.Speed0),
+                    opponentAccuracy: 100
+                })
+            ).then(
+                () => this.props.history.push('/typingScreen')
+            )
+        )
+    }
+
+    rankedModePage() { console.log("globalrank"); this.props.history.push('/globalRank') }
+
+    quickGamePage(){
+        this.props.setMode('single')
+        preload(this.props.getParagraph, this.props.history)
+    }
+
+    // page switch functions end
+
+
     userProfileDetail() {
-        let ret;
+        let ret, classes;
+        if (this.state.showProfile) classes = 'show'
+        else classes = 'hide'
         if (this.props.user.loggedIn) ret =
-            <Box className='user-detail smooth'>
+            <Box className={`user-detail smooth ${classes}`}>
                 <TableContainer component={Paper}>
                     <Table size="small" aria-label="a dense table">
                         <TableHead>
                             <TableRow>
                                 <TableCell>Name</TableCell>
                                 <TableCell align="right">Max Speed (WPM)</TableCell>
+                                <TableCell align="right">Coins</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -71,6 +127,7 @@ class MainPage extends React.Component {
                                     {this.props.user.username}
                                 </TableCell>
                                 <TableCell align="right">{this.props.maxspeed}</TableCell>
+                                <TableCell align="right">{this.props.user.money}</TableCell>
                             </TableRow>
                         </TableBody>
                     </Table>
@@ -88,26 +145,34 @@ class MainPage extends React.Component {
                         <span className={'title2'}>RACER</span>
                     </div>
                     <div className={'nav'}>
-                        <UButton><AccountCircleIcon /></UButton>
+                        <UButton onClick={this.toggleShowProfile}><AccountCircleIcon /></UButton>
                         <Link className={'nav-button'} to="/friends">
                             <UButton><PeopleIcon /></UButton>
                         </Link>
                         <UButton><SettingsIcon /></UButton>
+                        <UButton onClick={this.signout}><ExitToAppIcon /></UButton>
                         {this.userProfileDetail()}
                     </div>
                     <div className={'greeting smooth'}>
                         <span>Hi, {this.props.user.username}</span>
                     </div>
                     <div className={"menu-box"}>
-                        <Link to='/typingScreen'>
-                            <MainButton className={'menu-button'} bg={bgImageUrls.story} text={'Story Mode'}></MainButton>
-                        </Link>
-                        <Link to='/globalrank'>
-                            <MainButton bg={bgImageUrls.ranked} text={'Ranked Mode'}></MainButton>
-                        </Link>
-                        <Link to='/typingScreen'>
-                            <MainButton bg={bgImageUrls.quick} text={'Quick Game'}></MainButton>
-                        </Link>
+                        <MainButton
+                            className={'menu-button'}
+                            bg={bgImageUrls.story}
+                            text={'Story Mode'}
+                            onClick={this.storyModePage}
+                        />
+                        <MainButton
+                            bg={bgImageUrls.ranked}
+                            text={'Ranked Mode'}
+                            onClick={this.rankedModePage}
+                        />
+                        <MainButton
+                            bg={bgImageUrls.quick}
+                            text={'Quick Game'}
+                            onClick={this.quickGamePage}
+                        />
                     </div>
                 </div>
             </div>
@@ -115,7 +180,15 @@ class MainPage extends React.Component {
     }
 }
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setOpponent: (x) => dispatch(setOpponent(x)),
+        setMode: (x) => dispatch(setMode(x)),
+        getParagraph: (x) => dispatch(getParagraph(x))
+    }
+};
+
 export default withCookies(connect(state => ({
     ...state,
 
-}))(MainPage));
+}), mapDispatchToProps)(withRouter(MainPage)));

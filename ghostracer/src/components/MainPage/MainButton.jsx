@@ -38,12 +38,10 @@ class MainButton extends React.Component {
         super(props)
         // console.log(this.props)
     }
-
-
     
 
     render() {
-        return <Button classes={this.props.classes}>{this.props.text}</Button>
+        return <Button classes={this.props.classes} onClick={this.props.onClick}>{this.props.text}</Button>
     }
 }
 

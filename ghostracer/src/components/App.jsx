@@ -56,11 +56,18 @@ class App extends React.Component {
       }
       this.props.dispatch(loginAction(username))
     });
+    console.log(this.props)
     this.handleLogin = this.handleLogin.bind(this)
   }
 
   componentDidMount() {
     // this.props.store
+  }
+
+  handleLogin() {
+    // cookies.set('field', content, {path: '/'})
+    loginAction();
+    console.log('triggered')
   }
 
   render() {
@@ -77,7 +84,7 @@ class App extends React.Component {
             <Route exact path="/typingScreen" render={() => (
               <Play />
             )} />
-            <Route exact path="/globalrank" render={() => (
+            <Route exact path="/globalRank" render={() => (
               <GlobalRank />
             )} />
             <Route exact path="/matchResult" render={() => (
@@ -93,13 +100,6 @@ class App extends React.Component {
         </div>
       </Router>
     )
-  }
-
-
-  handleLogin() {
-    // cookies.set('field', content, {path: '/'})
-    loginAction();
-    console.log('triggered')
   }
 
 }

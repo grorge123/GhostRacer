@@ -21,7 +21,9 @@ function getUserData(data) {
         ID: data['ID'],
         speed: data['speed'],
         username: data['nickname'],
-        acc: data['acc']
+        acc: data['acc'],
+        img: data['img'],
+        money: data['money']
     }
 }
 

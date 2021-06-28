@@ -7,6 +7,7 @@ import {getParagraph} from '../../states/play-actions.js';
 import {setWpm, setAccuracy, setTotalTime} from '../../states/play-actions.js';
 import {setGameHold, setGameStart, setGameEnd} from '../../states/play-actions.js';
 import {setResult} from '../../states/play-actions.js';
+import {withRouter} from 'react-router';
 
 import './TextInput.css'
 
@@ -46,7 +47,6 @@ class TextInput extends React.Component {
     }
 
     componentDidMount() {
-      this.props.dispatch(getParagraph());
       this.props.dispatch(setGameHold());
       this.setKeyPressed();
     }
@@ -73,6 +73,8 @@ class TextInput extends React.Component {
         this.removeKeyPressed();
         this.props.dispatch(setTotalTime((this.currentTime() - this.state.startTime)/1000.0));
         this.props.dispatch(setGameEnd());
+        if(this.props.mode == 'single')this.props.history.push('/');
+        else this.props.history.push('/matchResult')
       }
 
       if(this.props.gameState == 2) {
@@ -83,6 +85,8 @@ class TextInput extends React.Component {
         }));
       }
     }
+
+
 
 
     render() {
@@ -202,4 +206,6 @@ export default connect(state => ({
   ...state.input,
   ...state.playerStat,
   ...state.gameState,
-}))(TextInput);
+  ...state.history,
+  mode: state.play.mode,
+}))(withRouter(TextInput));

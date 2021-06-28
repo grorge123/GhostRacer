@@ -25,7 +25,7 @@ class UserRank extends React.Component{
   componentDidMount() {
     getLadder(this.props.user.ID).then(
       ladder => Promise.all(
-        JSON.parse(ladder).data
+        ladder.data
       ).then(
         result => result.map(
           item => getUserProfile(item.name).then(
@@ -62,6 +62,4 @@ class UserRank extends React.Component{
   }
 }
 
-export default connect(state => ({
-  ...state
-}))(UserRank);
+export default connect(state => state)(UserRank);

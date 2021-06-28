@@ -21,13 +21,21 @@ class FriendBox extends React.Component{
         'textAlign': 'center',
         'width': '100%'
     };
-    const red = { 'color': 'red', ...text_center };
-    const green = { 'color': 'green', ...text_center };
+    const css = {
+      [0]: { 'color': 'red', ...text_center },
+      [1]: { 'color': 'green', ...text_center },
+      [-1]: { 'color': 'black', ...text_center }
+    }
+    const text = {
+      [0]: 'W',
+      [1]: 'L',
+      [-1]: '?'
+    }
     let winlose = this.props.last.map(
       item => (
         <Col xs="2">
-          <label style={item ? green : red}> 
-            {item ? 'W' : 'L'} 
+          <label style={css[item]}> 
+            {text[item]}
           </label>
         </Col>
       )

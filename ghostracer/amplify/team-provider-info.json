@@ -14,9 +14,7 @@
     },
     "categories": {
       "auth": {
-        "ghostracer0c41ce91": {
-          "googleClientId": "277180343147-rtoj1qohu41plhoceg3p0l3c2bqmvs97.apps.googleusercontent.com"
-        },
+        "ghostracer0c41ce91": {},
         "userPoolGroups": {}
       },
       "function": {

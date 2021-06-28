@@ -1,14 +1,17 @@
 /* TextInput state */
 const initInputState = {
 	initialWords: "",
+	hash: ""
 }
 
 export function input(state = initInputState, action) {
+	// console.log("Log of getParagraph (redux)", state, action)
 	switch (action.type) {
 		case '@INPUT/START_GET_PARAGRAPH':
 			return {
 				...state,
 				initialWords: action.initialWords,
+				hash: action.hash
 			};
 		default:
 			return state;
@@ -77,7 +80,7 @@ const initPlayState = {
     opponentTime: 98,
     opponentSpeed: 60,
     opponentAccuracy: 2,
-    gameResult: false,
+    gameResult: true,
     gainedCoin: -10,
     gainedRank: -15,
 }
@@ -99,13 +102,19 @@ export function play(state = initPlayState, action) {
         case '@PLAY/SET_RESULT':
             return {
                 ...state,
-                ...action
+                ...action,
+                gameResult: action.speed > action.opponentSpeed ? true : false
             }
         case '@PLAY/SET_OPPONENT':
             return {
                 ...state,
-                ...action
+                ...action.action
             }
+		case '@PLAY/SET_MODE':
+			return {
+				...state,
+				mode: action.mode
+			}
         default:
             return state;
     }
