@@ -5,18 +5,18 @@
 2. aws amplify
 3. aws RDS
 # Run
-運行<br>
-`
-cd server <br>
+運行 <br>
+```
+cd server 
 npm install
 npm run start
-`
-修改前端<br>
-`
+```
+修改前端 <br>
+```
 cd ghostracer
 npm install
 npm run build
 cp -r ./public/* ../server/dist
-`
+```
 # Other
 https://hackmd.io/bUmqPcr5SoyQhaZItYtM0A
