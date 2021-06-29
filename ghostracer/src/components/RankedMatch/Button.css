@@ -1,0 +1,22 @@
+.circle-button {
+    background-color: black;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 50%;
+    width: 0.5rem;
+    height: 0.5rem;
+
+    transition: all .2s ease-in-out;
+}
+
+.circle-button:hover {
+    transform: scale(1.1);
+}
+
+.button-wrapper {
+    margin: auto;
+    text-align: center;
+}

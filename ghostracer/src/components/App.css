@@ -1,0 +1,44 @@
+.App {
+  height: 100vh;
+  width: 100vw;
+}
+
+.bg-faded{
+  background: rgba(0,0,0,0.5);
+  height: 100%;
+  width: 100%;
+}
+
+.navbar{
+  top:0;
+  height: 5%;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.footer{
+  width: 25%;
+  margin: auto;
+  bottom: 0;
+}
+
+.login-button {
+
+}
+
+.background {
+  
+}

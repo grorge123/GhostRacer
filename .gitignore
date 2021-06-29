@@ -1,1 +1,8 @@
+<<<<<<< HEAD
 envsetup.sh
+=======
+
+ghostracer/package-lock.json
+
+ghostracer/.vscode/
+>>>>>>> origin/Frontend-Integrated
