@@ -81,7 +81,7 @@ export function changeMoney(username, param){
     }).then(function(res) {
         if (res.status !== 200)
             throw new Error(`Unexpected response: ${res.status}, ${res.statusText}`)
-        return JSON.parse(res.data)
+        return res.data
     })
 }
 
