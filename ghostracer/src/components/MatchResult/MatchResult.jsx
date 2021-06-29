@@ -117,11 +117,11 @@ class MatchResult extends React.Component {
                         </Row>
                         <Row style={m2top}>
                             <Col>Time</Col>
-                            <Col>{this.props.play.time}</Col>
+                            <Col>{this.props.play.time.toPrecision(2)}</Col>
                             <Col>
                                 {this.trinityComparision(this.props.play.time - this.props.play.opponentTime)}
                             </Col>
-                            <Col>{this.props.play.opponentTime}</Col>
+                            <Col>{this.props.play.opponentTime.toPrecision(2)}</Col>
                         </Row>
                         <Row style={m2top}>
                             <Col>WPM</Col>
