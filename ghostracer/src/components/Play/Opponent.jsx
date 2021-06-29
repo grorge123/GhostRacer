@@ -5,6 +5,7 @@ import * as Constants from './constants.js';
 import TextInput from './TextInput.jsx';
 import SpeedBar from './SpeedBar.jsx';
 import Pause from './Pause.jsx';
+import Avatar from '../Avatar/avatar.jsx';
 
 import {connect} from 'react-redux';
 import {setOpponent} from '../../states/play-actions.js';
@@ -86,7 +87,8 @@ class PlayerBar extends React.Component {
         return (
           <g id="opponent">
             <foreignObject x={playerX+40+opponentOffset[0]} y={playerY} width={opponentWidth} height={opponentHeight}>
-              <img src={playerImg} width="150" alt="player img" />
+              {/*<img src={playerImg} width="150" alt="player img" />*/}
+              <Avatar width={"6rem"} id="5"></Avatar>
               <div className="text-center"><span style={{backgroundColor: "#ff5000",}} className="username">{userName}</span></div>
             </foreignObject>
           </g>

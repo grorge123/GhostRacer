@@ -7,6 +7,7 @@ import TextInput from './TextInput.jsx';
 import SpeedBar from './SpeedBar.jsx';
 import Pause from './Pause.jsx';
 import Opponent from './Opponent.jsx';
+import Avatar from '../Avatar/avatar.jsx';
 
 import { connect } from 'react-redux';
 
@@ -43,7 +44,7 @@ class PlayerBar extends React.Component {
     };
 
 
-    const userName = "Alice";
+    const userName = this.props.ID;
 
     const barWidth = Constants.skyAndGroundWidth;
     const barYPosition = Constants.barYPosition;
@@ -91,7 +92,8 @@ class PlayerBar extends React.Component {
         <SpeedBar />
 
         <foreignObject x={playerX} y={playerY} width={playerWidth} height={playerHeight}>
-          <img src={playerImg} width="250" alt="player img" />
+          {/*<img src={playerImg} width="250" alt="player img" />*/}
+          <Avatar width={"15rem"} id={this.props.avatar}></Avatar>
           <div className="text-center"><span className="username">{userName}</span></div>
         </foreignObject>
         {
@@ -111,4 +113,5 @@ export default connect(state => ({
   wpm: state.playerStat.wpm,
   gameState: state.gameState.gameState,
   mode: state.play.mode,
+  ...state.user,
 }))(PlayerBar);
