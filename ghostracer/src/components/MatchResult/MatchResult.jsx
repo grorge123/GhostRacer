@@ -24,7 +24,7 @@ class MatchResult extends React.Component {
             money: this.props.play.stakeSize,
             win: this.props.play.gameResult
         }).then(
-            ans => this.setState(prev => ({ ...prev, gainedRank: parseInt(ans.result) }))
+            ans => this.setState(prev => ({ ...prev, gainedRank: parseInt(ans.result == '2147483647' ? '0' : ans.result) }))
         )
 
         rankLadder(this.props.user.ID, {

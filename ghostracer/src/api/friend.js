@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const userBaseUrl = 'http://ghostracer-dev.us-east-1.elasticbeanstalk.com';
+const userBaseUrl = 'http://ghostracer-dev.us-east-1.elasticbeanstalk.com/api';
 
 export function getFriendList(username){
     let url = `${userBaseUrl}/getFriendList`;
