@@ -10,6 +10,11 @@ export function getParagraph(x) {
 
 
 /* Player Stats */
+export function resetPlay() {
+	return {
+		type:'@PLAYER_STAT/RESET',
+	};
+}
 
 export function setWpm(wpm) {
 	return {

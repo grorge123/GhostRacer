@@ -4,7 +4,7 @@ import * as Constants from './constants.js';
 
 import {connect} from 'react-redux';
 import {getParagraph} from '../../states/play-actions.js';
-import {setWpm, setAccuracy, setTotalTime} from '../../states/play-actions.js';
+import {setWpm, setAccuracy, setTotalTime, resetPlay} from '../../states/play-actions.js';
 import {setGameHold, setGameStart, setGameEnd} from '../../states/play-actions.js';
 import {setResult} from '../../states/play-actions.js';
 import {withRouter} from 'react-router';
@@ -48,10 +48,13 @@ class TextInput extends React.Component {
 
     componentDidMount() {
       this.props.dispatch(setGameHold());
+      this.props.dispatch(resetPlay());
       this.setKeyPressed();
+
     }
 
     componentDidUpdate() {
+      console.log(this.props.wpm)
       if(this.props.gameState == 0 && this.props.initialWords) {
         this.setInitialChar();
 
@@ -73,6 +76,7 @@ class TextInput extends React.Component {
         this.removeKeyPressed();
         this.props.dispatch(setTotalTime((this.currentTime() - this.state.startTime)/1000.0));
         this.props.dispatch(setGameEnd());
+        this.props.dispatch(resetPlay());
         if(this.props.mode == 'single')this.props.history.push('/');
         else this.props.history.push('/matchResult')
       }

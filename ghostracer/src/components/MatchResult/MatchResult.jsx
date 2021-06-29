@@ -107,7 +107,7 @@ class MatchResult extends React.Component {
 
                     <Col>
                         <Row style={m2top}><Col><h1>
-                            YOU {this.props.play.result ? 'WIN' : 'LOSE'}
+                            YOU {this.props.play.gameResult ? 'WIN' : 'LOSE'}
                         </h1></Col></Row>
                         <Row style={m2top}>
                             <Col>Time</Col>

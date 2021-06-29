@@ -28,6 +28,12 @@ const initPlayerStats = {
 
 export function playerStat(state = initPlayerStats, action) {
 	switch (action.type) {
+		case '@PLAYER_STAT/RESET':
+			return {
+				wpm: 0,
+				accuracy: 100,
+				totalTime: 0,
+			}
 		case '@PLAYER_STAT/SET_WMP':
 			return {
 				...state,
@@ -103,7 +109,7 @@ export function play(state = initPlayState, action) {
             return {
                 ...state,
                 ...action,
-                gameResult: action.speed > action.opponentSpeed ? true : false
+                gameResult: action.speed > state.opponentSpeed ? true : false
             }
         case '@PLAY/SET_OPPONENT':
             return {
