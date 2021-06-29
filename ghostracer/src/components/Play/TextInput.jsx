@@ -54,7 +54,6 @@ class TextInput extends React.Component {
     }
 
     componentDidUpdate() {
-      console.log(this.props.wpm)
       if(this.props.gameState == 0 && this.props.initialWords) {
         this.setInitialChar();
 
