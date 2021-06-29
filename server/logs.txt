@@ -205,3 +205,12 @@
 1624928218 GET    /13.bundle.js
 1624928218 GET    /11.bundle.js
 1624928225 GET    /14.bundle.js.map
+1624946754 POST   /api.updateHistory
+1624946767 POST   /api/updateHistory
+1624946803 POST   /api/updateHistory
+1624946886 POST   /api/updateHistory
+1624946953 POST   /api/updateHistory
+1624946987 POST   /api/updateHistory
+1624947004 POST   /api/updateHistory
+1624947024 POST   /api/updateHistory
+1624947059 POST   /api/updateHistory
