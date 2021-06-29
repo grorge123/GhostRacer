@@ -1,0 +1,19 @@
+.bg-1{
+  background-image: url(../images/intro-1.jpg);
+}
+
+.bg-2{
+  background-image: url(../images/intro-2.jpg);
+}
+
+.button-story {
+  background-image: none;
+}
+
+.button-story:hover{
+  background-image: url(../images/intro-story.png)
+}
+
+.button-ranked:hover{
+  background-image: url(../images/intro-ranked.png)
+}

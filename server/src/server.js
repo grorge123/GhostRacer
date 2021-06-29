@@ -11,19 +11,19 @@ const swaggerFile = require('./swagger_output.json')
 
 const app = express();
 
-// app.use(requestLogger);
-// app.use(
-//   express.static('dist', {
-//     setHeaders: (res, path, stat) => {
-//       res.set('Cache-Control', 'public, s-maxage=86400');
-//     },
-//   })
-// );
+app.use(requestLogger);
+app.use(
+  express.static('dist', {
+    setHeaders: (res, path, stat) => {
+      res.set('Cache-Control', 'public, s-maxage=86400');
+    },
+  })
+);
 
 
 app.use(accessController);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
-app.use('/', Router);
+app.use('/api', Router);
 app.get('/*', (req, res) => res.send("server"));
 app.use(errorHandler);
 

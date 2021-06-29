@@ -184,3 +184,24 @@
     at next (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/express/lib/router/index.js:275:10)
     at /home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/body-parser/lib/read.js:130:5
     at invokeCallback (/home/grorge/Desktop/GITHUB/GhostRacer/server/node_modules/raw-body/index.js:224:16)
+1624928217 GET    /
+1624928217 GET    /styles/owfont-regular.min.css
+1624928217 GET    /css/index.css
+1624928217 GET    /css/assets.css
+1624928217 GET    /vendors~index.bundle.js
+1624928217 GET    /vendors~vendor.bundle.js
+1624928217 GET    /vendor.bundle.js
+1624928217 GET    /index.bundle.js
+1624928218 GET    /favicon.ico
+1624928218 GET    /19.bundle.js
+1624928218 GET    /15.bundle.js
+1624928218 GET    /9.bundle.js
+1624928218 GET    /10.bundle.js
+1624928218 GET    /16.bundle.js
+1624928218 GET    /20.bundle.js
+1624928218 GET    /17.bundle.js
+1624928218 GET    /14.bundle.js
+1624928218 GET    /22.bundle.js
+1624928218 GET    /13.bundle.js
+1624928218 GET    /11.bundle.js
+1624928225 GET    /14.bundle.js.map
