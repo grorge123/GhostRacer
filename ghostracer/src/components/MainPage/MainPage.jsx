@@ -20,9 +20,10 @@ import './MainPage.css';
 import { loginAction } from '../../states/user-actions.js';
 import { StoreMallDirectoryRounded } from '@material-ui/icons';
 import { randomArticle, randomOpponent } from '../../api/ladder.js';
-import { getUserProfile } from '../../api/user.js';
 import { setOpponent, setMode, getParagraph } from '../../states/play-actions.js';
 import { preload } from '../Play/Preload.js';
+import { getUserProfile } from '../../api/user.js';
+import { getUserData } from '../../states/user-actions.js'
 
 const bgImageUrls = {
     story: '../images/intro-story.png',
@@ -58,6 +59,12 @@ class MainPage extends React.Component {
         this.storyModePage = this.storyModePage.bind(this)
         this.rankedModePage = this.rankedModePage.bind(this)
         this.quickGamePage = this.quickGamePage.bind(this)
+    }
+
+    componentDidMount(){
+        getUserProfile(this.props.user.ID).then(data => {
+            this.props.dispatch(getUserData(data))
+        }).catch(error => console.log('Error fetch user data from server. ', error))
     }
 
     signout(){
@@ -126,7 +133,7 @@ class MainPage extends React.Component {
                                 <TableCell component="th" scope="row">
                                     {this.props.user.username}
                                 </TableCell>
-                                <TableCell align="right">{this.props.maxspeed}</TableCell>
+                                <TableCell align="right">{this.props.user.maxSpeed}</TableCell>
                                 <TableCell align="right">{this.props.user.money}</TableCell>
                             </TableRow>
                         </TableBody>

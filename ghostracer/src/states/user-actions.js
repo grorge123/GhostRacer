@@ -15,7 +15,7 @@ function logout() {
     }
 }
 
-function getUserData(data) {
+export function getUserData(data) {
     return {
         type: '@USER/GET_DATA',
         ID: data['ID'],
