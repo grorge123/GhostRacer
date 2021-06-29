@@ -4,7 +4,7 @@ import * as Constants from './constants.js';
 
 import {connect} from 'react-redux';
 import {getParagraph} from '../../states/play-actions.js';
-import {setWpm, setAccuracy, setTotalTime} from '../../states/play-actions.js';
+import {resetGame, setWpm, setAccuracy, setTotalTime} from '../../states/play-actions.js';
 import {setGameHold, setGameStart, setGameEnd} from '../../states/play-actions.js';
 import {setResult} from '../../states/play-actions.js';
 import {withRouter} from 'react-router';
@@ -49,9 +49,15 @@ class TextInput extends React.Component {
     componentDidMount() {
       this.props.dispatch(setGameHold());
       this.setKeyPressed();
+      
     }
 
     componentDidUpdate() {
+      console.log(this.props.gameState);
+      if(this.props.gameState == 0) {
+        this.props.dispatch(resetGame());
+      }
+
       if(this.props.gameState == 0 && this.props.initialWords) {
         this.setInitialChar();
 
@@ -63,7 +69,6 @@ class TextInput extends React.Component {
             if(durationInMinutes > 0.01) this.props.dispatch(setWpm(Math.round((this.state.wordCount) / durationInMinutes / 5)));
           }
         }, 500);
-
         this.props.dispatch(setGameStart());
       }
 
@@ -86,7 +91,10 @@ class TextInput extends React.Component {
       }
     }
 
-
+    componentWillUnmount() {
+      clearInterval(this.interval);
+      this.props.dispatch(resetGame());
+    }
 
 
     render() {
@@ -115,6 +123,7 @@ class TextInput extends React.Component {
         currentChar: currentChar,
         incomingChars: incomingChars,
       });
+      console.log("set initialWords");
     }
 
     handleKeyPress(key) {
