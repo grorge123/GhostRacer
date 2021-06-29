@@ -79,5 +79,5 @@ module.exports = {
         port: 8083,
         historyApiFallback: true,
     },
-    devtool: 'cheap-source-map',
+    // devtool: 'source-map',
 };

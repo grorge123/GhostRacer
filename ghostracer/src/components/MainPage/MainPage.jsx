@@ -189,9 +189,10 @@ class MainPage extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        dispatch,
         setOpponent: (x) => dispatch(setOpponent(x)),
         setMode: (x) => dispatch(setMode(x)),
-        getParagraph: (x) => dispatch(getParagraph(x))
+        getParagraph: (x) => dispatch(getParagraph(x)),
     }
 };
 
