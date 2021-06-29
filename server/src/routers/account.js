@@ -79,6 +79,7 @@ router.post('/updateHistory', function (req, res, next){
         res.status(403).send('You lack necessary parameters');
         return;
     }
+    // console.log(req.body)
     check_access(token)
     .then(()=>{
         let name = token;

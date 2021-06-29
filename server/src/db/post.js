@@ -24,15 +24,16 @@ function uploadspeed(name, speed, acc){
         speed = parseInt(speed)
         maxSpeed = parseInt(data.maxspeed)
         sql = `
-            UPDATE account
-            SET speed = $1,
-                maxSpeed = $4,
-                times = $2,
-                acc = $5
-            WHERE
-                name= $3
+        UPDATE account
+        SET speed = $1,
+        maxSpeed = $4,
+        times = $2,
+        acc = $5
+        WHERE
+        name= $3
         `;
-        return db.none(sql,[(data.speed*data.times+speed)/(data.times+1), data.times + 1, name, Math.max(maxSpeed, speed), (data.acc*data.times+acc)/(data.times+1)]);
+        console.log([(data.speed*data.times+speed)/(data.times+1), data.times + 1, name, Math.max(maxSpeed, speed), (data.acc*data.times+data.acc)/(data.times+1)])
+        return db.none(sql,[(data.speed*data.times+speed)/(data.times+1), data.times + 1, name, Math.max(maxSpeed, speed), (data.acc*data.times+data.acc)/(data.times+1)]);
     });
 }
 function addhistory(name, speed, hash, win){
