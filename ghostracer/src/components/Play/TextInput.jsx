@@ -76,9 +76,6 @@ class TextInput extends React.Component {
         this.removeKeyPressed();
         this.props.dispatch(setTotalTime((this.currentTime() - this.state.startTime)/1000.0));
         this.props.dispatch(setGameEnd());
-        this.props.dispatch(resetPlay());
-        if(this.props.mode == 'single')this.props.history.push('/');
-        else this.props.history.push('/matchResult')
       }
 
       if(this.props.gameState == 2) {
@@ -87,6 +84,10 @@ class TextInput extends React.Component {
           accuracy: this.props.accuracy,
           time: this.props.totalTime,
         }));
+        this.props.dispatch(resetPlay());
+        clearInterval(this.interval);
+        if(this.props.mode == 'single')this.props.history.push('/');
+        else this.props.history.push('/matchResult')
       }
     }
 
