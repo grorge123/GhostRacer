@@ -71,19 +71,18 @@ class FriendsPage extends React.Component {
         getFriendList(this.props.user.ID).then(
             result => {
                 for (var i = 0; i < result.len; i++) {
-                    if (result['friend' + i.toString()] != this.props.user.ID)
-                        getUserProfile(result['friend' + i.toString()]).then(
-                            ans => {
-                                this.setState(
-                                    prev => ({
-                                        friends: {
-                                            ...prev.friends,
-                                            [ans.ID]: ans
-                                        }
-                                    })
-                                )
-                            }
-                        )
+                    getUserProfile(result['friend' + i.toString()]).then(
+                        ans => {
+                            this.setState(
+                                prev => ({
+                                    friends: {
+                                        ...prev.friends,
+                                        [ans.ID]: ans
+                                    }
+                                })
+                            )
+                        }
+                    )
                 }
             }
         )
